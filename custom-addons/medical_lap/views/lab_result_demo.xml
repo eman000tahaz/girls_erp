@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="medical_view_report_lab_result_demo">
+			<t t-call="report.external_layout">
+				<div class="page">
+					<div class="oe_structure"/>
+					<div class="row">
+						<div>
+							<h3 class="text-center mb32">
+								<strong>LABORATORY REPORT</strong>
+							</h3>
+						</div>
+					</div>
+					<br/>
+					<div class="row mt32 mb32" id="informations">
+						<div class="col-xs-3">
+							<strong>Patient Name:</strong>
+							<p t-field="doc.patient.name"/>
+						</div>
+						<div class="col-xs-3">
+							<strong>Patient ID:</strong>
+							<p t-field="doc.patient.patient_id"/>
+						</div>
+						<div class="col-xs-3">
+							<strong>Age:</strong>
+							<p t-field="doc.patient.age"/>
+						</div>
+						<div class="col-xs-3">
+							<strong>Sex:</strong>
+							<p t-field="doc.patient.sex"/>
+						</div>
+						<div class="col-xs-3">
+							<strong>Doctor:</strong>
+							<p t-field="doc.doctor"/>
+						</div>
+					</div>
+					<br>
+						<br></br>
+					</br>
+					<tbody class="sale_tbody">
+								<t t-foreach="doc.lab_result" t-as="result">
+					<div class="row">
+						<div class="text-center mb32">
+							<h1>
+								<p t-field="result.test"/>
+							</h1>
+						</div>
+					</div>
+					<div>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Analyte</th>
+									<th>Result</th>
+									<th>Normal Range</th>
+									<th>Units</th>
+								</tr>
+							</thead>
+							<tbody class="sale_tbody">
+								<t t-foreach="result.critearea" t-as="test">
+									<tr>
+										<td>
+											<span t-field="test.name"/>
+										</td>
+										<td>
+											<span t-field="test.result"/>
+										</td>
+										<td>
+											<t t-if="test.lower_limit">
+												<t t-if="test.upper_limit == 0">
+													Above
+													<span t-field="test.lower_limit"/>
+												</t>
+											</t>
+											<t t-if="test.lower_limit == 0">
+												<t t-if="test.upper_limit">
+													Below
+													<span t-field="test.upper_limit"/>
+												</t>
+											</t>
+											<t t-if="test.lower_limit">
+												<t t-if="test.upper_limit">
+													<span t-field="test.lower_limit"/>
+													-
+													<span t-field="test.upper_limit"/>
+												</t>
+											</t>
+											<t t-if="test.lower_limit == 0">
+												<t t-if="test.upper_limit == 0">-</t>
+											</t>
+										</td>
+										<td>
+											<span t-field="test.units"/>
+										</td>
+									</tr>
+								</t>
+							</tbody>
+						</table>
+					</div>
+					</t>
+					</tbody>
+					<br>
+						<br>
+							<br></br>
+						</br>
+					</br>
+					<div class="row mt32 mb32" id="informations">
+						<div>
+							<strong>Signature:_____________________________</strong>
+						</div>
+					</div>
+					<div class="oe_structure"/>
+				</div>
+			</t>
+		</template>
+		<template id="lab_result_demo">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="pragtech_medical_pathology.medical_view_report_lab_result_demo" t-lang="doc.patient.name.lang"/>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,359 @@
+<openerp>
+        <data>
+		<menuitem name="Pathology Management" id="medical_menu" icon="STOCK_ZOOM_IN"/>
+		<menuitem name="Configuration" id="medical_conf_menu" parent="medical_menu" sequence="12"/>
+		<menuitem name="Patients" id="medical_patients_menu" parent="medical_menu" sequence="2"/>
+		
+		<!-- Insurances -->
+
+                <record model="ir.ui.view" id="medical_insurance_view">
+                        <field name="name">Insurance</field>
+                        <field name="model">medical.insurance</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Insurances">
+                                <group colspan="4" col="4">
+									<field name="number" required="1"></field>
+									<field name="name" domain="[('is_patient', '=', True)]" context="{'default_is_patient': 1, 'search_default_is_patient': 1,'search_default_is_person': 1,'default_is_person': 1}"></field>
+									<field name="type"></field>
+									<field name="company" required="1" context="{'default_is_insurance_company': 1, 'search_default_is_insurance_company': 1}"/>
+									<field name="plan_id"></field>
+									<field name="category"></field>
+									<field name="member_since"></field>
+									<field name="member_exp"></field>
+									<newline/>
+									<field name="notes" colspan="4"></field>
+								</group>
+                                </form>
+                        </field>
+                </record>
+
+
+
+                <record model="ir.ui.view" id="medical_insurance_tree">
+                        <field name="name">Insurance List</field>
+                        <field name="model">medical.insurance</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string='Insurance List'>
+									<field name="number"/>
+									<field name="name"/>
+									<field name="type"/>
+									<field name="company"/>
+									<field name="category"/>
+									<field name="member_since"/>
+									<field name="member_exp"/>
+                                </tree>
+                        </field>
+                </record>
+
+               <record model="ir.actions.act_window" id="medical_action_insurance">
+                        <field name="name">Insurances</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">medical.insurance</field>
+                        <field name="view_type">form</field>
+                        <field name="view_id" ref="medical_insurance_tree"/>
+                </record>
+
+
+		<record id="view_medical_insurance_filter" model="ir.ui.view">
+			<field name="name">medical.insurance.select</field>
+			<field name="model">medical.insurance</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Insurances">
+
+					<separator orientation="vertical"/>
+					    <field name="number" />
+					    <field name="name" />
+					    <field name="company" />
+					<newline/>
+
+				</search>
+			</field>
+		</record>
+
+
+<!-- 		<menuitem action="medical_action_insurance" id="medical_conf_edit_insurance" parent="medical_patients_menu" sequence="1"/> -->
+
+		<record id="action_partner_health_insurance_company" model="ir.actions.act_window">
+            <field name="name">Insurance Company</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+			<field name="context">{"default_is_insurance_company":1,"search_default_is_insurance_company":1}</field>
+            <field name="domain">[('is_insurance_company','=',1)]</field>
+        </record>
+
+<!--         <menuitem action="action_partner_health_insurance_company" id="menu_health_insurance_company_form" parent="medical_conf_menu" sequence="0"/> -->
+        
+        <!-- Medical Specialities -->
+
+                <record model="ir.ui.view" id="medical_speciality_view">
+                        <field name="name">Medical Specialties</field>
+                        <field name="model">medical.speciality</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Medical Speciality">
+                                <group colspan="4" col="4">
+					<field name="name" required="1"></field>
+					<field name="code"></field>
+					</group>
+                                </form>
+                        </field>
+                </record>
+
+                <record model="ir.ui.view" id="medical_speciality_tree">
+                        <field name="name">Medical Speciality list</field>
+                        <field name="model">medical.speciality</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Medical Speciality">
+                                        <field name="name"></field>
+                                        <field name="code"></field>
+                                </tree>
+                        </field>
+                </record>
+
+                <record model="ir.actions.act_window" id="medical_action_speciality">
+                        <field name="name">Medical Specialties</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">medical.speciality</field>
+                        <field name="view_type">form</field>
+                        <field name="view_id" ref="medical_speciality_tree"/>
+                </record>
+
+		<menuitem action="medical_action_speciality" id="medical_conf_speciality" parent="medical_conf_menu"/>
+
+
+
+		<record id="view_medical_specialty_filter" model="ir.ui.view">
+			<field name="name">medical.speciality.select</field>
+			<field name="model">medical.speciality</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Medical Specialties">
+					<separator orientation="vertical"/>
+					    <field name="name" />
+					    <field name="code" />
+					<newline/>
+
+				</search>
+			</field>
+		</record>
+		
+		<!-- Patient -->
+
+		<record id="view_medical_patient_filter" model="ir.ui.view">
+			<field name="name">medical.patient.select</field>
+			<field name="model">medical.patient</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Patients">
+					<filter icon="terp-personal" string="My Patients" domain="[('user_id','=',uid)]"/>
+					<separator orientation="vertical"/>
+					    <field name="name" />
+					    <field name="patient_id" string="Patient ID" />
+
+					<newline/>
+					<group expand="1" string="Group By..." >
+						<filter string="Sex" icon="terp-personal" domain="[]" context="{'group_by':'sex'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="medical_patient_view">
+			<field name="name">Patient</field>
+			<field name="model">medical.patient</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			<form string="Patient">
+				<group col="6" colspan="6">
+				<group col="4" colspan="4" string="Main Info">
+					<field name="name" 
+						context="{'default_is_patient': 1, 'search_default_is_patient': 1,'search_default_is_person': 1,'default_is_person': 1}"/>
+					<field name="patient_id"/>
+					<field name="dob" on_change="onchange_dob(dob)"/>
+					<field name="sex" required="1"/>
+					<field  name="age"/>
+				</group>
+				<group col="2" colspan="2" string="Picture" rowspan="1">
+					<field name="photo"  nolabel="1" img_width="120" img_height="120" width="120" height="120" widget="image"/>	
+				</group>
+				</group>
+				<notebook>
+			        <page string="General Information">
+							<group colspan="4" col="4" string="Patient General Information">
+								<field name="blood_type"/>
+								<field name="rh"/>
+								<field name="marital_status"/>
+							</group>
+							<separator colspan="4" string="Patient Extra Information" />
+							<newline/>
+							<field colspan="4" name="general_info" nolabel="1"/>
+							<newline/>
+							<group colspan="4" col="4">
+								<field name="deceased"/>
+
+								<field name="dod" attrs="{'invisible':[('deceased','=',False)],'required':[('deceased','=',True)]}"/>
+							</group>
+				</page>
+				<page string="Patient Critical Information">
+						<group colspan="4" col="8" >
+							<field name="critical_info" nolabel="1"/>
+						</group>
+			        </page>
+		        </notebook>
+			</form>
+		</field>
+	</record>
+
+
+
+	<record model="ir.ui.view" id="medical_patient_tree">
+		<field name="name">Patient List</field>
+		<field name="model">medical.patient</field>
+		<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string='Patient Information'>
+					<field name="name"></field>
+					<field name="patient_id"></field>
+					<field name="sex"></field>
+					<field name="dob"></field>
+					<field name="deceased"></field>
+				</tree>
+			</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="medical_patient_action_tree">
+		<field name="name">Patients</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">medical.patient</field>
+		<field name="view_type">form</field>
+		<field name="view_id" ref="medical_patient_tree"/>
+	</record>
+
+	<menuitem action="medical_patient_action_tree" parent="medical_patients_menu"  id="medical_edit_patient" sequence="2"/>
+	
+	<!-- PRODUCT -->
+                <record model="ir.ui.view" id="view_product_form1">
+                        <field name="name">product.normal.form</field>
+                        <field name="model">product.product</field>
+                        <field name="inherit_id" ref="product.product_normal_form_view" />
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+						<notebook>
+							<page string="Medical">
+								<group>
+									<field name="is_insurance_plan"/>
+								</group>
+							</page>
+						</notebook>
+	                </field>
+               </record>
+               
+        <!-- PARTNER -->
+	
+				<record model="ir.ui.view" id="view_partner_form3">
+                        <field name="name">res.partner.form</field>
+                        <field name="model">res.partner</field>
+                        <field name="inherit_id" ref="base.view_partner_form" />
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <field name="ref" position="replace">
+                                </field>
+                        </field>
+               </record>
+               
+                <record model="ir.ui.view" id="view_partner_form">
+                        <field name="name">res.partner.form</field>
+                        <field name="model">res.partner</field>
+                        <field name="inherit_id" ref="base.view_partner_form" />
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+						<notebook>
+							<page string="Medical">
+								<group colspan="6" col="6">
+								<field name="is_patient"/>
+								<field name="is_doctor"/>
+								<field name="is_institution"/>
+								<field name="is_person"/>
+								<field name="is_insurance_company"/>
+								<field name="ref" placeholder="ID Number"/>
+								</group>
+								<newline/>
+								<field name="insurance" colspan="4" widget="one2many_list"/>
+							</page>
+						</notebook>
+						<field name="user_id" position = "replace">
+							<field name="user_id" string="Internal User" attrs="{ 'required':[('is_doctor', '=', True)]}"/>
+						 </field>	
+	                </field>
+               </record>
+               
+        <!-- Health Centers -->
+
+
+        <record id="action_partner_health_center" model="ir.actions.act_window">
+            <field name="name">Pathology Clinic Centers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+			<field name="context">{"default_is_institution":1,"search_default_is_institution":1}</field>
+            <field name="domain">[('is_institution','=',1)]</field>
+        </record>
+
+        <menuitem action="action_partner_health_center" id="menu_health_center_form" parent="medical_conf_menu" sequence="0"/>
+	
+		<record model="ir.ui.view" id="medical_physician_view">
+			<field name="name">Physician</field>
+			<field name="model">medical.physician</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Physician">
+					<notebook>
+						<page string="Main Info">
+							<group colspan="4" col="4">
+							<field name="name" required="1" context="{'default_is_doctor': 1, 'search_default_is_doctor': 1}"/>
+							<field  name="ssn"/>
+							<field name="speciality"/>
+							<field name="institution" context="{'default_is_institution': 1, 'search_default_is_institution': 1}"/>
+							<field name="code"/>
+							</group>
+						</page>
+						<page string="Extra Info">
+							<field name="info"/>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="medical_physician_tree">
+			<field name="name">Physician List</field>
+			<field name="model">medical.physician</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string='Physician Information'>
+					<field name="name"></field>
+					<field name="code"></field>
+					<field name="institution"></field>
+					<field name="speciality"></field>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="medical_action_form_physician">
+			<field name="name">Physician</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">medical.physician</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="medical_physician_tree"/>
+		</record>
+
+		<menuitem action="medical_action_form_physician" id="medical_conf_physician_list" parent="medical_conf_menu" sequence="1"/>
+	
+		</data>
+</openerp>

@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Odoo Medical Demo',
+    'version': '8.0.1.1.0',
+    'category': 'medical',
+    'depends': [
+        'medical_lap',
+        'medical',
+        'medical_disease',
+        'medical_family',
+        'medical_his',
+        'medical_insurance',
+        'medical_insurance_us',
+        'medical_medicament',
+        'medical_medicament_attributes',
+        'medical_medication',
+        'medical_medication_us',
+        'medical_patient_ethnicity',
+        'medical_patient_occupation',
+        'medical_pharmacy',
+        'medical_pharmacy_us',
+        'medical_prescription',
+        'medical_prescription_state',
+        'medical_prescription_thread',
+    ],
+    'data': [
+    ],
+    'author': 'Eman Taha',
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}
