@@ -4,7 +4,6 @@
     'version': '8.0.1.1.0',
     'category': 'medical',
     'depends': [
-        'medical_lap',
         'medical',
         'medical_disease',
         'medical_family',
