@@ -27,7 +27,6 @@ class insurance_plan(osv.osv):
     'notes' : fields.text('Extra info'),
     }
 
-insurance_plan()
 
 class insurance (osv.osv):
 
@@ -56,7 +55,7 @@ class insurance (osv.osv):
         'plan_id' : fields.many2one('medical.insurance.plan', 'Plan',help='Insurance company plan'),
         }
     
-insurance ()
+
 
 class partner_patient (osv.osv):
     _name = "res.partner"
@@ -70,7 +69,7 @@ class partner_patient (osv.osv):
         'is_institution' : fields.boolean ('Institution', help="Check if the partner is a Medical Center"),
         'is_insurance_company' : fields.boolean('Insurance Company', help="Check if the partner is a Insurance Company"),
         'lastname' : fields.char('Last Name', size=128, help="Last Name"),
-        'insurance' : fields.one2many ('medical.insurance','company',"Insurance"),    
+        'insurance' : fields.one2many ('medical.insurance','company',"Insurance"),
     }
     _sql_constraints = [
                 ('ref_uniq', 'unique (ref)', 'The partner or patient code must be unique')
@@ -87,7 +86,6 @@ class partner_patient (osv.osv):
             res.append((record.id, name))
         return res
 
-partner_patient ()
 
 class product_medical (osv.osv):
     _name = "product.product"
@@ -95,7 +93,6 @@ class product_medical (osv.osv):
     _columns = {
                 'is_insurance_plan' : fields.boolean('Insurance Plan',help='Check if the product is an insurance plan'),
     }
-product_medical ()
 
 class speciality (osv.osv):
     _name = "medical.speciality"
@@ -106,7 +103,6 @@ class speciality (osv.osv):
     _sql_constraints = [
                 ('code_uniq', 'unique (name)', 'The Medical Specialty code must be unique')]
 
-speciality ()
 
 class physician (osv.osv):
     _name = "medical.physician"
@@ -129,7 +125,6 @@ class physician (osv.osv):
         res = [(r['id'], r[rec_name][1]) for r in self.read(cr, uid, ids, [rec_name], context)]
         return res
 
-physician ()
 
 class patient_data (osv.osv):
 
@@ -232,4 +227,3 @@ class patient_data (osv.osv):
         return id
     
             
-patient_data ()
