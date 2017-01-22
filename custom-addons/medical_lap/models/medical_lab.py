@@ -24,7 +24,7 @@ from openerp.tools.translate import _
 # Add Lab test information to the Patient object
 
 class patient_data (osv.osv):
-    _name = "medical.patient"
+    #_name = "medical.patient"
     _inherit = "medical.patient"
 
     def name_get(self, cr, uid, ids, context={}):

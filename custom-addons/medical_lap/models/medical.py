@@ -10,7 +10,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 class insurance_plan(osv.osv):
-    _name = "medical.insurance.plan"
+    _inherit = "medical.insurance.plan"
     
     def name_get(self, cr, uid, ids, context={}):
         if not len(ids):
@@ -58,7 +58,7 @@ class insurance (osv.osv):
 
 
 class partner_patient (osv.osv):
-    _name = "res.partner"
+    #_name = "res.partner"
     _inherit = "res.partner"
     _columns = {
         'date' : fields.date('Partner since',help="Date of activation of the partner or patient"),
@@ -88,7 +88,7 @@ class partner_patient (osv.osv):
 
 
 class product_medical (osv.osv):
-    _name = "product.product"
+    #_name = "product.product"
     _inherit = "product.product"
     _columns = {
                 'is_insurance_plan' : fields.boolean('Insurance Plan',help='Check if the product is an insurance plan'),
@@ -105,7 +105,7 @@ class speciality (osv.osv):
 
 
 class physician (osv.osv):
-    _name = "medical.physician"
+    _inherit = "medical.physician"
     _description = "Information about the doctor"
     _columns = {
         'name' : fields.many2one ('res.partner','Dentist',required=True, domain=[('is_doctor', '=', "1"),('is_person', '=', "1")], help="Physician's Name, from the partner list"),
@@ -188,7 +188,7 @@ class patient_data (osv.osv):
             result[patient_data.id] = compute_age_from_dates (patient_data.dob,patient_data.deceased,patient_data.dod)
         return result
 
-    _name = "medical.patient"
+    _inherit = "medical.patient"
     _description = "Patient related information"
     _columns = {
         'name' : fields.many2one('res.partner','Patient', required="1", domain=[('is_patient', '=', True), ('is_person', '=', True)], help="Patient Name"),
