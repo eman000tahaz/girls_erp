@@ -52,7 +52,6 @@ class patient_data (osv.osv):
         'lab_test_ids': fields.one2many('medical.lab.appointment','patient','Lab Tests Required',readonly = True),
         }
 
-patient_data ()    
     
 class test_type (osv.osv):
     _name = "medical.test_type"
@@ -71,7 +70,6 @@ class test_type (osv.osv):
     _sql_constraints = [
             ('code_uniq', 'unique (name)', 'The Lab Test code must be unique')]
 
-test_type ()
 
 class lab (osv.osv):
     _name = "medical.lab"
@@ -101,7 +99,6 @@ class lab (osv.osv):
 
     _sql_constraints = [
                 ('id_uniq', 'unique (name)', 'The test ID code must be unique')]
-lab ()
 
 
 
@@ -113,7 +110,6 @@ class medical_lab_test_units(osv.osv):
         }
     _sql_constraints = [
             ('name_uniq', 'unique(name)', 'The Unit name must be unique')]
-medical_lab_test_units()
 
 class medical_test_critearea(osv.osv):
     _name = "medical_test.critearea"
@@ -148,7 +144,6 @@ class medical_test_critearea(osv.osv):
             v['warning']=False
         return {'value': v} 
      
-medical_test_critearea()
 
     
 
@@ -172,7 +167,7 @@ class medical_patient_lab_test(osv.osv):
         'date' : fields.datetime('Date'),
         'state' : fields.selection([('draft','Draft'),('tested','Tested'),('cancel','Cancel')],'State',readonly=True),
         'patient_id' : fields.many2one('medical.patient','Patient',required=True),
-        'doctor_id' : fields.many2one('medical.physician','Doctor', help="Doctor who Request the lab test."), 
+        'doctor_id' : fields.many2one('medical.physician','Doctor', help="Doctor who Request the lab test."),
         'request' : fields.char('Request', readonly=True),
         'urgent' : fields.boolean('Urgent'),
         'medical_patient_id' : fields.many2one('medical.lab.appointment','Apt Id'),
@@ -230,7 +225,6 @@ class medical_patient_lab_test(osv.osv):
         'type': 'ir.actions.act_window'
         }
    
-medical_patient_lab_test()
 
 class medical_lab_appointment(osv.osv):
     _name = "medical.lab.appointment"
@@ -393,4 +387,3 @@ class medical_lab_appointment(osv.osv):
             vals['name'] = self.pool.get('ir.sequence').get(cr, uid, 'medical.lab.appointment') or '0'
         return super(medical_lab_appointment, self).create(cr, uid, vals, context=context)
     
-medical_lab_appointment()
