@@ -3,7 +3,7 @@
     'name': 'Medical Lap',
     'version': '8.0.1.1.0',
     'category': 'medical',
-    'depends': ['base','sale','purchase','account','product','document', 'medical_insurance', 'medical'],
+    'depends': ['base','sale','purchase','account','product','document'],
     'data': [
         "security/medical_security.xml",
         "security/ir.model.access.csv",

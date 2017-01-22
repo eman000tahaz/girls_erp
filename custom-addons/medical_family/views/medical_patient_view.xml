@@ -9,7 +9,9 @@
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='main']" position="after">
                     <group name="family">
+<!--
                         <field name="family_id" string="Family Name"/>
+-->
                         <field name="role_id" string="Family Role"/>
                     </group>
                 </xpath>

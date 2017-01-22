@@ -78,8 +78,8 @@ class ResPartner(models.Model):
         string='ID/SSN',
         help='Patient Social Security Number or equivalent',
     )
-    patient_ids = fields.One2many(
-        'medical.patient',
-        fields_id='medical_center_id',
-        string='Related Patients',
-    )
+    #patient_ids = fields.One2many(
+     #   'medical.patient',
+      #  fields_id='medical_center_id',
+       # string='Related Patients',
+    #)

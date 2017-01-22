@@ -32,8 +32,8 @@ class MedicalFamily(models.Model):
         string='Family',
         required=True
     )
-    member_ids = fields.One2many(
-        'medical.patient',
-        'family_id',
-        string='Family Members',
-    )
+    #member_ids = fields.One2many(
+    #    'medical.patient',
+    #    'family_id',
+    #    string='Family Members',
+    #)
