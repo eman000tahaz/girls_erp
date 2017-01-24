@@ -19,7 +19,7 @@
              <field name="name">medical.patient.form</field>
              <field name="model">medical.patient</field>
              <field name="arch" type="xml">
-              <form string="Patient">
+                 <form string="Patient">
                     <header>
                     </header>
                     <sheet>
@@ -245,6 +245,5 @@
              <field name="domain">[]</field>
              <field name="context">{}</field>
          </record>
-
     </data>
 </openerp>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- form view -->
+        <!-- Lab Medical Request -->
+        <record id="lab_medical_request_form_view" model="ir.ui.view">
+            <field name="name">lab.medical.request.form.view</field>
+            <field name="model">lab.medical.request</field>
+            <field name="arch" type="xml">
+                <form string="Medical Request Form">
+                    <header>
+                        <div>
+                            <field name="state" widget="statusbar" clickable="True"/>
+                            <button class="oe_highlight" string="Test Done" type="object" name="change_state" attrs="{'invisible': [('state', '=', 'tested')]}"/>
+                        </div>
+                    </header>
+                    <sheet>
+                        <label for="patient_id">Patient Name</label>
+                        <field name="patient_id" string="Patient Name"/>
+                        <group>
+                            <field name="request_date"/>
+                            <field name="test_date"/>
+                        </group>
+                        <notebook>
+                            <page string="Medical Tests">
+                                <field name="medical_test_ids" widget="one2many">
+                                    <tree>
+                                        <field name="test_id"/>
+                                        <field name="normal"/>
+                                        <field name="warning"/>
+                                        <field name="excluded"/>
+                                        <field name="price"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Diagnosis">
+                                <field name="diagnosis"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Lab Medical Test -->
+        <record id="lab_medical_test_form_view" model="ir.ui.view">
+            <field name="name">lab.medical.test.form.view</field>
+            <field name="model">lab.medical.test</field>
+            <field name="arch" type="xml">
+                <form string="Medical Test Form">
+                    <sheet>
+                        <field name="medical_request_id" string="Medical Request"/>
+                        <group>
+                            <field name="test_id" on_change="onchange_test_id"/>
+                            <field name="test_date"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="result" on_change="onchange_result" />
+                            </group>
+                            <group>
+                                <field name="upper_limit" />
+                                <field name="lower_limit"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="normal" readonly="1"/>
+                            <field name="warning" readonly="1"/>
+                            <field name="excluded" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Diagnosis">
+                                <field name="diagnosis"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Test Types -->
+        <record id="test_type_form_view" model="ir.ui.view">
+            <field name="name">lab.test.type.form.view</field>
+            <field name="model">lab.test.type</field>
+            <field name="arch" type="xml">
+                <form string="Test Type Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="sample_type"/>
+                                <field name="product"/>
+                            </group>
+                            <group>
+                                <field name="price"/>
+                                <field name="time"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="upper_limit"/>
+                            <field name="lower_limit"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="desc"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+
+        <!-- actions -->
+        <record id="lab_medical_request_action" model="ir.actions.act_window">
+             <field name="name">lab.medical.request</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">lab.medical.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'request')]</field>
+             <field name="context">{}</field>
+        </record>
+        <record id="lab_medical_test_action" model="ir.actions.act_window">
+             <field name="name">lab.medical.test</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">lab.medical.test</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[]</field>
+             <field name="context">{}</field>
+        </record>
+        <record id="lab_medical_result_action" model="ir.actions.act_window">
+             <field name="name">lab.medical.result</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">lab.medical.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'tested')]</field>
+             <field name="context">{}</field>
+        </record>
+        <record id="test_type_action" model="ir.actions.act_window">
+             <field name="name">lab.test.type</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">lab.test.type</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[]</field>
+             <field name="context">{}</field>
+        </record>
+
+        <!-- menu items -->
+        <menuitem id="lab_managment" name="Lab Managment"/>
+        <menuitem id="lab_managment_submenu" name="Laboratory" parent="lab_managment"/>
+        <menuitem id="lab_medical_request" name="Lab Medical Request" parent="lab_managment_submenu" action="lab_medical_request_action" sequence="1"/>
+        <menuitem id="lab_medical_test" name="Lab Medical Test" parent="lab_managment_submenu" action="lab_medical_test_action" sequence="2"/>
+        <menuitem id="lab_medical_result" name="Lab Medical Result" parent="lab_managment_submenu" action="lab_medical_result_action" sequence="3"/>
+        <menuitem id="lab_managment_config" name="Configrations" parent="lab_managment"/>
+        <menuitem id="test_types" name="Test Types" parent="lab_managment_config" action="test_type_action" sequence="3"/>
+
+    </data>
+</openerp>
