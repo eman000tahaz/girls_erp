@@ -3,7 +3,6 @@ from openerp import api, models, fields, exceptions
 class MedicalLabRequest(models.Model):
     _name="lab.medical.request"
 
-
     @api.one
     def change_state(self):
         for medical_test in self.medical_test_ids:
@@ -34,36 +33,28 @@ class MedicalLabTest(models.Model):
     price = fields.Float('Price')
     diagnosis = fields.Text ('Diagnosis')
 
-    @api.depends('test_id')
-    def onchange_test_id(self):
-        values={}
-        print "amy"
+    @api.onchange('test_id')
+    def _onchange_test_id(self):
         if self.test_id:
             test = self.env['lab.test.type'].search([('id', '=', self.test_id.id)])
-            print test
-            values = {
-                'lower_limit': test.lower_limit,
-                'upper_limit' : test.upper_limit,
-            }
-        return {'value': values}
+            self.lower_limit = test.lower_limit
+            self.upper_limit = test.upper_limit
 
-    @api.depends('result')
-    def onchange_result(self):
-        v={}
+    @api.onchange('result')
+    def _onchange_result(self):
         if(float(self.result) < self.lower_limit or float(self.result) > self.upper_limit):
-            v['excluded']=True
-            v['warning']=False
-            v['normal']=False
+            self.excluded = True
+            self.warning = False
+            self.normal = False
         elif(float(self.result) == self.lower_limit or float(self.result) == self.upper_limit):
-            v['warning']=True
-            v['excluded']=False
-            v['normal']=False
+            self.warning = True
+            self.excluded = False
+            self.normal = False
         else :
-            v['normal']=True
-            v['warning']=False
-            v['excluded']=False
-        return {'value': v}
-
+            self.normal = True
+            self.warning = False
+            self.excluded = False
+        
 
 class TestType(models.Model):
     _name="lab.test.type"

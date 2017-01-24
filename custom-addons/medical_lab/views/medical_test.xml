@@ -51,12 +51,12 @@
                     <sheet>
                         <field name="medical_request_id" string="Medical Request"/>
                         <group>
-                            <field name="test_id" on_change="onchange_test_id"/>
+                            <field name="test_id"/>
                             <field name="test_date"/>
                         </group>
                         <group>
                             <group>
-                                <field name="result" on_change="onchange_result" />
+                                <field name="result"/>
                             </group>
                             <group>
                                 <field name="upper_limit" />
