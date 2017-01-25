@@ -49,6 +49,7 @@
             <field name="arch" type="xml">
                 <form string="Medical Test Form">
                     <sheet>
+                        <label for="medical_request_id">Medical Request</label>
                         <field name="medical_request_id" string="Medical Request"/>
                         <group>
                             <field name="test_id"/>
@@ -114,6 +115,51 @@
         </record>
 
         <!-- tree view -->
+        <!-- request -->
+        <record id="lab_medical_request_tree_view" model="ir.ui.view">
+            <field name="name">lab.medical.request.tree.view</field>
+            <field name="model">lab.medical.request</field>
+            <field name="arch" type="xml">
+                <tree string="Medical Request Tree">
+                    <field name="patient_id"/>
+                    <field name="request_date"/>
+                    <field name="test_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Lab Medical Test -->
+        <record id="lab_medical_test_tree_view" model="ir.ui.view">
+            <field name="name">lab.medical.test.tree.view</field>
+            <field name="model">lab.medical.test</field>
+            <field name="arch" type="xml">
+                <tree string="Medical Test Tree">
+                    <field name="test_id"/>
+                    <field name="test_date"/>
+                    <field name="result"/>
+                    <field name="normal"/>
+                    <field name="warning"/>
+                    <field name="excluded"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Test Types -->
+        <record id="test_type_tree_view" model="ir.ui.view">
+            <field name="name">lab.test.type.tree.view</field>
+            <field name="model">lab.test.type</field>
+            <field name="arch" type="xml">
+                <tree string="Test Type Tree">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="price"/>
+                    <field name="upper_limit"/>
+                    <field name="lower_limit"/>
+                </tree>
+            </field>
+        </record>
+
 
         <!-- actions -->
         <record id="lab_medical_request_action" model="ir.actions.act_window">
