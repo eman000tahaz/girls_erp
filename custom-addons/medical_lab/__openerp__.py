@@ -5,6 +5,8 @@
     'category': 'medical',
     'depends': ['medical'],
     'data': [
+        'security/medical_lab.xml',
+        'security/ir.model.access.csv',
         'views/medical_test.xml',
    ],
     'author': 'Eman Taha',

@@ -11,9 +11,10 @@
     ],
     'license': 'AGPL-3',
     'data': [
-        'views/aea_medical_menuitems.xml',
+        
         'security/medical_security.xml',
         'security/ir.model.access.csv',
+        'views/aea_medical_menuitems.xml',
     ],
     'installable': True,
     'auto_install': False,
