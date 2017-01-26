@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+    <record model="ir.module.category" id="aea_medical_security">
+       <field name="name">Medical</field>
+       <field name="description">Access Rights for Medical system</field>
+       <field name="sequence">3</field>
+    </record>
+
+    
+
+    <!-- AEA Security Groups -->
+
+    <record id="group_aea_medical_doctor" model="res.groups">
+        <field name="name">Doctor</field>
+        <field name="category_id" ref="medical_security.aea_medical_security"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('medical.group_medical_user')),(4, ref('base.group_user'))]"/>
+    </record>
+
+</data>
+</openerp>

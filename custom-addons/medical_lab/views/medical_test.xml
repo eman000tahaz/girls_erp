@@ -117,7 +117,7 @@
 
         <!-- actions -->
         <record id="lab_medical_request_action" model="ir.actions.act_window">
-             <field name="name">lab.medical.request</field>
+             <field name="name">Medical Request</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">lab.medical.request</field>
              <field name="view_type">form</field>
@@ -126,7 +126,7 @@
              <field name="context">{}</field>
         </record>
         <record id="lab_medical_test_action" model="ir.actions.act_window">
-             <field name="name">lab.medical.test</field>
+             <field name="name">Medical Test</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">lab.medical.test</field>
              <field name="view_type">form</field>
@@ -135,7 +135,7 @@
              <field name="context">{}</field>
         </record>
         <record id="lab_medical_result_action" model="ir.actions.act_window">
-             <field name="name">lab.medical.result</field>
+             <field name="name">Medical Result</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">lab.medical.request</field>
              <field name="view_type">form</field>
@@ -144,7 +144,7 @@
              <field name="context">{}</field>
         </record>
         <record id="test_type_action" model="ir.actions.act_window">
-             <field name="name">lab.test.type</field>
+             <field name="name">Test Type</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">lab.test.type</field>
              <field name="view_type">form</field>

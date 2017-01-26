@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <record id="group_lab_user" model="res.groups">
-            <field name="name">Medical Lab User</field>
+            <field name="name">Medical Lab Doctor</field>
             <field name="category_id" ref="base.module_category_accounting_and_finance"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>

@@ -1,7 +1,8 @@
 from openerp import api, models, fields, exceptions
 
 class MedicalLabRequest(models.Model):
-    _name="lab.medical.request"
+    _name = "lab.medical.request"
+    _rec_name = "patient_id"
 
     @api.one
     def change_state(self):
@@ -20,7 +21,8 @@ class MedicalLabRequest(models.Model):
 
 class MedicalLabTest(models.Model):
     _name="lab.medical.test"
-
+    _rec_name = "test_id"
+    # name = fields.Char('Test Name', required=True)
     medical_request_id = fields.Many2one('lab.medical.request', 'Medical Request')
     test_id = fields.Many2one ('lab.test.type', 'Test type', help="Lab test type", required=True, select=True)
     result = fields.Float ('Result')
