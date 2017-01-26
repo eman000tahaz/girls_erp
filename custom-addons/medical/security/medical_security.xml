@@ -57,7 +57,7 @@
         <field name="model_id" ref="model_medical_appointment"/>
         <field name="global" eval="True"/>
         <field name="groups" eval="[(4, ref('group_medical_assistant'))]"/>
-        <field name="domain_force">['|', ('institution_id','=',user.parent_id.id), ('institution','child_of',user.parent_id.id)]</field>
+        <field name="domain_force">['|', ('institution_id','=',user.parent_id.id), ('institution_id','child_of',user.parent_id.id)]</field>
     </record>
 </data>
 <!--    
