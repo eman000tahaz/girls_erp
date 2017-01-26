@@ -5,7 +5,7 @@
     'category': 'medical',
     'depends': ['medical'],
     'data': [
-        'security/medical_lab.xml',
+        'security/medical_lab_security.xml',
         'security/ir.model.access.csv',
         'views/medical_test.xml',
    ],
