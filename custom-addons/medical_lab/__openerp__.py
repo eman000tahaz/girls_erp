@@ -8,6 +8,7 @@
         'security/medical_lab_security.xml',
         'security/ir.model.access.csv',
         'views/medical_test.xml',
+        'views/x_ray_test.xml',
    ],
     'author': 'Eman Taha',
     'installable': True,
