@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="x_ray_request_template">
+
+        </template>
+        <report
+            id="xray_report"
+            model="xray.request"
+            name="medical_lab.x_ray_template"
+            string="X-Ray Result"
+            />
+
+    </data>
+</openerp>
