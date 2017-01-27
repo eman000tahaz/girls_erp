@@ -2,8 +2,14 @@
 
 <openerp>
     <data>
+    	<menuitem id="medical.medical_root" name="Medical" sequence="10" groups="medical_lab.group_lab_user"/>
 		<menuitem id="medical.medical_root_sub" 
                   groups="medical.group_medical_configurator"/>
         <menuitem id="medical_lab.lab_medical_test" name="Lab Medical Test" parent="medical_lab.lab_managment_submenu" action="medical_lab.lab_medical_test_action" groups="group_aea_medical_doctor"/>
+        <menuitem id="medical.medical_patient_root"
+                  name="Patient"
+                  parent="medical.medical_root"
+                  sequence="10"
+                  groups="group_aea_medical_doctor" />
     </data>
 </openerp>
