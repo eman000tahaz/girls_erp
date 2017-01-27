@@ -1,8 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_lab_user_medical_request,access.lab.user.medical.request,model_lab_medical_request,group_lab_user,1,1,1,1
 access_lab_user_admin_request,access.lab.user.admin.request,model_lab_medical_request,group_lab_admin,1,1,1,1
+access_lab_user_administrator,access.lab.user.administrator,model_lab_medical_request,group_administrator,1,1,1,1
 
 ccess_lab_user_medical_test,access.lab.user.medical.test,model_lab_medical_test,group_lab_user,1,1,0,0
 ccess_lab_user_medical_test,access.lab.user.medical.test,model_lab_medical_test,group_lab_admin,1,1,1,0
 access_lab_user_test_type,access.lab.user.test.type,model_lab_test_type,group_lab_admin,1,1,1,0
+
+access_lab_administrator_medical_test,access.lab.user.medical.test,model_lab_medical_test,group_administrator,1,1,1,0
+access_lab_adminstrator_test_type,access.lab.user.test.type,model_lab_test_type,group_administrator,1,1,1,0
 

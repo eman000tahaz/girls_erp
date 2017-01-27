@@ -3,31 +3,33 @@
 <openerp>
     <data>
     	
-    	<menuitem id="medical.medical_root" name="Medical" sequence="10" groups="medical_lab.group_lab_user,medical_lab.group_receptionist"/>
+    	<menuitem id="medical.medical_root" name="Medical" sequence="10" groups="medical_lab.group_lab_user,medical_lab.group_receptionist,medical_lab.group_administrator"/>
 		
-		<menuitem id="medical.medical_root_sub" 
-                  groups="medical.group_medical_configurator"/>
+		<menuitem id="medical.medical_root_sub"
+				  parent="medical.medical_root"
+				  name="Configuration"
+                  groups="medical.group_medical_configurator,medical_lab.group_administrator"/>
         
-        <menuitem id="medical_lab.lab_medical_test" name="Lab Medical Test" parent="medical_lab.lab_managment_submenu" action="medical_lab.lab_medical_test_action" groups="group_aea_medical_doctor"/>
+        <menuitem id="medical_lab.lab_medical_test" name="Lab Medical Test" parent="medical_lab.lab_managment_submenu" action="medical_lab.lab_medical_test_action" groups="group_aea_medical_doctor,medical_lab.group_administrator"/>
        
 
         <menuitem id="medical.medical_patient_root"
                   name="Patient"
                   parent="medical.medical_root"
                   sequence="10"
-                  groups="medical_lab.group_receptionist" />
+                  groups="medical_lab.group_receptionist,medical_lab.group_administrator" />
         
         <!-- Hidden Configuartion type -->
-        <menuitem id="medical_lab.lab_managment_config" name="Configrations" parent="medical_lab.lab_managment" groups="group_aea_medical_doctor"/>
+        <menuitem id="medical_lab.lab_managment_config" name="Configrations" parent="medical_lab.lab_managment" groups="group_aea_medical_doctor,medical_lab.group_administrator"/>
 
         <!-- Appointement -->
         <menuitem id="medical.medical_appointment_root"
                   name="Appointment"
                   parent="medical.medical_root"
-                  sequence="20" groups="medical_lab.group_lab_user,medical_lab.group_receptionist" />
+                  sequence="20" groups="medical_lab.group_lab_user,medical_lab.group_receptionist,medical_lab.group_administrator" />
 
         <!--Prescription Menuitem -->
         <menuitem id="medical_prescription.medical_prescription_root" name="Prescription"
-            parent="medical.medical_root" sequence="30" groups="medical_lab.group_lab_user"/>
+            parent="medical.medical_root" sequence="30" groups="medical_lab.group_lab_user,medical_lab.group_administrator"/>
     </data>
 </openerp>
