@@ -9,7 +9,7 @@ class XrayRequest(models.Model):
             if medical_test.xray_image == False or medical_test.diagnosis :
                 raise exceptions.ValidationError("Please Insure that you Entered X-Ray Images and Diagnosis")
         self.write({'state': 'tested'})
-
+    name = fields.Char('Xray Name', required=True)
     patient_id = fields.Many2one ('medical.patient', 'Patient', help="Patient Name", required=True, select=True)
     ##appointment_id = fields.Many2one('medical.lab.appointment')
     medical_test_ids = fields.One2many('xray.test', 'medical_request_id', 'Medical Tests')
@@ -22,7 +22,7 @@ class XrayRequest(models.Model):
 class XrayTest(models.Model):
     _name="xray.test"
 
-    medical_request_id = fields.Many2one('lab.medical.request', 'Medical Request')
+    medical_request_id = fields.Many2one('xray.request', 'Xray Request')
     test_id = fields.Many2one ('xray.type', 'Test type', help="xray test type", required=True, select=True)
     xray_image = fields.Binary('X-Ray Image')
     normal = fields.Boolean('Normal')

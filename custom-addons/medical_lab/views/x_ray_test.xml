@@ -15,6 +15,8 @@
                         </div>
                     </header>
                     <sheet>
+                        <label for="name">Xray Name</label>
+                        <field name="name" string="Xray Name"/>
                         <label for="patient_id">Patient Name</label>
                         <field name="patient_id" string="Patient Name"/>
                         <group>
