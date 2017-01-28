@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- form view -->
+        <!-- Lab Medical Request -->
+        <record id="xray_request_form_view" model="ir.ui.view">
+            <field name="name">X-Ray Request Form View</field>
+            <field name="model">xray.request</field>
+            <field name="arch" type="xml">
+                <form string="X-Ray Request Form">
+                    <header>
+                        <div>
+                            <field name="state" widget="statusbar" clickable="True"/>
+                            <button class="oe_highlight" string="Test Done" type="object" name="change_state" attrs="{'invisible': [('state', '=', 'tested')]}"/>
+                        </div>
+                    </header>
+                    <sheet>
+                        <label for="patient_id">Patient Name</label>
+                        <field name="patient_id" string="Patient Name"/>
+                        <group>
+                            <field name="request_date"/>
+                            <field name="test_date"/>
+                        </group>
+                        <notebook>
+                            <page string="Medical Tests">
+                                <field name="medical_test_ids" widget="one2many">
+                                    <tree>
+                                        <field name="test_id"/>
+                                        <field name="normal"/>
+                                        <field name="warning"/>
+                                        <field name="price"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Diagnosis">
+                                <field name="final_diagnosis"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Lab Medical Test -->
+        <record id="xray_test_form_view" model="ir.ui.view">
+            <field name="name">X-Ray Test Form View</field>
+            <field name="model">xray.test</field>
+            <field name="arch" type="xml">
+                <form string="X-Ray Test Form">
+                    <sheet>
+                        <label for="medical_request_id">Medical Request</label>
+                        <field name="medical_request_id" string="Medical Request"/>
+                        <group>
+                            <field name="test_id"/>
+                            <field name="test_date"/>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="xray_image" widget="image"/>
+                        </group>
+                        <group>
+                            <field name="normal"/>
+                            <field name="warning"/>
+                        </group>
+                        <notebook>
+                            <page string="Diagnosis">
+                                <field name="diagnosis"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Test Types -->
+        <record id="xray_type_form_view" model="ir.ui.view">
+            <field name="name">X-Ray Type Form View</field>
+            <field name="model">xray.type</field>
+            <field name="arch" type="xml">
+                <form string="X-Ray Type Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="regional_imaging"/>
+                                <field name="product"/>
+                            </group>
+                            <group>
+                                <field name="price"/>
+                                <field name="time"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="desc"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <!-- request -->
+        <record id="xray_request_tree_view" model="ir.ui.view">
+            <field name="name">X-Ray Request Tree View</field>
+            <field name="model">xray.request</field>
+            <field name="arch" type="xml">
+                <tree string="X-Ray Request Tree">
+                    <field name="patient_id"/>
+                    <field name="request_date"/>
+                    <field name="test_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Lab Medical Test -->
+        <record id="xray_test_tree_view" model="ir.ui.view">
+            <field name="name">X-Ray Test Tree View</field>
+            <field name="model">xray.test</field>
+            <field name="arch" type="xml">
+                <tree string="X-Ray Test Tree">
+                    <field name="test_id"/>
+                    <field name="test_date"/>
+                    <field name="normal"/>
+                    <field name="warning"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Test Types -->
+        <record id="xray_type_tree_view" model="ir.ui.view">
+            <field name="name">X-ray Type Tree View</field>
+            <field name="model">xray.type</field>
+            <field name="arch" type="xml">
+                <tree string="Test Type Tree">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions -->
+        <record id="xray_request_action" model="ir.actions.act_window">
+             <field name="name">X-Ray Request</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">xray.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'request')]</field>
+             <field name="context">{}</field>
+        </record>
+        <record id="xray_test_action" model="ir.actions.act_window">
+             <field name="name">X-Ray Test</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">xray.test</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[]</field>
+             <field name="context">{}</field>
+        </record>
+        <record id="xray_result_action" model="ir.actions.act_window">
+             <field name="name">X-Ray Result</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">xray.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'tested')]</field>
+             <field name="context">{}</field>
+        </record>
+        <record id="xray_type_action" model="ir.actions.act_window">
+             <field name="name">X-Ray Type</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">xray.type</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[]</field>
+             <field name="context">{}</field>
+        </record>
+
+        <!-- menu items -->
+        <menuitem id="xray_managment" name="X-Ray Managment"/>
+        <menuitem id="xray_managment_submenu" name="X-Ray" parent="xray_managment"/>
+        <menuitem id="xray_request" name="X-Ray Request" parent="xray_managment_submenu" action="xray_request_action" sequence="1"/>
+        <menuitem id="xray_test" name="X-Ray Test" parent="xray_managment_submenu" action="xray_test_action" sequence="2"/>
+        <menuitem id="xray_result" name="X-Ray Result" parent="xray_managment_submenu" action="xray_result_action" sequence="3"/>
+        <menuitem id="xray_managment_config" name="Configrations" parent="xray_managment"/>
+        <menuitem id="xray_types" name="Test Types" parent="xray_managment_config" action="xray_type_action" sequence="3"/>
+    </data>
+</openerp>

@@ -22,6 +22,7 @@ class MedicalLabRequest(models.Model):
 class MedicalLabTest(models.Model):
     _name="lab.medical.test"
     _rec_name = "test_id"
+
     # name = fields.Char('Test Name', required=True)
     medical_request_id = fields.Many2one('lab.medical.request', 'Medical Request')
     test_id = fields.Many2one ('lab.test.type', 'Test type', help="Lab test type", required=True, select=True)
@@ -41,6 +42,7 @@ class MedicalLabTest(models.Model):
             test = self.env['lab.test.type'].search([('id', '=', self.test_id.id)])
             self.lower_limit = test.lower_limit
             self.upper_limit = test.upper_limit
+            self.price = test.price
 
     @api.onchange('result')
     def _onchange_result(self):

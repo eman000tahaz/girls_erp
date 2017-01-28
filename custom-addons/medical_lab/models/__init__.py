@@ -1,1 +1,2 @@
 import medical_test
+import x_ray_test
