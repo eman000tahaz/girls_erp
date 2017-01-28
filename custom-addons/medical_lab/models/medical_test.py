@@ -2,15 +2,14 @@ from openerp import api, models, fields, exceptions
 
 class MedicalLabRequest(models.Model):
     _name = "lab.medical.request"
-    _rec_name = "patient_id"
-
+    
     @api.one
     def change_state(self):
         for medical_test in self.medical_test_ids:
             if medical_test.result == False :
                 raise exceptions.ValidationError("Please Enter Results first")
         self.write({'state': 'tested'})
-
+    name = fields.Char("Request Name", required=True)
     patient_id = fields.Many2one ('medical.patient', 'Patient', help="Patient Name", required=True, select=True)
     ##appointment_id = fields.Many2one('medical.lab.appointment')
     medical_test_ids = fields.One2many('lab.medical.test', 'medical_request_id', 'Medical Tests')
