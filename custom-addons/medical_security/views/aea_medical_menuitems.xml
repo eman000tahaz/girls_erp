@@ -31,5 +31,8 @@
         <!--Prescription Menuitem -->
         <menuitem id="medical_prescription.medical_prescription_root" name="Prescription"
             parent="medical.medical_root" sequence="30" groups="medical_lab.group_lab_user,medical_lab.group_administrator"/>
+
+        <!--"X-Ray Managment for x-ray admin/>-->
+        <menuitem id="medical_lab.xray_managment" name="X-Ray Managment" groups="medical_lab.group_xray_admin"/>
     </data>
 </openerp>

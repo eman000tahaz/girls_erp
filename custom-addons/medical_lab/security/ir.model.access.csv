@@ -9,3 +9,7 @@ access_lab_user_test_type,access.lab.user.test.type,model_lab_test_type,group_la
 access_lab_group_administrator_request,access.lab.group.administrator.request,model_lab_medical_request,group_administrator,1,1,1,1
 access_lab_group_administrator_test,access.lab.group.administrator.test,model_lab_medical_test,group_administrator,1,1,1,1
 access_lab_group_administrator_test_type,access.lab.group.administrator.test.type,model_lab_test_type,group_administrator,1,1,1,1
+
+access_group_admin_xray_request,access.group.admin.xray.request,model_xray_request,group_xray_admin,1,1,1,1
+access_group_admin_xray_test,access.group.admin.xray.test,model_xray_test,group_xray_admin,1,1,1,1
+access_group_admin_xray_test_type,access.group.admin.xray.test.type,model_xray_type,group_xray_admin,1,1,1,1
