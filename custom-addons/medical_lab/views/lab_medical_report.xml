@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <report
+            id="xray_report"
+            model="xray.request"
+            report_type="qweb-pdf"
+            name="medical_lab.x_ray_result"
+            file="medical_lab.x_ray_result"
+            string="X-Ray Result"
+            />
+        <report
+            id="lab_report"
+            model="lab.medical.request"
+            report_type="qweb-pdf"
+            name="medical_lab.lab_result"
+            file="medical_lab.lab_result"
+            string="Medical Lab Result"
+            />
+    </data>
+</openerp>

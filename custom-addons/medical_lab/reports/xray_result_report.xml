@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <template id="x_ray_request_template">
 
+        <template id="x_ray_result">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <h2>X-Ray Result</h2>
+                            <p>Patient : <span t-field="o.patient_id"/></p>
+                            <br/>
+                            <p>Test Date : <span t-field="o.test_date"/></p>
+                            <br/>
+                            <p class="text-center">X-Ray </p>
+                                <t t-foreach="o.medical_test_ids" t-as="test">
+                                    <p>Test : <span t-field="test.test_id"/></p>
+                                    <br/>
+                                    <p>Price : <span t-field="test.price"/></p>
+                                    <br/>
+                                </t>
+                            <br/>
+                            <p class="text-center">Final Diagnosis </p>
+                            <span t-field="o.final_diagnosis"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
         </template>
-        <report
-            id="xray_report"
-            model="xray.request"
-            name="medical_lab.x_ray_template"
-            string="X-Ray Result"
-            />
+
 
     </data>
 </openerp>

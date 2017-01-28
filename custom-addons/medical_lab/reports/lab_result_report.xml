@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="lab_result">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <h2>Medical Lab Result</h2>
+                            <p>Patient : <span t-field="o.patient_id"/></p>
+                            <br/>
+                            <p>Test Date : <span t-field="o.test_date"/></p>
+                            <br/>
+                            <p class="text-center">Results </p>
+                                <t t-foreach="o.medical_test_ids" t-as="test">
+                                    <p>Test : <span t-field="test.test_id"/></p>
+                                    <br/>
+                                    <p>Result : <span t-field="test.result"/></p>
+                                    <br/>
+                                    <t t-if="test.normal">
+                                       <p> Normal Result</p>
+                                    </t>
+                                    <t t-if="test.warning">
+                                       <p> Warning</p>
+                                    </t>
+                                    <t t-if="test.excluded">
+                                       <p> Excluded Result</p>
+                                    </t>
+                                    <p>Price : <span t-field="test.price"/></p>
+                                    <br/>
+                                </t>
+                            <br/>
+                            <p class="text-center">Diagnosis </p>
+                            <span t-field="o.diagnosis"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
