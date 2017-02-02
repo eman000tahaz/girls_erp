@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+         <menuitem id="zakat_root" name="Zakat Process" sequence="10" />
+
+
+        <!--Menu Cases-->
+
+        <menuitem id="case_root"
+                  name="Cases Information"
+                  parent="zakat_root"
+                  sequence="10" />
+
+        <menuitem id="case_study"
+                  name="Case Study"
+                  parent="case_root"
+                  sequence="10"
+                  action="case_study_action"/>
+    </data>
+</openerp>

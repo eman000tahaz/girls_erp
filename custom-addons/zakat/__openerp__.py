@@ -5,6 +5,8 @@
     'category': 'other',
     'depends': [],
     'data': [
+        'views/zakat_main_form.xml',
+        'views/zakat_menu.xml'
   ],
     'author': 'Eman Taha',
     'installable': True,
