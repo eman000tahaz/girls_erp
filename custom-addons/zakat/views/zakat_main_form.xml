@@ -89,6 +89,17 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Case Classification">
+                                <field name="case_classification_ids" mode="tree">
+                                    <tree>
+                                        <field name="total_income"/>
+                                        <field name="net_income"/>
+                                        <field name="each_person_share"/>
+                                        <field name="case_classify"/>
+                                        <field name="expense"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
@@ -120,6 +131,31 @@
                             <field name="name"/>
                             <field name="agrees"/>
                             <field name="summery"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Case Classify form view-->
+
+        <record id="case_classification_view_form" model="ir.ui.view">
+            <field name="name">case.classification.form</field>
+            <field name="model">case.classification</field>
+            <field name="arch" type="xml">
+                <form string="Case Classification">
+                    <sheet>
+                        <group>
+                            <field name="total_income"/>
+                            <field name="net_income"/>
+                            <field name="each_person_share"/>
+                            <field name="case_classify"/>
+                            <field name="expense"/>
+                            <field name="commissary_name"/>
+                            <field name="commissary_phone"/>
+                            <field name="branch"/>
+                            <field name="f_researcher_name"/>
+                            <field name="s_researcher_name"/>
                         </group>
                     </sheet>
                 </form>

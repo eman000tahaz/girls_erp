@@ -36,6 +36,7 @@ class CaseStudyRequest(models.Model):
     loan_ids = fields.One2many('family.loan', 'name', 'Loans', translate=True)
     lately_paid_money = fields.One2many('lately.paid', 'name', 'Lately Paid')
     family_needs = fields.One2many('family.need', 'name', 'Family Needs')
+    case_classification_ids = fields.One2many('case.classification', 'case_classify', 'Case Classification')
     ##family_req_ids = fields.One2many('family.requirement', 'request_id', 'Family requirements', translate=True)
 
 class RelativeRlation(models.Model):
@@ -99,4 +100,24 @@ class NeedsType(models.Model):
     _name = 'needs.type'
 
     name = fields.Char('Name')
+
+class CaseClassification(models.Model):
+    _name = 'case.classification'
+    _rec_name = 'commissary_name'
+
+    total_income = fields.Float(string='Total Income')
+    net_income = fields.Float(string='Net Income')
+    each_person_share = fields.Float(string='Each One Share')
+    case_classify =  fields.Text('Case Classification')
+    expense = fields.Float(string='Expense')
+    commissary_name = fields.Many2one('res.partner')
+    commissary_phone = fields.Char()
+    branch = fields.Many2one('branch.place')
+    f_researcher_name = fields.Many2one('res.partner', string="First Researcher Name")
+    s_researcher_name = fields.Many2one('res.partner', string="Second Researcher Name")
+
+
+class BranchPlace(models.Model):
+    _name = 'branch.place'
+    name = fields.Char('Branch')
         
