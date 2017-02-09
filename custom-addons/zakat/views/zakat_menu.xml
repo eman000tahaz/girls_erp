@@ -16,5 +16,10 @@
                   parent="case_root"
                   sequence="10"
                   action="case_study_action"/>
+        <menuitem id="family_needs_type"
+                  name="Families Needs"
+                  parent="case_root"
+                  sequence="10"
+                  action="family_needs_type_action"/>
     </data>
 </openerp>

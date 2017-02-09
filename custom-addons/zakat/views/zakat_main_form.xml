@@ -64,9 +64,9 @@
                         </group>
                         <notebook colspan="4">
                             <page string="Lately Paid">
-                                <field name="lately_paid_money" mode="tree">
+                                <field name="lately_paid_money_ids" mode="tree">
                                     <tree>
-                                        <field name="name"/>
+                                        <field name="lately_paid_type_id"/>
                                         <field name="pocket_of_money"/>
                                     </tree>
                                 </field>
@@ -81,9 +81,9 @@
                                 </field>
                             </page>
                             <page string="Family Needs">
-                                <field name="family_needs" mode="tree">
+                                <field name="family_needs_ids" mode="tree">
                                     <tree>
-                                        <field name="name"/>
+                                        <field name="need_type_id"/>
                                         <field name="agrees"/>
                                         <field name="summery"/>
                                     </tree>
@@ -128,7 +128,7 @@
                 <form string="Family Needs">
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <field name="need_type_id"/>
                             <field name="agrees"/>
                             <field name="summery"/>
                         </group>
@@ -169,6 +169,15 @@
              <field name="view_type">form</field>
              <field name="view_mode">tree,form</field>
              <field name="search_view_id" ref="zakat_view_search" />
+             <field name="domain">[]</field>
+             <field name="context">{}</field>
+         </record>
+        <record model="ir.actions.act_window" id="family_needs_type_action">
+             <field name="name">Families Needs</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">needs.type</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
              <field name="domain">[]</field>
              <field name="context">{}</field>
          </record>
