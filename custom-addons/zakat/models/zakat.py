@@ -93,11 +93,28 @@ class CaseCategory(models.Model):
 
 class WomenOpinion(models.Model):
     _name = "women.commission.opinion"
-
+    _rec_name = "needs_type_id"
     opinion = fields.Text('Opinion')
     needs_type_id = fields.Many2one('case.category', string="Type")
     pocket_of_money = fields.Float('Money')
     partner_ids = fields.Many2many('res.partner', string="Members")
+
+class BranchManagementOpinion(models.Model):
+    _name = "branch.management.opinion"
+
+    opinion = fields.Text('Opinion')
+    partner_ids = fields.Many2many('res.partner', string="Signature")
+
+class FinalOpinion(models.Model):
+    _name = "final.opinion"
+    _rec_name = "char_deputy_id"
+
+    opinion = fields.Text('Opinion')
+    char_deputy_id = fields.Many2one('res.partner', 'Chairman of the Committee or his deputy')
+    first_signature_id = fields.Many2one('res.partner', 'Signature')
+    char_deputy1_id = fields.Many2one('res.partner', 'Chairman of the Committee or his deputy')
+    Second_signature_id = fields.Many2one('res.partner', 'Signature')
+
 
 class CaseStudyRequest(models.Model):
     _name = "case.study.request"
@@ -135,7 +152,20 @@ class CaseStudyRequest(models.Model):
     case_classification_ids = fields.One2many('case.classification', 'case_classify', 'Case Classification')
     ##family_req_ids = fields.One2many('family.requirement', 'request_id', 'Family requirements', translate=True)
     women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'opinion', 'Women Commission Opinion')
+    branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'opinion', 'Branch Management Opinion')
+    final_opinion_ids = fields.One2many('final.opinion', 'opinion', 'Final Opinion')
+    
+    state = fields.Selection([
+            ('new', 'New'),
+            ('approve1', 'First Approve'),
+            ('approve2', 'Second Approve'),
+            ('approve3', 'Approved'),
+            ],default='new')
 
+    ###################################### Logic #######################################
+    @api.one
+    def approve(self):
+        print "approve"
 
 
         

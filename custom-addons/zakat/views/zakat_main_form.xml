@@ -9,7 +9,7 @@
              <field name="model">case.study.request</field>
              <field name="arch" type="xml">
                 <tree string="Case Study">
-                    <field name="date"/>
+                    <field name="date" widget="date"/>
                     <field name="family_head" />
                     <field name="work_place" />
                     <field name="relative_relation" />
@@ -29,8 +29,23 @@
                     <field name="pocket_of_money"/>
                 </tree>
              </field>
-         </record>
+        </record>
 
+        <!-- Final Opinion -->
+
+        <record id="view_final_opinion_tree" model="ir.ui.view">
+             <field name="name">Commission Final Report</field>
+             <field name="model">final.opinion</field>
+             <field name="arch" type="xml">
+                <tree string="Commission Final Report">
+                    <field name="opinion"/>
+                    <field name="char_deputy_id"/>
+                    <field name="first_signature_id"/>
+                    <field name="char_deputy1_id"/>
+                    <field name="Second_signature_id"/>
+                </tree>
+             </field>
+        </record>
 
         <!-- Case Study Form View -->
 
@@ -40,14 +55,17 @@
              <field name="arch" type="xml">
                  <form string="Case Study">
                     <header>
+                        <button string="Approve" type="object" name="approve"/>
 
+                        <button string="Refused" type="object" name="refuse"/>
+                        <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <h2 align="center"> Case Study Form </h2>
                         <group col="12">
                             <div col="4">
-                                <label for="date">AD Date</label>
-                                <field name="date" nolabel="1" />    
+                                <label for="date" >AD Date</label>
+                                <field name="date" nolabel="1" widget="date"/>    
                             </div>
                             <div col="4">
                                 <lable for="hijri_date">Hijri date</lable>
@@ -66,6 +84,7 @@
                                 <field name="account_no"/>
                                 <field name="bank_name"/>
                                 <field name="wife_name"/>
+                                <field name="wife_mobile"/>
                                 <field name="address"/>
                             </group>
                         </group> 
@@ -126,6 +145,26 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Branch Management Opinion">
+                                <field name="branch_management_opinion_ids" mode="tree">
+                                    <tree>
+                                        <field name="opinion"/>
+                                        <field name="partner_ids"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Commission Final Report">
+                                <field name="final_opinion_ids" mode="tree">
+                                    <tree>
+                                        <field name="opinion"/>
+                                        <field name="char_deputy_id"/>
+                                        <field name="first_signature_id"/>
+                                        <field name="char_deputy1_id"/>
+                                        <field name="Second_signature_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+
                         </notebook>
                     </sheet>
                 </form>
@@ -144,6 +183,24 @@
                         <field name="needs_type_id"/>
                         <field name="pocket_of_money"/>
                         <field name="partner_ids" widget="many2many_tags"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Final Opinion -->
+
+        <record id="final_opinion_form_view" model="ir.ui.view">
+             <field name="name">Final Opinion</field>
+             <field name="model">final.opinion</field>
+             <field name="arch" type="xml">
+                <form string="Women Commission Opinion">
+                    <group>
+                        <field name="opinion"/>
+                        <field name="char_deputy_id"/>
+                        <field name="first_signature_id"/>
+                        <field name="char_deputy1_id"/>
+                        <field name="Second_signature_id"/>
                     </group>
                 </form>
             </field>

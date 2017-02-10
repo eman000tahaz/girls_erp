@@ -5,6 +5,8 @@
     'category': 'other',
     'depends': [],
     'data': [
+        'security/zakat.xml',
+        'security/ir.model.access.csv',
         'views/zakat_main_form.xml',
         'views/zakat_menu.xml'
   ],
