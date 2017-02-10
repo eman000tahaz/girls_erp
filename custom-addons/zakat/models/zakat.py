@@ -53,6 +53,7 @@ class FamilyLoans(models.Model):
     community_name = fields.Char('Community Name')
     monthly_installment = fields.Float('Monthly Installment')
 
+
 class NeedsType(models.Model):
     _name = 'needs.type'
 
@@ -60,8 +61,8 @@ class NeedsType(models.Model):
 
 class FamilyNeeds(models.Model):
     _name = "family.need" 
-    _rec_name = "need_type_id"
     
+    name = fields.Char()
     need_type_id = fields.Many2one('needs.type', string="Name")
     agrees = fields.Selection([('y', 'Yes'), ('N', 'No')], string="Yes/No")
     summery = fields.Text("Summery of Family Needs")
@@ -124,6 +125,7 @@ class CaseStudyRequest(models.Model):
     hijri_date = fields.Char('Hijri date')
     family_head = fields.Many2one('res.partner', 'Family Head', translate=True)
     relative_relation = fields.Many2one('relative.relation', 'Relative Relation', translate=True)
+    national_id = fields.Char('National ID')
     work_place = fields.Many2one('work.place', 'Work Place', translate=True)
     job = fields.Char('Job', translate=True)
     mobile = fields.Char('Mobile', translate=True)
@@ -148,7 +150,7 @@ class CaseStudyRequest(models.Model):
     housing = fields.Many2one('housing', 'Housing State', translate=True)
     loan_ids = fields.One2many('family.loan', 'name', 'Loans', translate=True)
     lately_paid_money_ids = fields.One2many('lately.paid', 'lately_paid_type_id', 'Lately Paid')
-    family_needs_ids = fields.One2many('family.need', 'need_type_id', 'Family Needs')
+    family_needs_ids = fields.One2many('family.need', 'name', 'Family Needs')
     case_classification_ids = fields.One2many('case.classification', 'case_classify', 'Case Classification')
     ##family_req_ids = fields.One2many('family.requirement', 'request_id', 'Family requirements', translate=True)
     women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'opinion', 'Women Commission Opinion')

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-         <menuitem id="zakat_root" name="Zakat Process" sequence="10" />
+         <menuitem id="zakat_root" 
+                   name="Zakat Process" 
+                   sequence="10" 
+                   groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team"/>
 
 
         <!--Menu Cases-->
@@ -9,7 +12,8 @@
         <menuitem id="case_root"
                   name="Cases Information"
                   parent="zakat_root"
-                  sequence="10" />
+                  sequence="10" 
+                  groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team"/>
 
         <!-- Configuration menuitem -->
 
@@ -24,7 +28,8 @@
                   name="Case Study"
                   parent="case_root"
                   sequence="10"
-                  action="case_study_action"/>
+                  action="case_study_action"
+                  groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team"/>
        
         <menuitem id="family_needs_type"
                   name="Families Needs"

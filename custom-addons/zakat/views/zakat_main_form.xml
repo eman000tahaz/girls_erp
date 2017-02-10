@@ -74,11 +74,12 @@
                         </group>
                         <group col="12">
                             <group string="Family Head Data">
-                                <field name="family_head" />
-                                <field name="relative_relation"/>
+                                <field name="family_head" required="True"/>
+                                <field name="national_id" required="True"/>
+                                <field name="relative_relation" required="True"/>
+                                <field name="mobile" required="True"/>
                                 <field name="work_place"/> 
                                 <field name="job"/>
-                                <field name="mobile"/>
                                 <field name="fh_state"/>
                                 <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')]}"/>
                                 <field name="account_no"/>
@@ -136,7 +137,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Women Commission Opinion">
+                            <page string="Women Commission Opinion" groups="zakat.group_social_survey">
                                 <field name="women_commission_opinion_ids" mode="tree">
                                     <tree>
                                         <field name="opinion"/>
@@ -145,7 +146,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Branch Management Opinion">
+                            <page string="Branch Management Opinion" groups="zakat.group_departmental_user">
                                 <field name="branch_management_opinion_ids" mode="tree">
                                     <tree>
                                         <field name="opinion"/>
@@ -153,7 +154,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Commission Final Report">
+                            <page string="Commission Final Report" groups="zakat.group_central_team">
                                 <field name="final_opinion_ids" mode="tree">
                                     <tree>
                                         <field name="opinion"/>
@@ -171,8 +172,6 @@
             </field>
         </record>
 
-        <!-- Women Commission Opinion -->
-
         <record id="women_commission_opinion" model="ir.ui.view">
              <field name="name">Women Commission Opinion</field>
              <field name="model">women.commission.opinion</field>
@@ -188,6 +187,40 @@
             </field>
         </record>
 
+        <!-- Branch Management Opinion -->
+
+        <record id="branch_management_opinion" model="ir.ui.view">
+             <field name="name">Branch Management Opinion</field>
+             <field name="model">branch.management.opinion</field>
+             <field name="arch" type="xml">
+                <form string="Women Commission Opinion">
+                    <group>
+                        <field name="opinion" required="True"/>
+                        <field name="partner_ids" widget="many2many_tags"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Family Loan -->
+        
+        <record id="family_loan_form_view" model="ir.ui.view">
+             <field name="name">Family Loans</field>
+             <field name="model">family.loan</field>
+             <field name="arch" type="xml">
+                <form string="Family Loans">
+                    <group>
+                        <field name="name"/>
+                        <field name="community_name"/>
+                        <field name="monthly_installment"/>
+                    </group>
+                    <notebook>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
         <!-- Final Opinion -->
 
         <record id="final_opinion_form_view" model="ir.ui.view">
@@ -196,7 +229,7 @@
              <field name="arch" type="xml">
                 <form string="Women Commission Opinion">
                     <group>
-                        <field name="opinion"/>
+                        <field name="opinion" required="True"/>
                         <field name="char_deputy_id"/>
                         <field name="first_signature_id"/>
                         <field name="char_deputy1_id"/>

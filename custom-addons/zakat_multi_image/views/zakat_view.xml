@@ -23,6 +23,25 @@
         </xpath>
     </field>
 </record>
+<record id="view_family_loan_form" model="ir.ui.view">
+    <field name="name">Add Zakat multi images</field>
+    <field name="model">family.loan</field>
+    <field name="inherit_id" ref="zakat.family_loan_form_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//notebook">
+            <page string="Images" name="multi_image">
+                <field
+                    name="image_ids"
+                    nolabel="1"
+                    context="{
+                        'default_owner_model': 'case.study.request',
+                        'default_owner_id': id,
+                    }"
+                    mode="kanban"/>
+            </page>
+        </xpath>
+    </field>
+</record>
 
 </data>
 </openerp>
