@@ -85,6 +85,20 @@ class CaseClassification(models.Model):
     f_researcher_name = fields.Many2one('res.partner', string="First Researcher Name")
     s_researcher_name = fields.Many2one('res.partner', string="Second Researcher Name")
 
+class CaseCategory(models.Model):
+    _name = "case.category"
+
+    name = fields.Char('Name')
+    pocket_of_money = fields.Float('Money')
+
+class WomenOpinion(models.Model):
+    _name = "women.commission.opinion"
+
+    opinion = fields.Text('Opinion')
+    needs_type_id = fields.Many2one('case.category', string="Type")
+    pocket_of_money = fields.Float('Money')
+    partner_ids = fields.Many2many('res.partner', string="Members")
+
 class CaseStudyRequest(models.Model):
     _name = "case.study.request"
     _rec_name = 'date'
@@ -120,7 +134,7 @@ class CaseStudyRequest(models.Model):
     family_needs_ids = fields.One2many('family.need', 'need_type_id', 'Family Needs')
     case_classification_ids = fields.One2many('case.classification', 'case_classify', 'Case Classification')
     ##family_req_ids = fields.One2many('family.requirement', 'request_id', 'Family requirements', translate=True)
-
+    women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'opinion', 'Women Commission Opinion')
 
 
 

@@ -153,7 +153,7 @@ def image_resize_image_big(base64_source, size=(1024, 1024), encoding='base64', 
     """
     return image_resize_image(base64_source, size, encoding, filetype, avoid_if_small)
 
-def image_resize_image_medium(base64_source, size=(128, 128), encoding='base64', filetype=None, avoid_if_small=False):
+def image_resize_image_medium(base64_source, size=(500, 500), encoding='base64', filetype=None, avoid_if_small=False):
     """ Wrapper on image_resize_image, to resize to the standard 'medium'
         image size: 180x180.
         :param size, encoding, filetype, avoid_if_small: refer to image_resize_image

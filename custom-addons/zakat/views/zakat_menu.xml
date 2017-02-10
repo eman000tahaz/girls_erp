@@ -11,15 +11,40 @@
                   parent="zakat_root"
                   sequence="10" />
 
+        <!-- Configuration menuitem -->
+
+        <menuitem id="zakat_configuration"
+                  name="Configuration"
+                  parent="zakat_root"
+                  sequence="20"/>
+
+        <!-- Action Menuitem -->
+
         <menuitem id="case_study"
                   name="Case Study"
                   parent="case_root"
                   sequence="10"
                   action="case_study_action"/>
+       
         <menuitem id="family_needs_type"
                   name="Families Needs"
                   parent="case_root"
                   sequence="10"
                   action="family_needs_type_action"/>
+
+        <menuitem id="loan_type"
+                  name="Loans Type"
+                  parent="case_root"
+                  sequence="10"
+                  action="loans_type_action"/>
+
+        <!-- Configuration Action Menuitem -->
+        <menuitem id="case_category"
+                  name="Case Category"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="case_category_action"/>
+
+
     </data>
 </openerp>

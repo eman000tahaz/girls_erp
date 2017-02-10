@@ -2,7 +2,8 @@
 <openerp>
     <data>
         
-        <!-- Tree Zakat view -->
+        <!-- Tree Case Study view -->
+        
         <record id="view_zakat_tree" model="ir.ui.view">
              <field name="name">Case Study</field>
              <field name="model">case.study.request</field>
@@ -16,7 +17,23 @@
              </field>
          </record>
 
-        <!-- Form View -->
+        <!-- Tree women opinion view -->
+
+        <record id="view_women_opinion_tree" model="ir.ui.view">
+             <field name="name">Women Commission Opinion</field>
+             <field name="model">women.commission.opinion</field>
+             <field name="arch" type="xml">
+                <tree string="Women Commission Opinion">
+                    <field name="opinion"/>
+                    <field name="needs_type_id"/>
+                    <field name="pocket_of_money"/>
+                </tree>
+             </field>
+         </record>
+
+
+        <!-- Case Study Form View -->
+
         <record id="case_study_view_form" model="ir.ui.view">
              <field name="name">case.study.form</field>
              <field name="model">case.study.request</field>
@@ -100,11 +117,41 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Women Commission Opinion">
+                                <field name="women_commission_opinion_ids" mode="tree">
+                                    <tree>
+                                        <field name="opinion"/>
+                                        <field name="needs_type_id"/>
+                                        <field name="pocket_of_money"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
             </field>
         </record>
+
+        <!-- Women Commission Opinion -->
+
+        <record id="women_commission_opinion" model="ir.ui.view">
+             <field name="name">Women Commission Opinion</field>
+             <field name="model">women.commission.opinion</field>
+             <field name="arch" type="xml">
+                <form string="Women Commission Opinion">
+                    <group>
+                        <field name="opinion"/>
+                        <field name="needs_type_id"/>
+                        <field name="pocket_of_money"/>
+                        <field name="partner_ids" widget="many2many_tags"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Search View -->
+
         <record id="zakat_view_search" model="ir.ui.view">
              <field name="name">zakat.view.search</field>
              <field name="model">case.study.request</field>
@@ -119,6 +166,7 @@
                  </search>
              </field>
         </record>
+
 
         <!-- family.need Form View -->
         <record id="family_need_view_form" model="ir.ui.view">
@@ -162,6 +210,8 @@
             </field>
         </record>
 
+        <!-- Menuitems Actions -->
+
         <record model="ir.actions.act_window" id="case_study_action">
              <field name="name">Case Study</field>
              <field name="type">ir.actions.act_window</field>
@@ -171,7 +221,8 @@
              <field name="search_view_id" ref="zakat_view_search" />
              <field name="domain">[]</field>
              <field name="context">{}</field>
-         </record>
+        </record>
+
         <record model="ir.actions.act_window" id="family_needs_type_action">
              <field name="name">Families Needs</field>
              <field name="type">ir.actions.act_window</field>
@@ -180,6 +231,40 @@
              <field name="view_mode">tree,form</field>
              <field name="domain">[]</field>
              <field name="context">{}</field>
-         </record>
+        </record>
+
+        <record model="ir.actions.act_window" id="family_needs_type_action">
+            <field name="name">Families Needs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">needs.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="loans_type_action">
+             <field name="name">Loans Type</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">lately.paid.type</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[]</field>
+             <field name="context">{}</field>
+        </record>
+
+        <!-- Action of Case Category -->
+
+        <record model="ir.actions.act_window" id="case_category_action">
+            <field name="name">Case Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">case.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+
     </data>
 </openerp>
