@@ -167,7 +167,8 @@ class CaseStudyRequest(models.Model):
     ###################################### Logic #######################################
     @api.one
     def approve(self):
-        print "approve"
+        if self.env['res.users'].has_group('zakat.group_registration_user'):
+            self.write({'state': 'approve1'})
 
 
         
