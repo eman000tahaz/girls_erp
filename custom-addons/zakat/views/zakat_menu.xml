@@ -15,6 +15,8 @@
                   sequence="10" 
                   groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team"/>
 
+
+
         <!-- Configuration menuitem -->
 
         <menuitem id="zakat_configuration"
@@ -29,19 +31,53 @@
                   parent="case_root"
                   sequence="10"
                   action="case_study_action"
-                  groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team"/>
-       
-        <menuitem id="family_needs_type"
-                  name="Families Needs"
-                  parent="case_root"
-                  sequence="10"
-                  action="family_needs_type_action"/>
+                  groups="group_registration_user"/>
 
-        <menuitem id="loan_type"
-                  name="Loans Type"
-                  parent="case_root"
-                  sequence="10"
-                  action="loans_type_action"/>
+        <menuitem id="case_study_departmental"
+          name="Case Study"
+          parent="case_root"
+          sequence="10"
+          action="case_study_departmental_action"
+          groups="group_departmental_user"/>
+
+        <menuitem id="case_study_surveyor"
+          name="Case Study"
+          parent="case_root"
+          sequence="10"
+          action="case_study_surveyor_action"
+          groups="group_social_survey"/>
+
+        <menuitem id="case_study_central"
+          name="Case Study"
+          parent="case_root"
+          sequence="10"
+          action="case_study_central_action"
+          groups="group_central_team"/>
+
+        
+
+        <menuitem id="approved_family"
+          name="Approved Families"
+          parent="case_root"
+          sequence="20"
+          action="approved_family_action"
+          groups="group_departmental_user"/>
+        
+        <menuitem id="rejected_family"
+          name="Rejected Families"
+          parent="case_root"
+          sequence="30"
+          action="rejected_family_action"
+          groups="group_departmental_user"/>
+
+        <menuitem id="all_family"
+          name="All Families"
+          parent="case_root"
+          sequence="30"
+          action="all_family_action"
+          groups="group_departmental_user"/>
+       
+        
 
         <!-- Configuration Action Menuitem -->
         <menuitem id="case_category"
@@ -49,6 +85,18 @@
                   parent="zakat_configuration"
                   sequence="10"
                   action="case_category_action"/>
+
+        <menuitem id="family_needs_type"
+                  name="Families Needs"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="family_needs_type_action"/>
+
+        <menuitem id="loan_type"
+                  name="Loans Type"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="loans_type_action"/>
 
 
     </data>

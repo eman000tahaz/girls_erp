@@ -47,131 +47,7 @@
              </field>
         </record>
 
-        <!-- Case Study Form View -->
-
-        <record id="case_study_view_form" model="ir.ui.view">
-             <field name="name">case.study.form</field>
-             <field name="model">case.study.request</field>
-             <field name="arch" type="xml">
-                 <form string="Case Study">
-                    <header>
-                        <button string="Approve" type="object" name="approve"/>
-
-                        <button string="Refused" type="object" name="refuse"/>
-                        <field name="state" widget="statusbar"/>
-                    </header>
-                    <sheet>
-                        <h2 align="center"> Case Study Form </h2>
-                        <group col="12">
-                            <div col="4">
-                                <label for="date" >AD Date</label>
-                                <field name="date" nolabel="1" widget="date"/>    
-                            </div>
-                            <div col="4">
-                                <lable for="hijri_date">Hijri date</lable>
-                                <field name="hijri_date" nolabel="1"/>
-                            </div>
-                        </group>
-                        <group col="12">
-                            <group string="Family Head Data">
-                                <field name="family_head" required="True"/>
-                                <field name="national_id" required="True"/>
-                                <field name="relative_relation" required="True"/>
-                                <field name="mobile" required="True"/>
-                                <field name="work_place"/> 
-                                <field name="job"/>
-                                <field name="fh_state"/>
-                                <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')]}"/>
-                                <field name="account_no"/>
-                                <field name="bank_name"/>
-                                <field name="wife_name"/>
-                                <field name="wife_mobile"/>
-                                <field name="address"/>
-                            </group>
-                        </group> 
-                        <group string="Monthly Revenue">
-                            <field name="salary"/>
-                            <field name="pension"/>
-                            <field name="rents"/>
-                            <field name="other"/>
-                        </group>
-                        <group string="More Information">
-                            <field name="family_state"/>
-                            <field name="housing"/>    
-                        </group>
-                        <notebook colspan="4">
-                            <page string="Lately Paid">
-                                <field name="lately_paid_money_ids" mode="tree">
-                                    <tree>
-                                        <field name="lately_paid_type_id"/>
-                                        <field name="pocket_of_money"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Loans">
-                                <field name="loan_ids" mode="tree">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="community_name"/>
-                                        <field name="monthly_installment"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Family Needs">
-                                <field name="family_needs_ids" mode="tree">
-                                    <tree>
-                                        <field name="need_type_id"/>
-                                        <field name="agrees"/>
-                                        <field name="summery"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Case Classification">
-                                <field name="case_classification_ids" mode="tree">
-                                    <tree>
-                                        <field name="total_income"/>
-                                        <field name="net_income"/>
-                                        <field name="each_person_share"/>
-                                        <field name="case_classify"/>
-                                        <field name="expense"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Women Commission Opinion" groups="zakat.group_social_survey">
-                                <field name="women_commission_opinion_ids" mode="tree">
-                                    <tree>
-                                        <field name="opinion"/>
-                                        <field name="needs_type_id"/>
-                                        <field name="pocket_of_money"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Branch Management Opinion" groups="zakat.group_departmental_user">
-                                <field name="branch_management_opinion_ids" mode="tree">
-                                    <tree>
-                                        <field name="opinion"/>
-                                        <field name="partner_ids"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Commission Final Report" groups="zakat.group_central_team">
-                                <field name="final_opinion_ids" mode="tree">
-                                    <tree>
-                                        <field name="opinion"/>
-                                        <field name="char_deputy_id"/>
-                                        <field name="first_signature_id"/>
-                                        <field name="char_deputy1_id"/>
-                                        <field name="Second_signature_id"/>
-                                    </tree>
-                                </field>
-                            </page>
-
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
+        
         <record id="women_commission_opinion" model="ir.ui.view">
              <field name="name">Women Commission Opinion</field>
              <field name="model">women.commission.opinion</field>
@@ -308,10 +184,78 @@
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
              <field name="view_mode">tree,form</field>
-             <field name="search_view_id" ref="zakat_view_search" />
-             <field name="domain">[]</field>
+             <field name="domain">[('state', '=', 'new'), ('reject', '!=', 'y')]</field>
              <field name="context">{}</field>
         </record>
+
+        <record model="ir.actions.act_window" id="case_study_departmental_action">
+             <field name="name">Case Study</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'approve1'), ('reject', '!=', 'y')]</field>
+             <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="case_study_surveyor_action">
+             <field name="name">Case Study</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'approve2'), ('reject', '!=', 'y')]</field>
+             <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="case_study_central_action">
+             <field name="name">Case Study</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'approve3'), ('reject', '!=', 'y')]</field>
+             <field name="context">{}</field>
+        </record>
+
+
+        <!-- Approved Family -->
+
+        <record model="ir.actions.act_window" id="approved_family_action">
+             <field name="name">Approved Families</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('reject', '=', 'n'), ('state', '=', 'approve3')]</field>
+             <field name="context">{}</field>
+        </record>
+
+        <!-- Rejected Family-->
+
+        <record model="ir.actions.act_window" id="rejected_family_action">
+             <field name="name">Rejected Families</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('reject', '=', 'y')]</field>
+             <field name="context">{}</field>
+        </record>
+
+        <!-- All Family-->
+
+        <record model="ir.actions.act_window" id="all_family_action">
+             <field name="name">All Families</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">['|', ('reject', '=', 'n'), ('reject', '=', 'y')]</field>
+             <field name="context">{}</field>
+        </record>
+
+
 
         <record model="ir.actions.act_window" id="family_needs_type_action">
              <field name="name">Families Needs</field>
@@ -327,6 +271,16 @@
             <field name="name">Families Needs</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">needs.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="family_loans_action">
+            <field name="name">Families Needs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">family.loan</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
@@ -354,6 +308,152 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+        <!-- Case Study Form View -->
+
+        <record id="case_study_view_form" model="ir.ui.view">
+             <field name="name">case.study.form</field>
+             <field name="model">case.study.request</field>
+             <field name="arch" type="xml">
+                 <form string="Case Study">
+                    <header>
+                        <button string="Approve" type="object" name="approve"/>
+
+                        <button string="Refused" type="object" name="refuse"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_right oe_button_box">
+                        <button class="oe_inline oe_stat_button" type="object"
+                            icon="fa-star"
+                            context="{'search_default_partner_id': active_id}">
+                            <field string="Loans" name="display_number" widget="statinfo"/>
+                        </button>
+                        <button class="oe_inline oe_stat_button" type="object"
+                            icon="fa-star"
+                            context="{'search_default_partner_id': active_id}">
+                            <field string="Lately Paid" name="lately_paid_total" widget="statinfo"/>
+                        </button>
+                        </div>
+                        <h2 align="center"> Case Study Form </h2>
+                        <group col="12">
+                            <div col="4">
+                                <label for="date" >AD Date</label>
+                                <field name="date" nolabel="1" widget="date"/>    
+                            </div>
+                            <div col="4">
+                                <lable for="hijri_date">Hijri date</lable>
+                                <field name="hijri_date" nolabel="1"/>
+                                <field name="reject" invisible="1"/>
+                            </div>
+                        </group>
+                        <group col="12">
+                            <group string="Family Head Data">
+                                <field name="family_head" required="True"/>
+                                <field name="national_id" required="True"/>
+                                <field name="relative_relation" required="True"/>
+                                <field name="mobile" required="True"/>
+                                <field name="work_place"/> 
+                                <field name="job"/>
+                                <field name="fh_state"/>
+                                <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')]}"/>
+                                <field name="account_no"/>
+                                <field name="bank_name"/>
+                                <field name="wife_name"/>
+                                <field name="wife_mobile"/>
+                                <field name="address"/>
+                            </group>
+                        </group> 
+                        <group string="Monthly Revenue">
+                            <field name="salary"/>
+                            <field name="pension"/>
+                            <field name="rents"/>
+                            <field name="other"/>
+                        </group>
+                        <group string="More Information">
+                            <field name="family_state"/>
+                            <field name="housing"/>    
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Lately Paid">
+                                <field name="lately_paid_money_ids" mode="tree">
+                                    <tree>
+                                        <field name="lately_paid_type_id"/>
+                                        <field name="pocket_of_money"/>
+                                    </tree>
+                                </field>
+                                <lable> Total </lable>
+                                <field name="display_lately_paid_total"/>
+                            </page>
+                            <page string="Loans">
+                                <field name="loan_ids" mode="tree">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="community_name"/>
+                                        <field name="monthly_installment"/>
+                                    </tree>
+                                </field>
+                                <div cols="8"></div>
+                                <div>
+                                    <lable>Total Loans</lable>
+                                    <field name="loans_number"/>
+                                </div>
+                            </page>
+                            <page string="Family Needs">
+                                <field name="family_needs_ids" mode="tree">
+                                    <tree>
+                                        <field name="need_type_id"/>
+                                        <field name="agrees"/>
+                                        <field name="summery"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Case Classification">
+                                <field name="case_classification_ids" mode="tree">
+                                    <tree>
+                                        <field name="total_income"/>
+                                        <field name="net_income"/>
+                                        <field name="each_person_share"/>
+                                        <field name="case_classify"/>
+                                        <field name="expense"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Women Commission Opinion" groups="zakat.group_social_survey">
+                                <field name="women_commission_opinion_ids" mode="tree">
+                                    <tree>
+                                        <field name="opinion"/>
+                                        <field name="needs_type_id"/>
+                                        <field name="pocket_of_money"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Branch Management Opinion" groups="zakat.group_departmental_user">
+                                <field name="branch_management_opinion_ids" mode="tree">
+                                    <tree>
+                                        <field name="opinion"/>
+                                        <field name="partner_ids"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Commission Final Report" groups="zakat.group_central_team">
+                                <field name="final_opinion_ids" mode="tree">
+                                    <tree>
+                                        <field name="opinion"/>
+                                        <field name="char_deputy_id"/>
+                                        <field name="first_signature_id"/>
+                                        <field name="char_deputy1_id"/>
+                                        <field name="Second_signature_id"/>
+                                    </tree>
+                                </field>
+
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
 
 
     </data>

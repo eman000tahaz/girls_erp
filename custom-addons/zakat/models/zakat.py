@@ -43,6 +43,7 @@ class MoneyLate(models.Model):
     _name = 'lately.paid'
     _rec_name = "lately_paid_type_id"
 
+    name = fields.Char('Name')
     lately_paid_type_id = fields.Many2one('lately.paid.type', string="Lately Paid")
     pocket_of_money = fields.Float('Money')
 
@@ -95,6 +96,8 @@ class CaseCategory(models.Model):
 class WomenOpinion(models.Model):
     _name = "women.commission.opinion"
     _rec_name = "needs_type_id"
+    
+    name = fields.Char()
     opinion = fields.Text('Opinion')
     needs_type_id = fields.Many2one('case.category', string="Type")
     pocket_of_money = fields.Float('Money')
@@ -103,6 +106,7 @@ class WomenOpinion(models.Model):
 class BranchManagementOpinion(models.Model):
     _name = "branch.management.opinion"
 
+    name = fields.Char()
     opinion = fields.Text('Opinion')
     partner_ids = fields.Many2many('res.partner', string="Signature")
 
@@ -110,6 +114,7 @@ class FinalOpinion(models.Model):
     _name = "final.opinion"
     _rec_name = "char_deputy_id"
 
+    name = fields.Char()
     opinion = fields.Text('Opinion')
     char_deputy_id = fields.Many2one('res.partner', 'Chairman of the Committee or his deputy')
     first_signature_id = fields.Many2one('res.partner', 'Signature')
@@ -120,6 +125,30 @@ class FinalOpinion(models.Model):
 class CaseStudyRequest(models.Model):
     _name = "case.study.request"
     _rec_name = 'date'
+
+    def _opportunity_meeting_phonecall_count(self):
+        self.loans_number = 0 
+        for each_loan in self.loan_ids:
+            self.loans_number += each_loan.monthly_installment
+        return 1
+    def _display_meeting_phonecall_count(self):
+        self.display_number = 0 
+        for each_loan in self.loan_ids:
+            self.display_number += each_loan.monthly_installment
+        return 1
+
+    def _display_lately_paid(self):
+        self.lately_paid_total = 0
+        for each_lately_paid in self.lately_paid_money_ids:
+            self.lately_paid_total = each_lately_paid.pocket_of_money
+        return 1
+
+    def _compute_total_paid(self):
+        self.display_lately_paid_total = 0
+        for each_lately_paid in self.lately_paid_money_ids:
+            self.display_lately_paid_total = each_lately_paid.pocket_of_money
+        return 1
+
 
     date = fields.Datetime('Date', default=datetime.now(), translate=True)
     hijri_date = fields.Char('Hijri date')
@@ -149,26 +178,83 @@ class CaseStudyRequest(models.Model):
     family_state = fields.Many2one('family.state', translate=True)
     housing = fields.Many2one('housing', 'Housing State', translate=True)
     loan_ids = fields.One2many('family.loan', 'name', 'Loans', translate=True)
-    lately_paid_money_ids = fields.One2many('lately.paid', 'lately_paid_type_id', 'Lately Paid')
+    lately_paid_money_ids = fields.One2many('lately.paid', 'name', 'Lately Paid')
     family_needs_ids = fields.One2many('family.need', 'name', 'Family Needs')
     case_classification_ids = fields.One2many('case.classification', 'case_classify', 'Case Classification')
     ##family_req_ids = fields.One2many('family.requirement', 'request_id', 'Family requirements', translate=True)
-    women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'opinion', 'Women Commission Opinion')
-    branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'opinion', 'Branch Management Opinion')
-    final_opinion_ids = fields.One2many('final.opinion', 'opinion', 'Final Opinion')
-    
+    women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'name', 'Women Commission Opinion')
+    branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'name', 'Branch Management Opinion')
+    final_opinion_ids = fields.One2many('final.opinion', 'name', 'Final Opinion')
+    reject = fields.Char('Reject', default='n')
     state = fields.Selection([
             ('new', 'New'),
             ('approve1', 'First Approve'),
             ('approve2', 'Second Approve'),
-            ('approve3', 'Approved'),
+            ('approve3', 'Third Approve'),
+            ('approve4', 'Approved')
             ],default='new')
-
+    loans_number = fields.Float(compute='_opportunity_meeting_phonecall_count', string="Total")
+    display_number = fields.Float(compute='_display_meeting_phonecall_count', string="Total")
+    lately_paid_total = fields.Float(compute='_display_lately_paid', string="Total")
+    display_lately_paid_total = fields.Float(compute='_compute_total_paid', string="Total")
     ###################################### Logic #######################################
     @api.one
     def approve(self):
+
+        # Group registration user
         if self.env['res.users'].has_group('zakat.group_registration_user'):
-            self.write({'state': 'approve1'})
+            self.write({
+                'state': 'approve1'
+            })
+
+        # Group Departmental Group
+        if self.env['res.users'].has_group('zakat.group_departmental_user'):
+            self.write({
+                'state': 'approve2'
+            })
+
+        # Group Social Survey
+        if self.env['res.users'].has_group('zakat.group_social_survey'):
+            self.write({
+                'state': 'approve2'
+            })
+
+        # Group Central Team
+        if self.env['res.users'].has_group('zakat.group_central_team'):
+            self.write({
+                'state': 'approve4'
+            })
+
+    @api.one
+    def refuse(self):
+        
+        # Group registration user
+        if self.env['res.users'].has_group('zakat.group_registration_user'):
+            self.write({
+                'reject': 'y'
+            })
+
+        # Group Departmental Group
+        if self.env['res.users'].has_group('zakat.group_departmental_user'):
+            self.write({
+                'state': 'new'
+            })
+
+        # Group Social Survey
+        if self.env['res.users'].has_group('zakat.group_social_survey'):
+            self.write({
+                'reject': 'y'
+            })
+
+        # Group Central Team
+        if self.env['res.users'].has_group('zakat.group_central_team'):
+            self.write({
+                'reject': 'y'
+            })
+
+    def loans(self):
+        print "found"
+
 
 
         
