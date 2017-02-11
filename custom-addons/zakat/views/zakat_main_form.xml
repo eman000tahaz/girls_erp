@@ -87,8 +87,8 @@
              <field name="arch" type="xml">
                 <form string="Family Loans">
                     <group>
-                        <field name="name"/>
                         <field name="community_name"/>
+                        <field name="loan_money"/>
                         <field name="monthly_installment"/>
                     </group>
                     <notebook>
@@ -127,14 +127,16 @@
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="Date" domain="[]" context="{'group_by':'date'}" />
-                         
+                        <filter string="State" name="filter_state" domain="[]" context="{'group_by':'state'}" />
                     </group>
+                    
                  </search>
              </field>
         </record>
 
 
         <!-- family.need Form View -->
+        
         <record id="family_need_view_form" model="ir.ui.view">
             <field name="name">family.need.form</field>
             <field name="model">family.need</field>
@@ -150,6 +152,24 @@
                 </form>
             </field>
         </record>
+
+        <!-- Lately Paid Form View -->
+
+        <record id="lately_paid_view_form" model="ir.ui.view">
+            <field name="name">Lately Paid</field>
+            <field name="model">lately.paid</field>
+            <field name="arch" type="xml">
+                <form string="Lately Paid">
+                    <sheet>
+                        <group>
+                            <field name="lately_paid_type_id"/>
+                            <field name="pocket_of_money"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
 
         <!-- Case Classify form view-->
 
@@ -227,7 +247,7 @@
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
              <field name="view_mode">tree,form</field>
-             <field name="domain">[('reject', '=', 'n'), ('state', '=', 'approve3')]</field>
+             <field name="domain">[('reject', '=', 'n'), ('state', '=', 'approve4')]</field>
              <field name="context">{}</field>
         </record>
 
@@ -252,7 +272,7 @@
              <field name="view_type">form</field>
              <field name="view_mode">tree,form</field>
              <field name="domain">['|', ('reject', '=', 'n'), ('reject', '=', 'y')]</field>
-             <field name="context">{}</field>
+             <field name="context">{'search_default_filter_state': 1}</field>
         </record>
 
 
@@ -387,8 +407,8 @@
                             <page string="Loans">
                                 <field name="loan_ids" mode="tree">
                                     <tree>
-                                        <field name="name"/>
                                         <field name="community_name"/>
+                                        <field name="loan_money"/>
                                         <field name="monthly_installment"/>
                                     </tree>
                                 </field>
@@ -453,8 +473,5 @@
                 </form>
             </field>
         </record>
-
-
-
     </data>
 </openerp>

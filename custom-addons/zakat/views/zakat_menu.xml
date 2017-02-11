@@ -75,7 +75,7 @@
           parent="case_root"
           sequence="30"
           action="all_family_action"
-          groups="group_departmental_user"/>
+          groups="group_departmental_user,group_central_team"/>
        
         
 

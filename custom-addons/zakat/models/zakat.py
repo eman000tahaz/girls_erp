@@ -43,14 +43,16 @@ class MoneyLate(models.Model):
     _name = 'lately.paid'
     _rec_name = "lately_paid_type_id"
 
-    name = fields.Char('Name')
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     lately_paid_type_id = fields.Many2one('lately.paid.type', string="Lately Paid")
     pocket_of_money = fields.Float('Money')
 
 class FamilyLoans(models.Model):
     _name = 'family.loan'
-
-    name = fields.Char('Loan Money')
+    _rec_name = 'community_name'
+    
+    loan_money = fields.Float('Loan Money')
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     community_name = fields.Char('Community Name')
     monthly_installment = fields.Float('Monthly Installment')
 
@@ -62,8 +64,9 @@ class NeedsType(models.Model):
 
 class FamilyNeeds(models.Model):
     _name = "family.need" 
+    _rec_name = 'need_type_id'
     
-    name = fields.Char()
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     need_type_id = fields.Many2one('needs.type', string="Name")
     agrees = fields.Selection([('y', 'Yes'), ('N', 'No')], string="Yes/No")
     summery = fields.Text("Summery of Family Needs")
@@ -76,6 +79,7 @@ class CaseClassification(models.Model):
     _name = 'case.classification'
     _rec_name = 'commissary_name'
 
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     total_income = fields.Float(string='Total Income')
     net_income = fields.Float(string='Net Income')
     each_person_share = fields.Float(string='Each One Share')
@@ -90,14 +94,15 @@ class CaseClassification(models.Model):
 class CaseCategory(models.Model):
     _name = "case.category"
 
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     name = fields.Char('Name')
     pocket_of_money = fields.Float('Money')
 
 class WomenOpinion(models.Model):
     _name = "women.commission.opinion"
     _rec_name = "needs_type_id"
-    
-    name = fields.Char()
+
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     opinion = fields.Text('Opinion')
     needs_type_id = fields.Many2one('case.category', string="Type")
     pocket_of_money = fields.Float('Money')
@@ -105,8 +110,9 @@ class WomenOpinion(models.Model):
 
 class BranchManagementOpinion(models.Model):
     _name = "branch.management.opinion"
-
-    name = fields.Char()
+    _rec_name = 'case_study_id'
+    
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     opinion = fields.Text('Opinion')
     partner_ids = fields.Many2many('res.partner', string="Signature")
 
@@ -114,7 +120,7 @@ class FinalOpinion(models.Model):
     _name = "final.opinion"
     _rec_name = "char_deputy_id"
 
-    name = fields.Char()
+    case_study_id = fields.Many2one('case.study.request', 'Case No')
     opinion = fields.Text('Opinion')
     char_deputy_id = fields.Many2one('res.partner', 'Chairman of the Committee or his deputy')
     first_signature_id = fields.Many2one('res.partner', 'Signature')
@@ -129,12 +135,12 @@ class CaseStudyRequest(models.Model):
     def _opportunity_meeting_phonecall_count(self):
         self.loans_number = 0 
         for each_loan in self.loan_ids:
-            self.loans_number += each_loan.monthly_installment
+            self.loans_number += each_loan.loan_money
         return 1
     def _display_meeting_phonecall_count(self):
         self.display_number = 0 
         for each_loan in self.loan_ids:
-            self.display_number += each_loan.monthly_installment
+            self.display_number += each_loan.loan_money
         return 1
 
     def _display_lately_paid(self):
@@ -177,14 +183,14 @@ class CaseStudyRequest(models.Model):
     address = fields.Char('Address', translate=True)
     family_state = fields.Many2one('family.state', translate=True)
     housing = fields.Many2one('housing', 'Housing State', translate=True)
-    loan_ids = fields.One2many('family.loan', 'name', 'Loans', translate=True)
-    lately_paid_money_ids = fields.One2many('lately.paid', 'name', 'Lately Paid')
-    family_needs_ids = fields.One2many('family.need', 'name', 'Family Needs')
+    loan_ids = fields.One2many('family.loan', 'case_study_id', 'Loans', translate=True)
+    lately_paid_money_ids = fields.One2many('lately.paid', 'case_study_id', 'Lately Paid')
+    family_needs_ids = fields.One2many('family.need', 'case_study_id', 'Family Needs')
     case_classification_ids = fields.One2many('case.classification', 'case_classify', 'Case Classification')
     ##family_req_ids = fields.One2many('family.requirement', 'request_id', 'Family requirements', translate=True)
-    women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'name', 'Women Commission Opinion')
-    branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'name', 'Branch Management Opinion')
-    final_opinion_ids = fields.One2many('final.opinion', 'name', 'Final Opinion')
+    women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'case_study_id', 'Women Commission Opinion')
+    branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'case_study_id', 'Branch Management Opinion')
+    final_opinion_ids = fields.One2many('final.opinion', 'case_study_id', 'Final Opinion')
     reject = fields.Char('Reject', default='n')
     state = fields.Selection([
             ('new', 'New'),
