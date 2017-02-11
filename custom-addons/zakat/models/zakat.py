@@ -209,14 +209,20 @@ class CaseStudyRequest(models.Model):
 
         # Group Departmental Group
         if self.env['res.users'].has_group('zakat.group_departmental_user'):
-            self.write({
-                'state': 'approve2'
-            })
+            if self.loan_ids:
+                self.write({
+                    'state': 'approve3'
+                })
+            else:
+                self.write({
+                    'state': 'approve2'
+                })
+
 
         # Group Social Survey
         if self.env['res.users'].has_group('zakat.group_social_survey'):
             self.write({
-                'state': 'approve2'
+                'state': 'approve1'
             })
 
         # Group Central Team
@@ -243,13 +249,13 @@ class CaseStudyRequest(models.Model):
         # Group Social Survey
         if self.env['res.users'].has_group('zakat.group_social_survey'):
             self.write({
-                'reject': 'y'
+                'reject': 'approve1'
             })
 
         # Group Central Team
         if self.env['res.users'].has_group('zakat.group_central_team'):
             self.write({
-                'reject': 'y'
+                'reject': 'approve1'
             })
 
     def loans(self):
