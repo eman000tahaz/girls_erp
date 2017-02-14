@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import api, models, fields, exceptions
+from openerp import api, models, fields, exceptions, _
 from datetime import datetime
 
 class RelativeRlation(models.Model):
@@ -61,15 +61,32 @@ class NeedsType(models.Model):
     _name = 'needs.type'
 
     name = fields.Char('Name')
+    unit_of_help = fields.Char('Unit')
+
 
 class FamilyNeeds(models.Model):
     _name = "family.need" 
     _rec_name = 'need_type_id'
+    # Is Admin
+    def _is_admin(self):
+        if self.env['res.users'].has_group('zakat.group_admin'):
+            self.is_admin = True
+        else:
+            self.is_admin = False
+        return self.is_admin
     
     case_study_id = fields.Many2one('case.study.request', 'Case No')
     need_type_id = fields.Many2one('needs.type', string="Name")
-    agrees = fields.Selection([('y', 'Yes'), ('N', 'No')], string="Yes/No")
+    agrees = fields.Selection([('y', 'Yes'), ('N', 'No')], string="Yes/No", default='y')
+    frequency_help = fields.Selection([('m', 'Monthly'), ('y', 'Yearly')])
+    selecting_date_from = fields.Date('Selecting date from')
+    selecting_date_to = fields.Date('Selecting date to')
+    dispatch_date_from = fields.Date('Dispatch Date from')
+    dispatch_date_to = fields.Date('Dispatch Date to')
+    value = fields.Float('Value')
     summery = fields.Text("Summery of Family Needs")
+    is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?")
+    approve = fields.Boolean(string="Approve")
 
 class BranchPlace(models.Model):
     _name = 'branch.place'
@@ -131,6 +148,7 @@ class FinalOpinion(models.Model):
 class CaseStudyRequest(models.Model):
     _name = "case.study.request"
     _rec_name = 'date'
+    
 
     def _opportunity_meeting_phonecall_count(self):
         self.loans_number = 0 
@@ -155,9 +173,26 @@ class CaseStudyRequest(models.Model):
             self.display_lately_paid_total = each_lately_paid.pocket_of_money
         return 1
 
+    # Is Admin
+    @api.one
+    def _is_admin(self):
+        if self.env['res.users'].has_group('zakat.group_admin'):
+            self.is_admin = True
+        else:
+            self.is_admin = False
+        return self.is_admin
+
+    # Is Registration user
+    def _is_registration_user(self):
+        if self.env['res.users'].has_group('zakat.group_registration_user'):
+            self.is_registration_user = True
+        else:
+            self.is_registration_user = False
+        return self.is_registration_user
+
 
     date = fields.Datetime('Date', default=datetime.now(), translate=True)
-    hijri_date = fields.Char('Hijri date')
+    hijri_date = fields.Char('Hijri date', default="dd/mm/yyyy")
     family_head = fields.Many2one('res.partner', 'Family Head', translate=True)
     relative_relation = fields.Many2one('relative.relation', 'Relative Relation', translate=True)
     national_id = fields.Char('National ID')
@@ -203,40 +238,66 @@ class CaseStudyRequest(models.Model):
     display_number = fields.Float(compute='_display_meeting_phonecall_count', string="Total")
     lately_paid_total = fields.Float(compute='_display_lately_paid', string="Total")
     display_lately_paid_total = fields.Float(compute='_compute_total_paid', string="Total")
+    admin_comment = fields.Text('Admin Comment')
+    is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?", default="_is_admin")
+    is_registration_user = fields.Boolean(compute='_is_registration_user', string="Is Registration")
     ###################################### Logic #######################################
-    @api.one
-    def approve(self):
-
+    @api.v7
+    def approve(self, cr, uid, ids, context=None):
+        case_obj = self.pool.get('case.study.request')
+        users_obj = self.pool.get('res.users').search(cr, uid, [])
+        users_bro = self.pool.get('res.users').browse(cr, uid, users_obj)
+        partner_ids = []
+        
         # Group registration user
-        if self.env['res.users'].has_group('zakat.group_registration_user'):
-            self.write({
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_registration_user'):
+            case_obj.write(cr, uid, ids,{
                 'state': 'approve1'
             })
+            for each_user in users_bro:
+                print each_user, users_bro
+                if self.pool.get('res.users').has_group(cr, each_user.id, 'zakat.group_departmental_user'):
+                    partner_ids.append(each_user.partner_id.id)
 
+            # Send Notidication to Departmental that has new rewuest 
+        
         # Group Departmental Group
-        if self.env['res.users'].has_group('zakat.group_departmental_user'):
-            if self.loan_ids:
-                self.write({
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_departmental_user'):
+            get_record_data = self.pool.get('case.study.request').browse(cr, uid, ids[0])
+            if get_record_data.loan_ids:
+                case_obj.write(cr, uid, ids[0], {
                     'state': 'approve3'
                 })
             else:
-                self.write({
+                case_obj.write(cr, uid, ids[0], {
                     'state': 'approve2'
                 })
 
 
         # Group Social Survey
-        if self.env['res.users'].has_group('zakat.group_social_survey'):
-            self.write({
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_social_survey'):
+            case_obj.write(cr, uid, ids[0], {
                 'state': 'approve1'
             })
 
         # Group Central Team
-        if self.env['res.users'].has_group('zakat.group_central_team'):
-            self.write({
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):
+            case_obj.write(cr, uid, ids[0], {
                 'state': 'approve4'
             })
+        if partner_ids:
+            post_vars = {'subject': "New Case Need to approve",
+                 'body':("You have new case study which needs to approve"),
+                 'partner_ids': partner_ids,}  
+            thread_pool = self.pool.get('mail.thread')
+            thread_pool.message_post(cr, uid,
+                            False,
+                            type="notification",
+                            subtype="mt_comment",
+                            context=context,
+                            **post_vars)
 
+        
     @api.one
     def refuse(self):
         
@@ -266,6 +327,15 @@ class CaseStudyRequest(models.Model):
 
     def loans(self):
         print "found"
+
+    # Admin Approve all needs
+    @api.one
+    def approve_all_needs(self):
+        print self.family_needs_ids
+        for each_need in self.family_needs_ids:
+            each_need.write({
+                'approve': True
+            })
 
 
 

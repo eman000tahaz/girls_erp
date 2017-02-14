@@ -3,7 +3,7 @@
     <data>
          <menuitem id="zakat_root" 
                    name="Zakat Process" 
-                   sequence="10" 
+                   sequence="90" 
                    groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_admin"/>
 
 
@@ -76,6 +76,13 @@
           sequence="30"
           action="all_family_action"
           groups="group_departmental_user,group_central_team,group_admin"/>
+
+        <menuitem id ="family_help"
+                  name ="Family Help"
+                  parent ="case_root"
+                  sequence="40"
+                  action="family_help_action"
+                  groups="group_admin"/>
        
         
 

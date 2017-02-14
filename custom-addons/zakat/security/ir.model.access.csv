@@ -16,6 +16,7 @@ access_branch_management_opinion_registration_user,access.branch.management.opin
 access_final_opinion_registration_user,access.final.opinion.registration.user,model_final_opinion,group_registration_user,1,1,1,1
 access_case_study_request_registration_user,access.case.study.request.registration.user,model_case_study_request,group_registration_user,1,1,1,1
 access_lately_paid_registration_user,access.lately.paid.registration.user,model_lately_paid,group_registration_user,1,1,1,1
+access_res_users_registration_user,access.res.users.registration.user,base.model_res_users,group_registration_user,1,1,0,1
 
 access_relative_relative_departmental_user,access.relative.relative.departmental_user,model_relative_relation,group_departmental_user,1,1,1,1
 access_work_place_departmental_user,access.work.place.departmental.user,model_work_place,group_departmental_user,1,1,1,1
@@ -79,7 +80,7 @@ access_housing_group_group_admin,access.housing.group.admin,model_housing,group_
 access_lately_paid_type_group_admin,access.lately.paid.type.group.admin,model_lately_paid_type,group_admin,1,1,1,1
 access_family_loan_group_admin,access.family.loan.group.admin,model_family_loan,group_admin,1,1,1,1
 access_needs_type_group_admin,access.needs.type.group.admin,model_needs_type,group_admin,1,1,1,1
-access_family_need_group_admin,access.family.need.group.admin,model_family_need,group_admin,1,1,1,1
+access_family_need_group_admin,access.family.need.group.admin,model_family_need,group_admin,1,1,0,1
 access_branch_place_group_admin,access.branch.place.group.admin,model_branch_place,group_admin,1,1,1,1
 access_case_classification_group_admin,access.case.classification.group.admin,model_case_classification,group_admin,1,1,1,1
 access_case_category_group_admin,access.case.category.group.admin,model_case_category,group_admin,1,1,1,1
