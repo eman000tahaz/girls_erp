@@ -121,7 +121,8 @@
             <field name="name">Family Need</field>
             <field name="model">family.need</field>
             <field name="arch" type="xml">
-                <tree string="Family Need">
+                <tree string="Family Need" colors="red:colorize==True">
+                    <field name="colorize" invisible="1"/>
                     <field name="need_type_id"/>
                     <field name="agrees"/>
                     <field name="dispatch_date_from"/>
@@ -175,7 +176,11 @@
             <field name="arch" type="xml">
                 <form string="Family Needs">
                     <sheet>
+                        <header>
+                            <button string="Confirm" type="object" name="confirm"/>
+                        </header>
                         <group>
+                            <field name="case_study_id"/>
                             <field name="is_admin"/>
                             <field name="need_type_id"/>
                             <field name="agrees"/>
@@ -447,6 +452,9 @@
                         <group string="More Information">
                             <field name="family_state"/>
                             <field name="housing"/>    
+                        </group>
+                        <group string="Admin Comment">
+                            <field name="admin_comment" attrs="{'invisible': [('is_admin', '!=', True)]}"/>
                         </group>
                         <notebook colspan="4">
                             <page string="Lately Paid">

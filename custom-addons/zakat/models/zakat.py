@@ -75,7 +75,7 @@ class FamilyNeeds(models.Model):
             self.is_admin = False
         return self.is_admin
     
-    case_study_id = fields.Many2one('case.study.request', 'Case No')
+    case_study_id = fields.Many2one('case.study.request', 'Case Study')
     need_type_id = fields.Many2one('needs.type', string="Name")
     agrees = fields.Selection([('y', 'Yes'), ('N', 'No')], string="Yes/No", default='y')
     frequency_help = fields.Selection([('m', 'Monthly'), ('y', 'Yearly')])
@@ -87,6 +87,28 @@ class FamilyNeeds(models.Model):
     summery = fields.Text("Summery of Family Needs")
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?")
     approve = fields.Boolean(string="Approve")
+    is_recieve = fields.Boolean(string="Is Recieved?")
+    colorize = fields.Boolean(string="Color")
+
+    @api.one
+    def confirm(self):
+        if self.dispatch_date_from == str(datetime.now().date()):
+            self.is_recieve = True
+            self.colorize = False
+        else:
+            raise exceptions.Warning(_("You don't determine the date to recieve or it is not the date"))
+    # Automation action
+    @api.v7
+    def update_family_need(self, cr, uid, context=None):
+        family_need_obj = self.pool.get('family.need')
+        get_f_n_obj = self.pool.get('family.need').search(cr, uid, [])
+        get_f_n_browse = self.pool.get('family.need').browse(cr, uid, get_f_n_obj)
+        for get_each_data in get_f_n_browse:
+            if get_each_data.dispatch_date_from and get_each_data.is_recieve == False and get_each_data.approve == True:
+                if get_each_data.dispatch_date_from == str(datetime.now().date()):
+                    get_each_data.write({'colorize': True})
+
+
 
 class BranchPlace(models.Model):
     _name = 'branch.place'
