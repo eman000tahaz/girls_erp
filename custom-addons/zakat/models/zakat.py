@@ -1,22 +1,22 @@
 from openerp import api, models, fields, exceptions
-import Datetime
+
 
 class CaseStudyRequest(models.Model):
     _name = "case.study.request"
 
-    date = fields.Datetime('Date', default=Datetime.now(), translate=True)
+    date = fields.Datetime('Date', translate=True)
     family_head = fields.Many2one('res.partner', 'Family Head', translate=True)
     relative_relation = fields.Many2one('relative.relation', 'Relative Relation', translate=True)
     work_place = fields.Many2one('work.place', 'Work Place', translate=True)
     job = fields.Char('Job', translate=True)
     mobile = fields.Char('Mobile', translate=True)
-    fh_state = fields.Selection([('employee', '=', 'Employee'),
-                                 ('retired', '=', 'Retired'),
-                                 ('helpless', '=', 'Helpless'),
-                                 ('jailed', '=', 'Jailed'),
-                                 ('dead', '=', 'Dead'),
-                                 ('unemployed', '=', 'Unemployed'),
-                                 ('other', '=', 'Other')], 'Family Head State', translate=True)
+    fh_state = fields.Selection([('employee', 'Employee'),
+                                 ('retired', 'Retired'),
+                                 ('helpless', 'Helpless'),
+                                 ('jailed', 'Jailed'),
+                                 ('dead', 'Dead'),
+                                 ('unemployed', 'Unemployed'),
+                                 ('other', 'Other')], 'Family Head State', translate=True)
     fh_state_desc = fields.Char()
     salary = fields.Float('Salary', translate=True)
     pension = fields.Float('Pension', translate=True)
@@ -45,7 +45,7 @@ class WorkPlace(models.Model):
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
 
-    sex = fields.Selection([('male', '=', 'Male'), ('female', '=', 'Female')], 'Sex', translate=True)
+    sex = fields.Selection([('male', 'Male'), ('female', 'Female')], 'Sex', translate=True)
 
 class FamilyState(models.Model):
     _name = 'family.state'
@@ -57,8 +57,7 @@ class FamilyState(models.Model):
 class FamilyState(models.Model):
     _name = 'housing'
 
-    state = fields.Selection([(),
-                              ()])
+    #state = fields.Selection([(),
+    #                          ()])
     type = fields.Char('Type')
     rooms = fields.Integer('Number of Rooms', translate=True)
-    
