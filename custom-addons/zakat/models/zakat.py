@@ -135,7 +135,7 @@ class CaseCategory(models.Model):
 
     case_study_id = fields.Many2one('case.study.request', 'Case No')
     name = fields.Char('Name')
-    pocket_of_money = fields.Float('Money')
+    pocket_of_money = fields.Float('Money Less than')
 
 class WomenOpinion(models.Model):
     _name = "women.commission.opinion"
