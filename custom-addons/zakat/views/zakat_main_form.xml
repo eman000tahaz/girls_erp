@@ -453,8 +453,8 @@
                             <field name="family_state"/>
                             <field name="housing"/>    
                         </group>
-                        <group string="Admin Comment">
-                            <field name="admin_comment" attrs="{'invisible': [('is_admin', '!=', True)]}"/>
+                        <group string="Admin Comment" attrs="{'invisible': [('is_admin', '=', False)]}">
+                            <field name="admin_comment" attrs="{'invisible': [('is_admin', '=', False)]}"/>
                         </group>
                         <notebook colspan="4">
                             <page string="Lately Paid">
