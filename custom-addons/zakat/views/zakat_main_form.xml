@@ -180,6 +180,7 @@
                             <button string="Confirm" type="object" name="confirm" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                         </header>
                         <group>
+                            <field name="case_study_id" attrs="{'invisible': [('is_admin', '=', False)] }"/>
                             <field name="is_admin" invisible="1"/>
                             <field name="need_type_id"/>
                             <field name="agrees"/>
@@ -207,6 +208,23 @@
                     <sheet>
                         <group>
                             <field name="lately_paid_type_id"/>
+                            <field name="pocket_of_money"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Case Category Form View -->
+
+        <record id="case_category_form" model="ir.ui.view">
+            <field name="name">Case Category</field>
+            <field name="model">case.category</field>
+            <field name="arch" type="xml">
+                <form string="Case Category">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
                             <field name="pocket_of_money"/>
                         </group>
                     </sheet>
