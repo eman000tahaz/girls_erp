@@ -1,0 +1,767 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* zakat
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-20 08:50+0000\n"
+"PO-Revision-Date: 2017-02-20 17:56+0200\n"
+"Last-Translator: \n"
+"Language-Team: Aya\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: ar\n"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "AD Date"
+msgstr ""
+
+#. module: zakat
+#: field:case.study.request,address:0
+msgid "Address"
+msgstr "العنوان"
+
+#. module: zakat
+#: model:res.groups,name:zakat.group_admin
+msgid "Admin"
+msgstr "الادمن"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,admin_comment:0
+msgid "Admin Comment"
+msgstr "تعليق الادمن"
+
+#. module: zakat
+#: model:ir.actions.act_window,name:zakat.all_family_action
+#: model:ir.ui.menu,name:zakat.all_family
+msgid "All Families"
+msgstr "كل الاسر "
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:family.need,approve:0
+msgid "Approve"
+msgstr "موافقة"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "Approve All"
+msgstr "موافقة جماعية"
+
+#. module: zakat
+#: selection:case.study.request,state:0
+msgid "Approved"
+msgstr "موافقة"
+
+#. module: zakat
+#: model:ir.actions.act_window,name:zakat.approved_family_action
+#: model:ir.ui.menu,name:zakat.approved_family
+msgid "Approved Families"
+msgstr "كل العائلات التى تم الموافقة عليها"
+
+#. module: zakat
+#: field:case.study.request,account_no:0
+msgid "Bank Account Number"
+msgstr "رقم الحساب البنكى"
+
+#. module: zakat
+#: field:case.study.request,bank_name:0
+msgid "Bank Name"
+msgstr "اسم البنك"
+
+#. module: zakat
+#: field:branch.place,name:0 field:case.classification,branch:0
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,branch_management_opinion_ids:0
+msgid "Branch Management Opinion"
+msgstr " رأي إدارة الفرع"
+
+#. module: zakat
+#: model:ir.actions.act_window,name:zakat.case_category_action
+#: model:ir.ui.menu,name:zakat.case_category
+msgid "Case Category"
+msgstr "نوع الحالة"
+
+#. module: zakat
+#: view:case.classification:zakat.case_classification_view_form
+#: field:case.classification,case_classify:0
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,case_classification_ids:0
+msgid "Case Classification"
+msgstr "تصنيف الحالة"
+
+#. module: zakat
+#: field:branch.management.opinion,case_study_id:0
+#: field:case.category,case_study_id:0
+#: field:case.classification,case_study_id:0 field:family.loan,case_study_id:0
+#: field:final.opinion,case_study_id:0 field:lately.paid,case_study_id:0
+#: field:women.commission.opinion,case_study_id:0
+msgid "Case No"
+msgstr "رقم الحالة"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: view:case.study.request:zakat.view_zakat_tree
+#: view:case.study.request:zakat.zakat_view_search
+#: field:family.need,case_study_id:0
+#: model:ir.actions.act_window,name:zakat.case_study_action
+#: model:ir.actions.act_window,name:zakat.case_study_central_action
+#: model:ir.actions.act_window,name:zakat.case_study_departmental_action
+#: model:ir.actions.act_window,name:zakat.case_study_surveyor_action
+#: model:ir.ui.menu,name:zakat.case_study
+#: model:ir.ui.menu,name:zakat.case_study_central
+#: model:ir.ui.menu,name:zakat.case_study_departmental
+#: model:ir.ui.menu,name:zakat.case_study_surveyor
+msgid "Case Study"
+msgstr "دراسة الحالة"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "Case Study Form"
+msgstr "استمارة دراسة الحالة"
+
+#. module: zakat
+#: model:ir.ui.menu,name:zakat.case_root
+msgid "Cases Information"
+msgstr "معلومات عن الحالات"
+
+#. module: zakat
+#: model:res.groups,name:zakat.group_central_team
+msgid "Central Team"
+msgstr "التيم الرئيسى"
+
+#. module: zakat
+#: field:final.opinion,char_deputy1_id:0 field:final.opinion,char_deputy_id:0
+msgid "Chairman of the Committee or his deputy"
+msgstr "رئيس اللجنة أو نائبه"
+
+#. module: zakat
+#: field:family.need,colorize:0
+msgid "Color"
+msgstr "الون"
+
+#. module: zakat
+#: field:case.classification,commissary_name:0
+msgid "Commissary name"
+msgstr "اسم المندوب"
+
+#. module: zakat
+#: field:case.classification,commissary_phone:0
+msgid "Commissary phone"
+msgstr "رقم الهاتف المندوب"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: view:final.opinion:zakat.view_final_opinion_tree
+msgid "Commission Final Report"
+msgstr " التقرير النهائي للجنة"
+
+#. module: zakat
+#: field:family.loan,community_name:0
+msgid "Community Name"
+msgstr "اسم الجهة"
+
+#. module: zakat
+#: model:ir.ui.menu,name:zakat.zakat_configuration
+msgid "Configuration"
+msgstr "اعدادات النظام"
+
+#. module: zakat
+#: view:family.need:zakat.family_need_view_form
+msgid "Confirm"
+msgstr "تاكيد"
+
+#. module: zakat
+#: field:branch.management.opinion,create_uid:0
+#: field:branch.place,create_uid:0 field:case.category,create_uid:0
+#: field:case.classification,create_uid:0
+#: field:case.study.request,create_uid:0 field:family.loan,create_uid:0
+#: field:family.need,create_uid:0 field:family.state,create_uid:0
+#: field:final.opinion,create_uid:0 field:housing,create_uid:0
+#: field:lately.paid,create_uid:0 field:lately.paid.type,create_uid:0
+#: field:needs.type,create_uid:0 field:relative.relation,create_uid:0
+#: field:women.commission.opinion,create_uid:0 field:work.place,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: zakat
+#: field:branch.management.opinion,create_date:0
+#: field:branch.place,create_date:0 field:case.category,create_date:0
+#: field:case.classification,create_date:0
+#: field:case.study.request,create_date:0 field:family.loan,create_date:0
+#: field:family.need,create_date:0 field:family.state,create_date:0
+#: field:final.opinion,create_date:0 field:housing,create_date:0
+#: field:lately.paid,create_date:0 field:lately.paid.type,create_date:0
+#: field:needs.type,create_date:0 field:relative.relation,create_date:0
+#: field:women.commission.opinion,create_date:0 field:work.place,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: zakat
+#: view:case.study.request:zakat.zakat_view_search
+#: field:case.study.request,date:0
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: zakat
+#: selection:case.study.request,fh_state:0
+msgid "Dead"
+msgstr "متوفى"
+
+#. module: zakat
+#: model:res.groups,name:zakat.group_departmental_user
+msgid "Departmental Group"
+msgstr "جروب القسم"
+
+#. module: zakat
+#: field:case.study.request,fh_state_desc:0
+msgid "Description"
+msgstr "التوصيف"
+
+#. module: zakat
+#: field:family.need,dispatch_date_from:0
+msgid "Dispatch Date from"
+msgstr "موعد تسليم من"
+
+#. module: zakat
+#: field:family.need,dispatch_date_to:0
+msgid "Dispatch Date to"
+msgstr "موعد التسليم الي "
+
+#. module: zakat
+#: field:branch.management.opinion,display_name:0
+#: field:branch.place,display_name:0 field:case.category,display_name:0
+#: field:case.classification,display_name:0
+#: field:case.study.request,display_name:0 field:family.loan,display_name:0
+#: field:family.need,display_name:0 field:family.state,display_name:0
+#: field:final.opinion,display_name:0 field:housing,display_name:0
+#: field:lately.paid,display_name:0 field:lately.paid.type,display_name:0
+#: field:needs.type,display_name:0 field:relative.relation,display_name:0
+#: field:women.commission.opinion,display_name:0
+#: field:work.place,display_name:0
+msgid "Display Name"
+msgstr "الاسم"
+
+#. module: zakat
+#: field:case.classification,each_person_share:0
+msgid "Each One Share"
+msgstr "نصيب الفرد"
+
+#. module: zakat
+#: selection:case.study.request,fh_state:0
+msgid "Employee"
+msgstr "موظف"
+
+#. module: zakat
+#: field:case.classification,expense:0
+msgid "Expense"
+msgstr "المصاريف"
+
+#. module: zakat
+#: model:ir.actions.act_window,name:zakat.family_loans_action
+#: model:ir.actions.act_window,name:zakat.family_needs_type_action
+#: model:ir.ui.menu,name:zakat.family_needs_type
+msgid "Families Needs"
+msgstr "احتياجات العائلات"
+
+#. module: zakat
+#: field:case.study.request,family_head:0
+msgid "Family Head"
+msgstr "رب الاسرة"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "Family Head Data"
+msgstr "معلومات عن رب الأسرة"
+
+#. module: zakat
+#: field:case.study.request,fh_state:0
+msgid "Family Head State"
+msgstr "صلة القرابة بالأسرة"
+
+#. module: zakat
+#: model:ir.actions.act_window,name:zakat.family_help_action
+#: model:ir.ui.menu,name:zakat.family_help
+msgid "Family Help"
+msgstr "مساعدة الاسرة"
+
+#. module: zakat
+#: view:family.loan:zakat.family_loan_form_view
+msgid "Family Loans"
+msgstr "قروض الأسرة"
+
+#. module: zakat
+#: view:family.need:zakat.view_family_need_tree
+msgid "Family Need"
+msgstr "احتياج الأسرة"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,family_needs_ids:0
+#: view:family.need:zakat.family_need_view_form
+msgid "Family Needs"
+msgstr "احتياجات الأسرة"
+
+#. module: zakat
+#: field:case.study.request,family_state:0
+msgid "Family state"
+msgstr "حالة الأسرة"
+
+#. module: zakat
+#: selection:res.partner,sex:0
+msgid "Female"
+msgstr "انثي"
+
+#. module: zakat
+#: field:case.study.request,final_opinion_ids:0
+msgid "Final Opinion"
+msgstr "الراى النهائي"
+
+#. module: zakat
+#: selection:case.study.request,state:0
+msgid "First Approve"
+msgstr "موافقة رئيس الفرع"
+
+#. module: zakat
+#: field:case.classification,f_researcher_name:0
+msgid "First Researcher Name"
+msgstr "اسم الباحث الاول"
+
+#. module: zakat
+#: field:family.need,frequency_help:0
+msgid "Frequency help"
+msgstr "تكرر المساعدة"
+
+#. module: zakat
+#: view:case.study.request:zakat.zakat_view_search
+msgid "Group By..."
+msgstr "منظمة ب"
+
+#. module: zakat
+#: selection:case.study.request,fh_state:0
+msgid "Helpless"
+msgstr "عاجز"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,hijri_date:0
+msgid "Hijri date"
+msgstr "التاريخ الهجرى"
+
+#. module: zakat
+#: field:case.study.request,housing:0
+msgid "Housing State"
+msgstr "حالة المسكن"
+
+#. module: zakat
+#: field:branch.management.opinion,id:0 field:branch.place,id:0
+#: field:case.category,id:0 field:case.classification,id:0
+#: field:case.study.request,id:0 field:family.loan,id:0 field:family.need,id:0
+#: field:family.state,id:0 field:final.opinion,id:0 field:housing,id:0
+#: field:lately.paid,id:0 field:lately.paid.type,id:0 field:needs.type,id:0
+#: field:relative.relation,id:0 field:women.commission.opinion,id:0
+#: field:work.place,id:0
+msgid "ID"
+msgstr "الرقم القومى"
+
+#. module: zakat
+#: field:family.state,persons_lived_out:0
+msgid "Individuals Who Not lived in House"
+msgstr "عدد أفراد الأسرة الساكنين بالمنزل"
+
+#. module: zakat
+#: field:family.state,persons_lived_in:0
+msgid "Individuals Who lived in House"
+msgstr " عدد أفراد الأسرة الذين لا يسكنون مع الأسرة"
+
+#. module: zakat
+#: field:case.study.request,is_admin:0 field:family.need,is_admin:0
+msgid "Is Admin?"
+msgstr ""
+
+#. module: zakat
+#: field:family.need,is_recieve:0
+msgid "Is Recieved?"
+msgstr ""
+
+#. module: zakat
+#: field:case.study.request,is_registration_user:0
+msgid "Is Registration"
+msgstr ""
+
+#. module: zakat
+#: selection:case.study.request,fh_state:0
+msgid "Jailed"
+msgstr "مسجون"
+
+#. module: zakat
+#: field:case.study.request,job:0
+msgid "Job"
+msgstr "الوظيفة "
+
+#. module: zakat
+#: field:branch.management.opinion,__last_update:0
+#: field:branch.place,__last_update:0 field:case.category,__last_update:0
+#: field:case.classification,__last_update:0
+#: field:case.study.request,__last_update:0 field:family.loan,__last_update:0
+#: field:family.need,__last_update:0 field:family.state,__last_update:0
+#: field:final.opinion,__last_update:0 field:housing,__last_update:0
+#: field:lately.paid,__last_update:0 field:lately.paid.type,__last_update:0
+#: field:needs.type,__last_update:0 field:relative.relation,__last_update:0
+#: field:women.commission.opinion,__last_update:0
+#: field:work.place,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: zakat
+#: field:branch.management.opinion,write_uid:0 field:branch.place,write_uid:0
+#: field:case.category,write_uid:0 field:case.classification,write_uid:0
+#: field:case.study.request,write_uid:0 field:family.loan,write_uid:0
+#: field:family.need,write_uid:0 field:family.state,write_uid:0
+#: field:final.opinion,write_uid:0 field:housing,write_uid:0
+#: field:lately.paid,write_uid:0 field:lately.paid.type,write_uid:0
+#: field:needs.type,write_uid:0 field:relative.relation,write_uid:0
+#: field:women.commission.opinion,write_uid:0 field:work.place,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: zakat
+#: field:branch.management.opinion,write_date:0
+#: field:branch.place,write_date:0 field:case.category,write_date:0
+#: field:case.classification,write_date:0
+#: field:case.study.request,write_date:0 field:family.loan,write_date:0
+#: field:family.need,write_date:0 field:family.state,write_date:0
+#: field:final.opinion,write_date:0 field:housing,write_date:0
+#: field:lately.paid,write_date:0 field:lately.paid.type,write_date:0
+#: field:needs.type,write_date:0 field:relative.relation,write_date:0
+#: field:women.commission.opinion,write_date:0 field:work.place,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,lately_paid_money_ids:0
+#: view:lately.paid:zakat.lately_paid_view_form
+#: field:lately.paid,lately_paid_type_id:0
+msgid "Lately Paid"
+msgstr "المبالغ المتأخرة"
+
+#. module: zakat
+#: field:lately.paid.type,name:0
+msgid "Lately Paid Type"
+msgstr "نوع المبالغ المتأخرة"
+
+#. module: zakat
+#: field:family.loan,loan_money:0
+msgid "Loan Money"
+msgstr "مبلغ القرض"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,loan_ids:0
+msgid "Loans"
+msgstr "القروض"
+
+#. module: zakat
+#: model:ir.actions.act_window,name:zakat.loans_type_action
+#: model:ir.ui.menu,name:zakat.loan_type
+msgid "Loans Type"
+msgstr "نوع القروض"
+
+#. module: zakat
+#: selection:res.partner,sex:0
+msgid "Male"
+msgstr "ذكر"
+
+#. module: zakat
+#: field:women.commission.opinion,partner_ids:0
+msgid "Members"
+msgstr "الأعضاء"
+
+#. module: zakat
+#: field:case.study.request,mobile:0
+msgid "Mobile"
+msgstr "الهاتف"
+
+#. module: zakat
+#: field:case.category,pocket_of_money:0 field:lately.paid,pocket_of_money:0
+#: field:women.commission.opinion,pocket_of_money:0
+msgid "Money"
+msgstr "المبلغ"
+
+#. module: zakat
+#: selection:family.need,frequency_help:0
+msgid "Monthly"
+msgstr "شهريا"
+
+#. module: zakat
+#: field:family.loan,monthly_installment:0
+msgid "Monthly Installment"
+msgstr "القسط الشهري"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "Monthly Revenue"
+msgstr "الدخل الشهرى"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "More Information"
+msgstr "معلومات أخرى"
+
+#. module: zakat
+#: field:case.category,name:0 field:family.need,need_type_id:0
+#: field:needs.type,name:0 field:relative.relation,name:0
+#: field:work.place,name:0
+msgid "Name"
+msgstr "الاسم"
+
+#. module: zakat
+#: field:case.study.request,national_id:0
+msgid "National ID"
+msgstr "الرقم القومى"
+
+#. module: zakat
+#: field:case.classification,net_income:0
+msgid "Net Income"
+msgstr "صافى الدخل"
+
+#. module: zakat
+#: selection:case.study.request,state:0
+msgid "New"
+msgstr "جديد"
+
+#. module: zakat
+#: selection:family.need,agrees:0
+msgid "No"
+msgstr "لا"
+
+#. module: zakat
+#: field:housing,rooms:0
+msgid "Number of Rooms"
+msgstr "عدد الغرف"
+
+#. module: zakat
+#: field:branch.management.opinion,opinion:0 field:final.opinion,opinion:0
+#: field:women.commission.opinion,opinion:0
+msgid "Opinion"
+msgstr "رأى"
+
+#. module: zakat
+#: selection:case.study.request,fh_state:0
+msgid "Other"
+msgstr "أخرى"
+
+#. module: zakat
+#: field:case.study.request,other:0
+msgid "Other Salary"
+msgstr "أخرى"
+
+#. module: zakat
+#: model:ir.model,name:zakat.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: zakat
+#: field:case.study.request,pension:0
+msgid "Pension"
+msgstr "راتب تقاعد"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "Refused"
+msgstr "مرفوض"
+
+#. module: zakat
+#: model:res.groups,name:zakat.group_registration_user
+msgid "Registration Group"
+msgstr "جروب مدخلى البيانات"
+
+#. module: zakat
+#: field:case.study.request,reject:0
+msgid "Reject"
+msgstr "مرفوض"
+
+#. module: zakat
+#: model:ir.actions.act_window,name:zakat.rejected_family_action
+#: model:ir.ui.menu,name:zakat.rejected_family
+msgid "Rejected Families"
+msgstr "العائلات المرفوضة"
+
+#. module: zakat
+#: field:case.study.request,relative_relation:0
+msgid "Relative Relation"
+msgstr "صلة القرابة"
+
+#. module: zakat
+#: field:case.study.request,rents:0
+msgid "Rents"
+msgstr "الايجارات"
+
+#. module: zakat
+#: selection:case.study.request,fh_state:0
+msgid "Retired"
+msgstr "متقاعد"
+
+#. module: zakat
+#: field:case.study.request,salary:0
+msgid "Salary"
+msgstr "راتب"
+
+#. module: zakat
+#: selection:case.study.request,state:0
+msgid "Second Approve"
+msgstr "موافقة اللجنة النسائية"
+
+#. module: zakat
+#: field:case.classification,s_researcher_name:0
+msgid "Second Researcher Name"
+msgstr "اسم الباحث الثانى"
+
+#. module: zakat
+#: field:family.need,selecting_date_from:0
+msgid "Selecting date from"
+msgstr "اختيار التاريخ من"
+
+#. module: zakat
+#: field:family.need,selecting_date_to:0
+msgid "Selecting date to"
+msgstr "اختيار التاريخ الى"
+
+#. module: zakat
+#: field:res.partner,sex:0
+msgid "Sex"
+msgstr "النوع"
+
+#. module: zakat
+#: field:branch.management.opinion,partner_ids:0
+#: field:final.opinion,Second_signature_id:0
+#: field:final.opinion,first_signature_id:0
+msgid "Signature"
+msgstr "التوقيع"
+
+#. module: zakat
+#: model:res.groups,name:zakat.group_social_survey
+msgid "Social Survey"
+msgstr "الباحث الاجتماعى"
+
+#. module: zakat
+#: view:case.study.request:zakat.zakat_view_search
+#: field:case.study.request,state:0
+msgid "State"
+msgstr "حالة"
+
+#. module: zakat
+#: field:family.state,name:0
+msgid "State Name"
+msgstr "الاسم"
+
+#. module: zakat
+#: field:family.need,summery:0
+msgid "Summery of Family Needs"
+msgstr "مخلص باحتياجات الأسرة"
+
+#. module: zakat
+#: selection:case.study.request,state:0
+msgid "Third Approve"
+msgstr "موافقة اللجنة النهائية"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,display_lately_paid_total:0
+#: field:case.study.request,display_number:0
+#: field:case.study.request,lately_paid_total:0
+#: field:case.study.request,loans_number:0
+msgid "Total"
+msgstr "الاجمالى"
+
+#. module: zakat
+#: field:case.classification,total_income:0
+msgid "Total Income"
+msgstr "اجمالى الدخل"
+
+#. module: zakat
+#: view:case.study.request:zakat.case_study_view_form
+msgid "Total Loans"
+msgstr "اجمالى القروض"
+
+#. module: zakat
+#: field:housing,type:0 field:women.commission.opinion,needs_type_id:0
+msgid "Type"
+msgstr "النوع"
+
+#. module: zakat
+#: selection:case.study.request,fh_state:0
+msgid "Unemployed"
+msgstr "عاطل"
+
+#. module: zakat
+#: field:needs.type,unit_of_help:0
+msgid "Unit"
+msgstr "وحدة"
+
+#. module: zakat
+#: field:family.need,value:0
+msgid "Value"
+msgstr "القيمة"
+
+#. module: zakat
+#: field:case.study.request,wife_mobile:0
+msgid "Wife Mobile"
+msgstr "هاتف الزوجة"
+
+#. module: zakat
+#: field:case.study.request,wife_name:0
+msgid "Wife name"
+msgstr "اسم الزوجة"
+
+#. module: zakat
+#: view:branch.management.opinion:zakat.branch_management_opinion
+#: view:case.study.request:zakat.case_study_view_form
+#: field:case.study.request,women_commission_opinion_ids:0
+#: view:final.opinion:zakat.final_opinion_form_view
+#: view:women.commission.opinion:zakat.view_women_opinion_tree
+#: view:women.commission.opinion:zakat.women_commission_opinion
+msgid "Women Commission Opinion"
+msgstr " رأي اللجنة النسائية"
+
+#. module: zakat
+#: field:case.study.request,work_place:0
+msgid "Work Place"
+msgstr "مكان العمل"
+
+#. module: zakat
+#: selection:family.need,frequency_help:0
+msgid "Yearly"
+msgstr "سنويا"
+
+#. module: zakat
+#: selection:family.need,agrees:0
+msgid "Yes"
+msgstr "نعم"
+
+#. module: zakat
+#: field:family.need,agrees:0
+msgid "Yes/No"
+msgstr "نعم/لا"
+
+#. module: zakat
+#: code:addons/zakat/models/zakat.py:99
+#, python-format
+msgid "You don't determine the date to recieve or it is not the date"
+msgstr "لم يتم تحدد موعد الاستلام بعد او لما يحن وقت تسليم المساعدة"
+
+#. module: zakat
+#: model:ir.ui.menu,name:zakat.zakat_root
+msgid "Zakat Process"
+msgstr "النظام"

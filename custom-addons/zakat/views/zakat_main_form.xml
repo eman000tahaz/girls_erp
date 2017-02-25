@@ -181,7 +181,7 @@
                         </header>
                         <group>
                             <field name="case_study_id"/>
-                            <field name="is_admin"/>
+                            <field name="is_admin" invisible="1"/>
                             <field name="need_type_id"/>
                             <field name="agrees"/>
                             <field name="frequency_help" attrs="{'invisible': [('is_admin', '!=', True)] }"/>

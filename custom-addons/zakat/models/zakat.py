@@ -215,7 +215,7 @@ class CaseStudyRequest(models.Model):
 
     date = fields.Datetime('Date', default=datetime.now(), translate=True)
     hijri_date = fields.Char('Hijri date', default="dd/mm/yyyy")
-    family_head = fields.Many2one('res.partner', 'Family Head', translate=True)
+    family_head = fields.Char(string='Family Head', translate=True)
     relative_relation = fields.Many2one('relative.relation', 'Relative Relation', translate=True)
     national_id = fields.Char('National ID')
     work_place = fields.Many2one('work.place', 'Work Place', translate=True)
@@ -235,7 +235,7 @@ class CaseStudyRequest(models.Model):
     other = fields.Float('Other Salary', translate=True)
     account_no = fields.Char('Bank Account Number', translate=True)
     bank_name = fields.Char('Bank Name', translate=True)
-    wife_name = fields.Many2one('res.partner', domain=[('sex', '=', 'female')], translate=True)
+    wife_name = fields.Char()
     wife_mobile = fields.Char('Wife Mobile', translate=True)
     address = fields.Char('Address', translate=True)
     family_state = fields.Many2one('family.state', translate=True)
