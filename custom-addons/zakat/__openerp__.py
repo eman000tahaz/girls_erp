@@ -3,7 +3,7 @@
     'name': 'Zakat System',
     'version': '8.0.1.1.0',
     'category': 'other',
-    'depends': [],
+    'depends': ['mail','base'],
     'data': [
         'security/zakat.xml',
         'security/ir.model.access.csv',
