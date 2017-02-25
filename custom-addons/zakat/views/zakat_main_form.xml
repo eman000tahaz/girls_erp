@@ -453,7 +453,7 @@
                             <field name="family_state"/>
                             <field name="housing"/>    
                         </group>
-                        <group string="Admin Comment" groups="group_admin">
+                        <group string="Admin Comment" groups="zakat.group_admin">
                             <field name="admin_comment" attrs="{'invisible': [('is_admin', '=', False)]}"/>
                         </group>
                         <notebook colspan="4">
