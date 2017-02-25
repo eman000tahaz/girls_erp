@@ -180,7 +180,6 @@
                             <button string="Confirm" type="object" name="confirm" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                         </header>
                         <group>
-                            <field name="case_study_id" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                             <field name="is_admin" invisible="1"/>
                             <field name="need_type_id"/>
                             <field name="agrees"/>
