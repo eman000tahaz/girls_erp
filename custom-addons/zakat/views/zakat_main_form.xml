@@ -483,14 +483,14 @@
                             </page>
                             <page string="Family Needs">
 
-                                <button name="approve_all_needs" string="Approve All" type="object" class="oe_inline" attrs="{'invisible': [('is_admin', '=', False)]}"/>
+                                <button name="approve_all_needs" string="Approve All" type="object" class="oe_inline" groups="zakat.group_admin"/>
                                 <field name="family_needs_ids" mode="tree">
                                     <tree>
                                         <field name="is_admin" invisible="1"/>
                                         <field name="need_type_id"/>
                                         <field name="agrees"/>
                                         <field name="summery"/>
-                                        <field name="approve" attrs="{'invisible': [('is_admin', '=', False)]}"/>
+                                        <field name="approve" groups="zakat.group_admin"/>
                                     </tree>
                                 </field>
                             </page>
