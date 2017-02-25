@@ -225,7 +225,8 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <field name="pocket_of_money"/>
+                            <p>أقل من</p>
+                            <field name="pocket_of_money"/><span>ريال</span>
                         </group>
                     </sheet>
                 </form>
