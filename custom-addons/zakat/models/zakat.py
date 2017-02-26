@@ -142,7 +142,7 @@ class WomenOpinion(models.Model):
     _rec_name = "needs_type_id"
 
     case_study_id = fields.Many2one('case.study.request', 'Case No')
-    opinion = fields.Text('Opinion')
+    opinion = fields.Text('Opinion',required=True)
     needs_type_id = fields.Many2one('case.category', string="Type")
     pocket_of_money = fields.Float('Money')
     partner_ids = fields.Many2many('res.partner', string="Members")
@@ -152,7 +152,7 @@ class BranchManagementOpinion(models.Model):
     _rec_name = 'case_study_id'
     
     case_study_id = fields.Many2one('case.study.request', 'Case No')
-    opinion = fields.Text('Opinion')
+    opinion = fields.Text('Opinion',)
     partner_ids = fields.Many2many('res.partner', string="Signature")
 
 class FinalOpinion(models.Model):
@@ -286,7 +286,7 @@ class CaseStudyRequest(models.Model):
         # Group Departmental Group
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_departmental_user'):
             get_record_data = self.pool.get('case.study.request').browse(cr, uid, ids[0])
-            if get_record_data.loan_ids:
+            if get_record_data.women_commission_opinion_ids:
                 case_obj.write(cr, uid, ids[0], {
                     'state': 'approve3'
                 })
