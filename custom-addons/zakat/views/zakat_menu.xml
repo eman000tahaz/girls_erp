@@ -111,6 +111,19 @@
                   parent="zakat_configuration"
                   sequence="10"
                   action="family_state_action"/>
+        
+        <menuitem id="lately_paid_type"
+                  name="انواع المبالغ المتأخرة"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="lately_paid_type_action"/>
+
+        <menuitem id="eduction_learn"
+                  name="الحالة التعليمية"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="eduction_learn_action"/>
+
 
 
     </data>
