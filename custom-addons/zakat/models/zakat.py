@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import api, models, fields, exceptions, _
+from openerp import api, models, fields, exceptions, _, osv
 from datetime import datetime
 
 class RelativeRlation(models.Model):
@@ -48,12 +48,12 @@ class MoneyLate(models.Model):
 class FamilyLoans(models.Model):
     _name = 'family.loan'
     _rec_name = 'community_name'
-    
+
     loan_money = fields.Float('Loan Money')
     case_study_id = fields.Many2one('case.study.request', 'Case No')
     community_name = fields.Char('Community Name')
     monthly_installment = fields.Float('Monthly Installment')
-
+    image = fields.Binary('المستند')
 
 class NeedsType(models.Model):
     _name = 'needs.type'

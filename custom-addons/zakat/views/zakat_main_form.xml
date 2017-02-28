@@ -90,6 +90,7 @@
                         <field name="community_name"/>
                         <field name="loan_money"/>
                         <field name="monthly_installment"/>
+                        <field name="image" widget="image"/>
                     </group>
                     <notebook>
                     </notebook>
@@ -565,10 +566,11 @@
                             </page>
                             <page string="Loans">
                                 <field name="loan_ids" mode="tree">
-                                    <tree>
+                                    <tree editable="bottom">
                                         <field name="community_name"/>
                                         <field name="loan_money"/>
                                         <field name="monthly_installment"/>
+                                        <field name="image" widget="image"/>
                                     </tree>
                                 </field>
                                 <div cols="8"></div>
