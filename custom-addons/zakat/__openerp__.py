@@ -11,7 +11,7 @@
         'views/zakat_menu.xml',
         'views/zakat_automation_action.xml'
   ],
-    'author': 'Eman Taha',
+    'author': 'Aya Mohammed',
     'installable': True,
     'application': True,
     'auto_install': False,

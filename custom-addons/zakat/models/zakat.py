@@ -22,9 +22,7 @@ class FamilyState(models.Model):
     _name = 'family.state'
 
     name = fields.Char('State Name', translate=True)
-    persons_lived_in = fields.Integer('Individuals Who lived in House', translate=True)
-    persons_lived_out = fields.Integer('Individuals Who Not lived in House', translate=True)
-
+    
 class FamilyHousing(models.Model):
     _name = 'housing'
     _rec_name = 'type'
@@ -63,6 +61,19 @@ class NeedsType(models.Model):
     name = fields.Char('Name')
     unit_of_help = fields.Char('Unit')
 
+class EductionLearn(models.Model):
+    _name = 'eduction.learn'
+    name = fields.Char('الحالة التعليمية')
+
+class FamilyData(models.Model):
+    _name = 'family.member'
+
+    name = fields.Char('الاسم الثلاثى مع القبيلة')
+    relative_relation = fields.Many2one('relative.relation', string="صلة القرابة")
+    birthday_date = fields.Date('تاريخ الميلاد')
+    educ_state = fields.Many2one('education.learn', string="الحالة التعليمية")
+    description = fields.Text('ملاحظة')
+    case_study_id = fields.Many2one('case.study.request', 'Case Study')
 
 class FamilyNeeds(models.Model):
     _name = "family.need" 
@@ -77,7 +88,6 @@ class FamilyNeeds(models.Model):
     
     case_study_id = fields.Many2one('case.study.request', 'Case Study')
     need_type_id = fields.Many2one('needs.type', string="Name")
-    agrees = fields.Selection([('y', 'Yes'), ('N', 'No')], string="Yes/No", default='y')
     frequency_help = fields.Selection([('m', 'Monthly'), ('y', 'Yearly')])
     selecting_date_from = fields.Date('Selecting date from')
     selecting_date_to = fields.Date('Selecting date to')
@@ -218,7 +228,7 @@ class CaseStudyRequest(models.Model):
     family_head = fields.Char(string='Family Head', translate=True)
     relative_relation = fields.Many2one('relative.relation', 'Relative Relation', translate=True)
     national_id = fields.Char('National ID')
-    work_place = fields.Many2one('work.place', 'Work Place', translate=True)
+    work_place = fields.Char('Work Place', translate=True)
     job = fields.Char('Job', translate=True)
     mobile = fields.Char('Mobile', translate=True)
     fh_state = fields.Selection([('employee', 'Employee'),
@@ -229,17 +239,22 @@ class CaseStudyRequest(models.Model):
                                  ('unemployed' , 'Unemployed'),
                                  ('other' , 'Other')], 'Family Head State', translate=True)
     fh_state_desc = fields.Text(string='Description')
-    salary = fields.Float('Salary', translate=True)
-    pension = fields.Float('Pension', translate=True)
-    rents = fields.Float('Rents', translate=True)
-    other = fields.Float('Other Salary', translate=True)
+    salary = fields.Integer('Salary', translate=True)
+    pension = fields.Integer('Pension', translate=True)
+    rents = fields.Integer('Rents', translate=True)
+    other = fields.Integer('Other Salary', translate=True)
     account_no = fields.Char('Bank Account Number', translate=True)
     bank_name = fields.Char('Bank Name', translate=True)
     wife_name = fields.Char()
     wife_mobile = fields.Char('Wife Mobile', translate=True)
-    address = fields.Char('Address', translate=True)
-    family_state = fields.Many2one('family.state', translate=True)
-    housing = fields.Many2one('housing', 'Housing State', translate=True)
+    address = fields.Char('العنوان الدائم', translate=True)
+    family_state = fields.Many2one('family.state', string='حالة الأسرة')
+    persons_lived_in = fields.Integer('عدد أفراد الأسرة الساكنين بالمنزل', translate=True)
+    persons_lived_out = fields.Integer('عدد أفراد الأسرة الذين لا يسكنون مع الأسرة', translate=True)
+    housing_state = fields.Selection([('m', 'ملك'), ('r', 'إرث'), ('ms', 'رمستأج'), ('other', 'اخرى')], string="حالة المسكن")
+    other_state = fields.Char('اخرى')
+    state_type = fields.Char('نوع السكن')
+    rooms = fields.Integer('عدد الغرف', translate=True)
     loan_ids = fields.One2many('family.loan', 'case_study_id', 'Loans', translate=True)
     lately_paid_money_ids = fields.One2many('lately.paid', 'case_study_id', 'Lately Paid')
     family_needs_ids = fields.One2many('family.need', 'case_study_id', 'Family Needs')
@@ -248,6 +263,7 @@ class CaseStudyRequest(models.Model):
     women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'case_study_id', 'Women Commission Opinion')
     branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'case_study_id', 'Branch Management Opinion')
     final_opinion_ids = fields.One2many('final.opinion', 'case_study_id', 'Final Opinion')
+    family_member_ids = fields.One2many('family.member', 'case_study_id', 'أفراد العائلة')
     reject = fields.Char('Reject', default='n')
     state = fields.Selection([
             ('new', 'New'),

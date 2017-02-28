@@ -124,7 +124,6 @@
                 <tree string="Family Need" colors="red:colorize==True">
                     <field name="colorize" invisible="1"/>
                     <field name="need_type_id"/>
-                    <field name="agrees"/>
                     <field name="dispatch_date_from"/>
                     <field name="dispatch_date_to"/>
                     <field name="approve"/>
@@ -183,7 +182,6 @@
                             <field name="case_study_id" attrs="{'invisible': [('is_admin', '=', False)] }"/>
                             <field name="is_admin" invisible="1"/>
                             <field name="need_type_id"/>
-                            <field name="agrees"/>
                             <field name="frequency_help" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                             <field name="selecting_date_from" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                             <field name="selecting_date_to" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
@@ -193,6 +191,27 @@
                             <field name="summery"/>
                             <field name="approve" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                         </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+         <!-- family.need Form View -->
+        
+        <record id="family_member_view_form" model="ir.ui.view">
+            <field name="name">family.member.form</field>
+            <field name="model">family.member</field>
+            <field name="arch" type="xml">
+                <form string="بيانات أفراد الاسرة">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="relative_relation" options="{'create': false, 'create_edit': false}"/>
+                            <field name="birthday_date" widget="date"/>
+                            <field name="educ_state"/>
+                            <field name="description"/>
+                        </group>
+                        <notebook></notebook>
                     </sheet>
                 </form>
             </field>
@@ -447,17 +466,12 @@
                             <group string="Family Head Data">
                                 <field name="family_head" required="True"/>
                                 <field name="national_id" required="True"/>
-                                <field name="relative_relation" required="True"/>
-                                <field name="mobile" required="True"/>
+                                <field name="relative_relation" required="True" options="{'create': false, 'create_edit': false}"/>
                                 <field name="work_place"/> 
                                 <field name="job"/>
+                                <field name="mobile" required="True"/>
                                 <field name="fh_state"/>
                                 <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')]}"/>
-                                <field name="account_no"/>
-                                <field name="bank_name"/>
-                                <field name="wife_name"/>
-                                <field name="wife_mobile"/>
-                                <field name="address"/>
                             </group>
                         </group> 
                         <group string="Monthly Revenue">
@@ -466,10 +480,27 @@
                             <field name="rents"/>
                             <field name="other"/>
                         </group>
-                        <group string="More Information">
-                            <field name="family_state"/>
-                            <field name="housing"/>    
+                        <group>
+                            <field name="account_no"/>
+                            <field name="bank_name"/>
+                            <field name="wife_name"/>
+                            <field name="wife_mobile"/>
+                            <field name="address"/>    
                         </group>
+                        <group string="Family State">
+                            <field name="family_state" options="{'create': false, 'create_edit': false}"/>
+                            <field name="persons_lived_in" />
+                            <field name="persons_lived_out"/>
+                        </group>
+                        <group string="Housing State">
+                            <field name="housing_state"/>
+                            <field name="other_state" attrs="{'invisible': [('housing_state', '!=', 'other')]}"/>
+                        </group>
+                        <group string="Housing Type">
+                            <field name="state_type"/>
+                            <field name="rooms"/>
+                        </group>
+
                         <group string="Admin Comment" groups="zakat.group_admin">
                             <field name="admin_comment" attrs="{'invisible': [('is_admin', '=', False)]}"/>
                         </group>
@@ -483,6 +514,17 @@
                                 </field>
                                 <lable> Total </lable>
                                 <field name="display_lately_paid_total"/>
+                            </page>
+                            <page string="بيانات أفراد الاسرة">
+                                <field name="family_member_ids" mode="tree">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="relative_relation"/>
+                                        <field name="birthday_date"/>
+                                        <field name="educ_state"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page string="Loans">
                                 <field name="loan_ids" mode="tree">
@@ -505,13 +547,12 @@
                                     <tree>
                                         <field name="is_admin" invisible="1"/>
                                         <field name="need_type_id"/>
-                                        <field name="agrees"/>
                                         <field name="summery"/>
                                         <field name="approve" groups="zakat.group_admin"/>
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Case Classification">
+                            <page string="Case Classification" groups="zakat.group_social_survey">
                                 <field name="case_classification_ids" mode="tree">
                                     <tree>
                                         <field name="total_income"/>
