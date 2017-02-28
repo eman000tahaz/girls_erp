@@ -22,7 +22,8 @@
         <menuitem id="zakat_configuration"
                   name="Configuration"
                   parent="zakat_root"
-                  sequence="20"/>
+                  sequence="20"
+                  groups="group_admin"/>
 
         <!-- Action Menuitem -->
 
@@ -104,6 +105,12 @@
                   parent="zakat_configuration"
                   sequence="10"
                   action="loans_type_action"/>
+
+        <menuitem id="family_state"
+                  name="حالة اﻷسرة"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="family_state_action"/>
 
 
     </data>
