@@ -466,7 +466,7 @@
                             <group string="Family Head Data">
                                 <field name="family_head" required="True"/>
                                 <field name="national_id" required="True"/>
-                                <field name="relative_relation" required="True" options="{'create': false, 'create_edit': false}"/>
+                                <field name="relative_relation" required="True" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                                 <field name="work_place"/> 
                                 <field name="job"/>
                                 <field name="mobile" required="True"/>
@@ -488,7 +488,7 @@
                             <field name="address"/>    
                         </group>
                         <group>
-                            <field name="family_state" options="{'create': false, 'create_edit': false}"/>
+                            <field name="family_state" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                             <field name="persons_lived_in" />
                             <field name="persons_lived_out"/>
                         </group>
