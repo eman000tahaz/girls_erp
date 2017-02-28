@@ -487,16 +487,16 @@
                             <field name="wife_mobile"/>
                             <field name="address"/>    
                         </group>
-                        <group string="Family State">
+                        <group string="حالة العائلة">
                             <field name="family_state" options="{'create': false, 'create_edit': false}"/>
                             <field name="persons_lived_in" />
                             <field name="persons_lived_out"/>
                         </group>
-                        <group string="Housing State">
+                        <group string="حالة المسكن">
                             <field name="housing_state"/>
                             <field name="other_state" attrs="{'invisible': [('housing_state', '!=', 'other')]}"/>
                         </group>
-                        <group string="Housing Type">
+                        <group string="نوع السكن">
                             <field name="state_type"/>
                             <field name="rooms"/>
                         </group>
