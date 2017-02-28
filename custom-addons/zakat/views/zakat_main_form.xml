@@ -487,7 +487,7 @@
                             <field name="wife_mobile"/>
                             <field name="address"/>    
                         </group>
-                        <group string="حالة العائلة">
+                        <group>
                             <field name="family_state" options="{'create': false, 'create_edit': false}"/>
                             <field name="persons_lived_in" />
                             <field name="persons_lived_out"/>
