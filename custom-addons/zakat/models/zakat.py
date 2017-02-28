@@ -71,7 +71,7 @@ class FamilyData(models.Model):
     name = fields.Char('الاسم الثلاثى مع القبيلة')
     relative_relation = fields.Many2one('relative.relation', string="صلة القرابة")
     birthday_date = fields.Date('تاريخ الميلاد')
-    educ_state = fields.Many2one('education.learn', string="الحالة التعليمية")
+    educ_state = fields.Many2one('eduction.learn', string="الحالة التعليمية")
     description = fields.Text('ملاحظة')
     case_study_id = fields.Many2one('case.study.request', 'Case Study')
 
