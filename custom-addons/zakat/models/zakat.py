@@ -166,7 +166,6 @@ class FinalOpinion(models.Model):
     char_deputy1_id = fields.Many2one('res.partner', 'Chairman of the Committee or his deputy')
     Second_signature_id = fields.Many2one('res.partner', 'Signature')
 
-
 class CaseStudyRequest(models.Model):
     _name = "case.study.request"
     _rec_name = 'date'
@@ -194,7 +193,6 @@ class CaseStudyRequest(models.Model):
         for each_lately_paid in self.lately_paid_money_ids:
             self.display_lately_paid_total = each_lately_paid.pocket_of_money
         return 1
-
     # Is Admin
     @api.one
     def _is_admin(self):
@@ -328,7 +326,6 @@ class CaseStudyRequest(models.Model):
             self.write({
                 'reject': 'y'
             })
-
         # Group Departmental Group
         if self.env['res.users'].has_group('zakat.group_departmental_user'):
             self.write({
@@ -349,7 +346,6 @@ class CaseStudyRequest(models.Model):
 
     def loans(self):
         print "found"
-
     # Admin Approve all needs
     @api.one
     def approve_all_needs(self):
@@ -358,7 +354,3 @@ class CaseStudyRequest(models.Model):
             each_need.write({
                 'approve': True
             })
-
-
-
-        
