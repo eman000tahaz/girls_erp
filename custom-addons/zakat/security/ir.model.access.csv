@@ -17,6 +17,7 @@ access_final_opinion_registration_user,access.final.opinion.registration.user,mo
 access_case_study_request_registration_user,access.case.study.request.registration.user,model_case_study_request,group_registration_user,1,1,1,1
 access_lately_paid_registration_user,access.lately.paid.registration.user,model_lately_paid,group_registration_user,1,1,1,1
 access_res_users_registration_user,access.res.users.registration.user,base.model_res_users,group_registration_user,1,1,0,1
+access_family_member_registration_user,access.family.member.registration.user,model_family_member,group_registration_user,1,1,1,1
 
 access_relative_relative_departmental_user,access.relative.relative.departmental_user,model_relative_relation,group_departmental_user,1,1,1,1
 access_work_place_departmental_user,access.work.place.departmental.user,model_work_place,group_departmental_user,1,1,1,1
@@ -35,6 +36,7 @@ access_branch_management_opinion_departmental_user,access.branch.management.opin
 access_final_opinion_departmental_user,access.final.opinion.departmental.user,model_final_opinion,group_departmental_user,1,1,1,1
 access_case_study_request_departmental_user,access.case.study.request.departmental.user,model_case_study_request,group_departmental_user,1,1,0,1
 access_lately_paid_departmental_user,access.lately.paid.departmental.user,model_lately_paid,group_departmental_user,1,1,1,1
+access_family_member_departmental_user,access.family.member.departmental.user,model_family_member,group_departmental_user,1,1,1,1
 
 access_relative_relative_social_survey,access.relative.relative.social.survey,model_relative_relation,group_social_survey,1,1,1,1
 access_work_place_social_survey,access.work.place.social.survey,model_work_place,group_social_survey,1,1,1,1
@@ -53,6 +55,7 @@ access_branch_management_opinion_social_survey,access.branch.management.opinion.
 access_final_opinion_social_survey,access.final.opinion.social.survey,model_final_opinion,group_social_survey,1,1,1,1
 access_case_study_request_social_survey,access.case.study.request.dsocial.survey,model_case_study_request,group_social_survey,1,1,0,1
 access_lately_paid_social_survey,access.lately.paid.social.survey,model_lately_paid,group_social_survey,1,1,1,1
+access_family_member_social_survey,access.family.member.social.survey,model_family_member,group_social_survey,1,1,1,1
 
 access_relative_relative_group_central_team,access.relative.relative.group.central.team,model_relative_relation,group_central_team,1,1,1,1
 access_work_place_group_central_team,access.work.place.group.central.team,model_work_place,group_central_team,1,1,1,1
@@ -71,6 +74,7 @@ access_branch_management_opinion_group_central_team,access.branch.management.opi
 access_final_opinion_group_central_team,access.final.opinion.group.central.team,model_final_opinion,group_central_team,1,1,1,1
 access_case_study_request_group_central_team,access.case.study.request.group.central.team,model_case_study_request,group_central_team,1,1,0,1
 access_lately_paid_group_central_team,access.lately.paid.group.central.team,model_lately_paid,group_central_team,1,1,1,1
+access_family_member_group_central_team,access.family.member.group.central.team,model_family_member,group_central_team,1,1,1,1
 
 access_relative_relative_group_admin,access.relative.relative.group.admin,model_relative_relation,group_admin,1,1,1,1
 access_work_place_group_admin,access.work.place.group.admin,model_work_place,group_admin,1,1,1,1
@@ -89,5 +93,6 @@ access_branch_management_opinion_group_admin,access.branch.management.opinion.gr
 access_final_opinion_group_admin,access.final.opinion.group.admin,model_final_opinion,group_admin,1,1,1,1
 access_case_study_request_group_admin,access.case.study.request.group.admin,model_case_study_request,group_admin,1,1,0,1
 access_lately_paid_group_admin,access.lately.paid.group.admin,model_lately_paid,group_admin,1,1,1,1
+access_family_member_group_admin,access.family.member.group.admin,model_family_member,group_admin,1,1,1,1
 
 
