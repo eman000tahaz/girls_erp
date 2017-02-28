@@ -544,7 +544,7 @@
                         <notebook colspan="4">
                             <page string="Lately Paid">
                                 <field name="lately_paid_money_ids" mode="tree">
-                                    <tree>
+                                    <tree editable="bottom">
                                         <field name="lately_paid_type_id"/>
                                         <field name="pocket_of_money"/>
                                     </tree>
@@ -581,9 +581,14 @@
 
                                 <button name="approve_all_needs" string="Approve All" type="object" class="oe_inline" groups="zakat.group_admin"/>
                                 <field name="family_needs_ids" mode="tree">
-                                    <tree>
-                                        <field name="is_admin" invisible="1"/>
+                                    <tree editable="bottom">
                                         <field name="need_type_id"/>
+                                        <field name="frequency_help" groups="zakat.group_admin"/>
+                                        <field name="selecting_date_from" groups="zakat.group_admin"/>
+                                        <field name="selecting_date_to" groups="zakat.group_admin"/>
+                                        <field name="dispatch_date_from" groups="zakat.group_admin"/>
+                                        <field name="dispatch_date_to" groups="zakat.group_admin"/>
+                                        <field name="value" groups="zakat.group_admin"/>
                                         <field name="summery"/>
                                         <field name="approve" groups="zakat.group_admin"/>
                                     </tree>
