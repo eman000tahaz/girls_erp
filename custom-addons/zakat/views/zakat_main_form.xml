@@ -515,6 +515,7 @@
                             <field name="pension"/>
                             <field name="rents"/>
                             <field name="other"/>
+                            <field name="salary_total" attrs="{'readonly': 1}"/>
                         </group>
                         <group>
                             <field name="account_no"/>

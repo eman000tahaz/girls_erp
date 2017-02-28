@@ -5,23 +5,23 @@ from datetime import datetime
 class RelativeRlation(models.Model):
     _name = 'relative.relation'
 
-    name = fields.Char('Name', translate=True)
+    name = fields.Char('Name')
 
 class WorkPlace(models.Model):
     _name = 'work.place'
 
-    name = fields.Char('Name', translate=True)
+    name = fields.Char('Name')
 
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
     _rec_name = 'sex'
 
-    sex = fields.Selection([('male', 'Male'), ('female', 'Female')], 'Sex', translate=True)
+    sex = fields.Selection([('male', 'Male'), ('female', 'Female')], 'Sex')
 
 class FamilyState(models.Model):
     _name = 'family.state'
 
-    name = fields.Char('State Name', translate=True)
+    name = fields.Char('State Name')
     
 class FamilyHousing(models.Model):
     _name = 'housing'
@@ -30,7 +30,7 @@ class FamilyHousing(models.Model):
     # state = fields.Selection([(),
     #                          ()])
     type = fields.Char('Type')
-    rooms = fields.Integer('Number of Rooms', translate=True)
+    rooms = fields.Integer('Number of Rooms')
 
 class LoanName(models.Model):
     _name = "lately.paid.type"
@@ -223,39 +223,40 @@ class CaseStudyRequest(models.Model):
         return self.is_registration_user
 
 
-    date = fields.Datetime('Date', default=datetime.now(), translate=True)
+    date = fields.Datetime('Date', default=datetime.now())
     hijri_date = fields.Char('Hijri date', default="dd/mm/yyyy")
-    family_head = fields.Char(string='Family Head', translate=True)
-    relative_relation = fields.Many2one('relative.relation', 'Relative Relation', translate=True)
+    family_head = fields.Char(string='Family Head')
+    relative_relation = fields.Many2one('relative.relation', 'Relative Relation')
     national_id = fields.Char('National ID')
-    work_place = fields.Char('Work Place', translate=True)
-    job = fields.Char('Job', translate=True)
-    mobile = fields.Char('Mobile', translate=True)
+    work_place = fields.Char('Work Place')
+    job = fields.Char('Job')
+    mobile = fields.Char('Mobile')
     fh_state = fields.Selection([('employee', 'Employee'),
                                  ('retired', 'Retired'),
                                  ('helpless', 'Helpless'),
                                  ('jailed', 'Jailed'),
                                  ('dead', 'Dead'),
                                  ('unemployed' , 'Unemployed'),
-                                 ('other' , 'Other')], 'Family Head State', translate=True)
+                                 ('other' , 'Other')], 'Family Head State')
     fh_state_desc = fields.Text(string='Description')
-    salary = fields.Integer('Salary', translate=True)
-    pension = fields.Integer('Pension', translate=True)
-    rents = fields.Integer('Rents', translate=True)
-    other = fields.Integer('Other Salary', translate=True)
-    account_no = fields.Char('Bank Account Number', translate=True)
-    bank_name = fields.Char('Bank Name', translate=True)
+    salary = fields.Integer('Salary')
+    pension = fields.Integer('Pension')
+    rents = fields.Integer('Rents')
+    other = fields.Integer('Other Salary')
+    salary_total = fields.Integer("المجموع")
+    account_no = fields.Char('Bank Account Number')
+    bank_name = fields.Char('Bank Name')
     wife_name = fields.Char()
-    wife_mobile = fields.Char('Wife Mobile', translate=True)
-    address = fields.Char('العنوان الدائم', translate=True)
+    wife_mobile = fields.Char('Wife Mobile')
+    address = fields.Char('العنوان الدائم')
     family_state = fields.Many2one('family.state', string='حالة الأسرة')
-    persons_lived_in = fields.Integer('عدد أفراد الأسرة الساكنين بالمنزل', translate=True)
-    persons_lived_out = fields.Integer('عدد أفراد الأسرة الذين لا يسكنون مع الأسرة', translate=True)
+    persons_lived_in = fields.Integer('عدد أفراد الأسرة الساكنين بالمنزل')
+    persons_lived_out = fields.Integer('عدد أفراد الأسرة الذين لا يسكنون مع الأسرة')
     housing_state = fields.Selection([('m', 'ملك'), ('r', 'إرث'), ('ms', 'رمستأج'), ('other', 'اخرى')], string="حالة المسكن")
     other_state = fields.Char('اخرى')
     state_type = fields.Char('نوع السكن')
-    rooms = fields.Integer('عدد الغرف', translate=True)
-    loan_ids = fields.One2many('family.loan', 'case_study_id', 'Loans', translate=True)
+    rooms = fields.Integer('عدد الغرف')
+    loan_ids = fields.One2many('family.loan', 'case_study_id', 'Loans')
     lately_paid_money_ids = fields.One2many('lately.paid', 'case_study_id', 'Lately Paid')
     family_needs_ids = fields.One2many('family.need', 'case_study_id', 'Family Needs')
     case_classification_ids = fields.One2many('case.classification', 'case_classify', 'Case Classification')
@@ -374,6 +375,11 @@ class CaseStudyRequest(models.Model):
             each_need.write({
                 'approve': True
             })
+
+
+    @api.onchange('salary')
+    def _onchange_salary(self):
+        self.salary_total = self.salary
 
 
 
