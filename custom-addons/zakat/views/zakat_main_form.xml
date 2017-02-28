@@ -449,7 +449,7 @@
         <!-- eduction_learn Action -->
 
         <record model="ir.actions.act_window" id="eduction_learn_action">
-            <field name="name">Lately Paid Type</field>
+            <field name="name">الحالة التعليمية</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">eduction.learn</field>
             <field name="view_type">form</field>
