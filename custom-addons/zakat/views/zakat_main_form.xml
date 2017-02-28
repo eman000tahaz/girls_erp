@@ -55,7 +55,7 @@
                 <form string="Women Commission Opinion">
                     <group>
                         <field name="opinion"/>
-                        <field name="needs_type_id"/>
+                        <field name="needs_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                         <field name="pocket_of_money"/>
                         <field name="partner_ids" widget="many2many_tags"/>
                     </group>
@@ -106,10 +106,10 @@
                 <form string="Women Commission Opinion">
                     <group>
                         <field name="opinion" required="True"/>
-                        <field name="char_deputy_id"/>
-                        <field name="first_signature_id"/>
-                        <field name="char_deputy1_id"/>
-                        <field name="Second_signature_id"/>
+                        <field name="char_deputy_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                        <field name="first_signature_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                        <field name="char_deputy1_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                        <field name="Second_signature_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                     </group>
                 </form>
             </field>
@@ -181,7 +181,7 @@
                         <group>
                             <field name="case_study_id" attrs="{'invisible': [('is_admin', '=', False)] }"/>
                             <field name="is_admin" invisible="1"/>
-                            <field name="need_type_id"/>
+                            <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                             <field name="frequency_help" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                             <field name="selecting_date_from" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
                             <field name="selecting_date_to" attrs="{'invisible': [('is_admin', '!=', True)] }"/>
@@ -226,7 +226,7 @@
                 <form string="Lately Paid">
                     <sheet>
                         <group>
-                            <field name="lately_paid_type_id"/>
+                            <field name="lately_paid_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                             <field name="pocket_of_money"/>
                         </group>
                     </sheet>
