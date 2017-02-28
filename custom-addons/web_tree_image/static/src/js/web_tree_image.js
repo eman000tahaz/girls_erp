@@ -38,7 +38,7 @@ openerp.web_tree_image = function(instance) {
              - 'thumbnail': display image directly in tree view, show a
                             full screen preview of the picture on click
             */
-            self.display = self.display || 'inline';
+            self.display = self.display || 'thumbnail';
 
             if (!row_data[self.id] || !row_data[self.id].value) {
                 return '';
