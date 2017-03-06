@@ -8,6 +8,9 @@ odoo.define('web_responsive', function(require) {
     var Class = require('web.Class');
     var SearchView = require('web.SearchView');
     var core = require('web.core');
+    var config = require('web.config');
+    var FieldOne2Many = core.form_widget_registry.get('one2many');
+    var ViewManager = require('web.ViewManager');
 
     Menu.include({
 
@@ -88,6 +91,12 @@ odoo.define('web_responsive', function(require) {
                                 'a.oe_logo, ' +
                                 'i.oe_logo_edit'
                                 );
+            $('.o_content').scroll(function() {
+                $('.o_control_panel').css(
+                    'margin-top',
+                    -$(this).scrollTop() + 'px'
+                );
+            });
             $clickZones.click($.proxy(this.handleClickZones, this));
             core.bus.on('resize', this, this.handleWindowResize);
             core.bus.on('keydown', this, this.handleNavKeys);
@@ -114,7 +123,7 @@ odoo.define('web_responsive', function(require) {
         // It provides handlers to hide drawer when "unfocused"
         handleClickZones: function() {
             this.$el.drawer('close');
-            $('.o_sub_menu_content')
+            $('.oe_secondary_menus_container')
                 .parent()
                 .collapse('hide');
         },
@@ -286,10 +295,24 @@ odoo.define('web_responsive', function(require) {
         new AppDrawer();
     });
 
+    // if we are in small screen change default view to kanban if exists
+    ViewManager.include({
+        get_default_view: function() {
+            var default_view = this._super()
+            if (config.device.size_class <= config.device.SIZES.XS &&
+                default_view != 'kanban' &&
+                this.views['kanban']){
+                    default_view = 'kanban';
+            };
+            return default_view;
+        },
+    });
+
     return {
         'AppDrawer': AppDrawer,
         'SearchView': SearchView,
         'Menu': Menu,
+        'ViewManager': ViewManager,
     };
 
 });
