@@ -22,7 +22,7 @@
 
 {
     'name': 'Web RTL',
-    'version': '1.2',
+    'version': '1.1',
     'author': 'Mohammed Barsi',
     'sequence': 4,
     'category': 'Usability',

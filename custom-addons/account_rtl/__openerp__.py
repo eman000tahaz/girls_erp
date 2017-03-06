@@ -21,22 +21,24 @@
 
 
 {
-    'name': 'Website RTL',
-    'version': '2.0',
+    'name': 'Accounting RTL',
+    'version': '1.1',
     'author': 'Mohammed Barsi',
     'sequence': 4,
-    'category': 'Website',
-    'summary': 'Website RTL(Right to Left) layout',
+    'category': 'Usability',
+    'summary': 'RTL (Right to Left) layout for various accounting tools',
     'description':
         """
-Adding RTL (Right to Left) Support for Odoo's website module.
-==============================================================
+Adding RTL (Right to Left) Support for Odoo Accounting.
+========================================================
 
-This module provides a propper RTL support for Odoo.
+This module provides a propper RTL support for Odoo's
+accounting tools (Reconciliation board, invoice payment matching, etc...)
         """,
-    'depends': ['website'],
+    'depends': ['web', 'account'],
     'auto_install': False,
     'data': [
         'views/templates.xml',
+        'views/account.xml',
     ],
 }

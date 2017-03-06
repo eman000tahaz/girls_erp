@@ -18,25 +18,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
-{
-    'name': 'Website RTL',
-    'version': '2.0',
-    'author': 'Mohammed Barsi',
-    'sequence': 4,
-    'category': 'Website',
-    'summary': 'Website RTL(Right to Left) layout',
-    'description':
-        """
-Adding RTL (Right to Left) Support for Odoo's website module.
-==============================================================
-
-This module provides a propper RTL support for Odoo.
-        """,
-    'depends': ['website'],
-    'auto_install': False,
-    'data': [
-        'views/templates.xml',
-    ],
-}
