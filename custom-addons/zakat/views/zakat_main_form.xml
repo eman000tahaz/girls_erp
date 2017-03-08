@@ -11,7 +11,6 @@
                 <tree string="Case Study">
                     <field name="date" widget="date"/>
                     <field name="family_head" />
-                    <field name="work_place" />
                     <field name="relative_relation" />
                 </tree>
              </field>
