@@ -125,7 +125,7 @@
                   action="eduction_learn_action"/>
 
         <menuitem id="relative_relation"
-                  name="صلة رب الأسرة"
+                  name="صلة القرابة بالأسرة"
                   parent="zakat_configuration"
                   sequence="10"
                   action="relative_relation_action"/>

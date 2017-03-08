@@ -40,24 +40,24 @@ class FamilyAddress(models.Model):
 class LoanName(models.Model):
     _name = "lately.paid.type"
 
-    name = fields.Char('Lately Paid Type')   
+    name = fields.Char('نوع المبلغ المتأخر')   
 
 class MoneyLate(models.Model):
     _name = 'lately.paid'
     _rec_name = "lately_paid_type_id"
 
-    case_study_id = fields.Many2one('case.study.request', 'Case No')
-    lately_paid_type_id = fields.Many2one('lately.paid.type', string="Lately Paid")
-    pocket_of_money = fields.Float('Money')
+    case_study_id = fields.Many2one('case.study.request', 'رقم الحالة')
+    lately_paid_type_id = fields.Many2one('lately.paid.type', string="الأسم")
+    pocket_of_money = fields.Float('المبلغ')
 
 class FamilyLoans(models.Model):
     _name = 'family.loan'
     _rec_name = 'community_name'
 
-    loan_money = fields.Float('Loan Money')
-    case_study_id = fields.Many2one('case.study.request', 'Case No')
-    community_name = fields.Char('Community Name')
-    monthly_installment = fields.Float('Monthly Installment')
+    loan_money = fields.Float('مبلغ القرض')
+    case_study_id = fields.Many2one('case.study.request', 'رقم الحالة')
+    community_name = fields.Char('اسم الجهة')
+    monthly_installment = fields.Float('القسط الشهري')
     image = fields.Binary('المستند')
 
 class NeedsType(models.Model):
@@ -79,6 +79,7 @@ class FamilyData(models.Model):
     educ_state = fields.Many2one('eduction.learn', string="الحالة التعليمية")
     description = fields.Text('ملاحظة')
     case_study_id = fields.Many2one('case.study.request', 'Case Study')
+    image = fields.Binary('المستند')
 
 class FamilyNeeds(models.Model):
     _name = "family.need" 
@@ -91,15 +92,15 @@ class FamilyNeeds(models.Model):
             self.is_admin = False
         return self.is_admin
     
-    case_study_id = fields.Many2one('case.study.request', 'Case Study')
-    need_type_id = fields.Many2one('needs.type', string="Name")
-    frequency_help = fields.Selection([('m', 'Monthly'), ('y', 'Yearly')])
-    selecting_date_from = fields.Date('Selecting date from')
-    selecting_date_to = fields.Date('Selecting date to')
-    dispatch_date_from = fields.Date('Dispatch Date from')
-    dispatch_date_to = fields.Date('Dispatch Date to')
-    value = fields.Float('Value')
-    summery = fields.Text("Summery of Family Needs")
+    case_study_id = fields.Many2one('case.study.request', 'دراسة الحالة')
+    need_type_id = fields.Many2one('needs.type', string="المساعدات المطلوبة")
+    frequency_help = fields.Selection([('m', 'شهريا'), ('y', 'سنويا')])
+    selecting_date_from = fields.Date('وقت الاختيار من')
+    selecting_date_to = fields.Date('وقت الاختيار الى')
+    dispatch_date_from = fields.Date('موعد التسلم من')
+    dispatch_date_to = fields.Date('موعد التسليم الى')
+    value = fields.Float('القيمة')
+    summery = fields.Text("ملخص عن الأسرة وأهم احتياجاتها العاجلة ")
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?")
     approve = fields.Boolean(string="Approve")
     is_recieve = fields.Boolean(string="Is Recieved?")
@@ -133,53 +134,53 @@ class CaseClassification(models.Model):
     _name = 'case.classification'
     _rec_name = 'commissary_name'
 
-    case_study_id = fields.Many2one('case.study.request', 'Case No')
-    total_income = fields.Float(string='Total Income')
-    net_income = fields.Float(string='Net Income')
-    each_person_share = fields.Float(string='Each One Share')
-    case_classify =  fields.Text('Case Classification')
-    expense = fields.Float(string='Expense')
-    commissary_name = fields.Many2one('res.partner')
-    commissary_phone = fields.Char()
-    branch = fields.Many2one('branch.place')
-    f_researcher_name = fields.Many2one('res.partner', string="First Researcher Name")
-    s_researcher_name = fields.Many2one('res.partner', string="Second Researcher Name")
+    case_study_id = fields.Many2one('case.study.request', 'الحالة')
+    total_income = fields.Float(string='إجمالي الدخل')
+    net_income = fields.Float(string='صافي الدخل')
+    each_person_share = fields.Float(string='نصيب كل فرد')
+    case_classify =  fields.Text('تصنيف الحالة')
+    expense = fields.Float(string='إجمالي المصاريف')
+    commissary_name = fields.Many2one('res.partner', string='اسم المندوب')
+    commissary_phone = fields.Char('رقم الهاتف')
+    branch = fields.Many2one('branch.place',string="الفرع")
+    f_researcher_name = fields.Many2one('res.partner', string="اسم الباحث الأول")
+    s_researcher_name = fields.Many2one('res.partner', string="اسم الباحث الثاني")
 
 class CaseCategory(models.Model):
     _name = "case.category"
 
     case_study_id = fields.Many2one('case.study.request', 'Case No')
-    name = fields.Char('Name')
-    pocket_of_money = fields.Float('Money Less than')
+    name = fields.Char('اسم الفئة')
+    pocket_of_money = fields.Float('المبلغ أقل من')
 
 class WomenOpinion(models.Model):
     _name = "women.commission.opinion"
     _rec_name = "needs_type_id"
 
-    case_study_id = fields.Many2one('case.study.request', 'Case No')
-    opinion = fields.Text('Opinion',required=True)
-    needs_type_id = fields.Many2one('case.category', string="Type")
-    pocket_of_money = fields.Float('Money')
-    partner_ids = fields.Many2many('res.partner', string="Members")
+    case_study_id = fields.Many2one('case.study.request', 'الحالة')
+    opinion = fields.Text('رأى اللجنة',required=True)
+    needs_type_id = fields.Many2one('case.category', string="النوع")
+    pocket_of_money = fields.Float('المبلغ')
+    partner_ids = fields.Many2many('res.partner', string="الأعضاء")
 
 class BranchManagementOpinion(models.Model):
     _name = "branch.management.opinion"
     _rec_name = 'case_study_id'
     
-    case_study_id = fields.Many2one('case.study.request', 'Case No')
-    opinion = fields.Text('Opinion',)
-    partner_ids = fields.Many2many('res.partner', string="Signature")
+    case_study_id = fields.Many2one('case.study.request', 'الحالة')
+    opinion = fields.Text('رأى مدير الفرع')
+    partner_ids = fields.Many2many('res.partner', string="التوقيع")
 
 class FinalOpinion(models.Model):
     _name = "final.opinion"
     _rec_name = "char_deputy_id"
 
-    case_study_id = fields.Many2one('case.study.request', 'Case No')
-    opinion = fields.Text('Opinion')
-    char_deputy_id = fields.Many2one('res.partner', 'Chairman of the Committee or his deputy')
-    first_signature_id = fields.Many2one('res.partner', 'Signature')
-    char_deputy1_id = fields.Many2one('res.partner', 'Chairman of the Committee or his deputy')
-    Second_signature_id = fields.Many2one('res.partner', 'Signature')
+    case_study_id = fields.Many2one('case.study.request', 'الحالة')
+    opinion = fields.Text('رأى اللجنة النهائية')
+    char_deputy_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
+    first_signature_id = fields.Many2one('res.partner', 'توقيع')
+    char_deputy1_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
+    Second_signature_id = fields.Many2one('res.partner', 'توقيع')
 
 
 class CaseStudyRequest(models.Model):
@@ -385,6 +386,8 @@ class CaseStudyRequest(models.Model):
     @api.onchange('salary')
     def _onchange_salary(self):
         self.salary_total = self.salary
+
+    
 
 
 

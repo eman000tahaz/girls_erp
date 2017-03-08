@@ -582,6 +582,7 @@
                                         <field name="birthday_date"/>
                                         <field name="educ_state"/>
                                         <field name="description"/>
+                                        <field name="image"/>
                                     </tree>
                                 </field>
                             </page>
