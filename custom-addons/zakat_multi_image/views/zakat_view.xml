@@ -10,7 +10,7 @@
     <field name="inherit_id" ref="zakat.case_study_view_form"/>
     <field name="arch" type="xml">
         <xpath expr="//notebook">
-            <page string="المستندات" name="multi_image">
+            <page string="الوثائق المطلوبة" name="multi_image">
                 <field
                     name="image_ids"
                     nolabel="1"
@@ -29,7 +29,7 @@
     <field name="inherit_id" ref="zakat.family_loan_form_view"/>
     <field name="arch" type="xml">
         <xpath expr="//notebook">
-            <page string="المستندات" name="multi_image">
+            <page string="الوثائق المطلوبة" name="multi_image">
                 <field
                     name="image_ids"
                     nolabel="1"

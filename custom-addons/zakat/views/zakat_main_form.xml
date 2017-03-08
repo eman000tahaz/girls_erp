@@ -459,6 +459,31 @@
             <field name="context">{}</field>
         </record>
 
+        <!-- relative.relation Action -->
+
+        <record model="ir.actions.act_window" id="relative_relation_action">
+            <field name="name">صلة القرابة بالأسرة</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">relative.relation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- family address Action -->
+
+        <record model="ir.actions.act_window" id="family_address_action">
+            <field name="name">الحالة التعليمية</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">family.address</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+
         <!-- Case Study Form View -->
 
         <record id="case_study_view_form" model="ir.ui.view">
@@ -485,7 +510,7 @@
                             <field string="Lately Paid" name="lately_paid_total" widget="statinfo"/>
                         </button>
                         </div>
-                        <h2 align="center"> Case Study Form </h2>
+                        <h2 align="center">استمارة دراسة حالة</h2>
                         <group col="12">
                             <div col="4">
                                 <field name="is_admin" invisible="1"/>
@@ -494,24 +519,22 @@
                                 <field name="date" nolabel="1" widget="date" attrs="{'readonly': ['&amp;', ('is_admin', '!=', True), ('is_registration_user', '!=', True)]}"/>    
                             </div>
                             <div col="4">
-                                <lable for="hijri_date">Hijri date</lable>
+                                <lable for="hijri_date">التأريخ</lable>
                                 <field name="hijri_date" nolabel="1"/>
                                 <field name="reject" invisible="1"/>
                             </div>
                         </group>
                         <group col="12">
-                            <group string="Family Head Data">
+                            <group string=" بيانات رب الأسرة">
                                 <field name="family_head" required="True"/>
                                 <field name="national_id" required="True"/>
-                                <field name="relative_relation" required="True" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                                <field name="work_place"/> 
-                                <field name="job"/>
                                 <field name="mobile" required="True"/>
                                 <field name="fh_state"/>
+                                <field name="relative_relation"  options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                                 <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')]}"/>
                             </group>
                         </group> 
-                        <group string="Monthly Revenue">
+                        <group string="الإيراد الشهري">
                             <field name="salary"/>
                             <field name="pension"/>
                             <field name="rents"/>
@@ -519,13 +542,11 @@
                             <field name="salary_total" attrs="{'readonly': 1}"/>
                         </group>
                         <group>
-                            <field name="account_no"/>
-                            <field name="bank_name"/>
                             <field name="wife_name"/>
                             <field name="wife_mobile"/>
                             <field name="address"/>    
                         </group>
-                        <group>
+                        <group string="معلومات عن حالة الأسرة">
                             <field name="family_state" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                             <field name="persons_lived_in" />
                             <field name="persons_lived_out"/>

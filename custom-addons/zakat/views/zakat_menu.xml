@@ -124,6 +124,18 @@
                   sequence="10"
                   action="eduction_learn_action"/>
 
+        <menuitem id="relative_relation"
+                  name="صلة رب الأسرة"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="relative_relation_action"/>
+
+        <menuitem id="family_address"
+                  name="العنوان الدائم"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="family_address_action"/>
+
 
 
     </data>
