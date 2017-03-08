@@ -495,7 +495,6 @@
                         <button string="Approve" type="object" name="approve"/>
 
                         <button string="Refused" type="object" name="refuse"/>
-                        <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <div class="oe_right oe_button_box">
@@ -582,7 +581,7 @@
                                         <field name="birthday_date"/>
                                         <field name="educ_state"/>
                                         <field name="description"/>
-                                        <field name="image"/>
+                                        <field name="image" widget="image"/>
                                     </tree>
                                 </field>
                             </page>
