@@ -216,6 +216,16 @@ class CaseStudyRequest(models.Model):
             self.display_lately_paid_total += each_lately_paid.pocket_of_money
         return 1
 
+    def _total_number_family(self):
+        self.total_number_family = 0
+        for each_member in self.family_member_ids:
+            self.total_number_family += 1
+        return 1
+
+    def  _total_income(self):
+        self.total_income = self.other + self.salary + self.pension + self.rents
+        return 1
+
     # Is Admin
     @api.one
     def _is_admin(self):
@@ -288,10 +298,12 @@ class CaseStudyRequest(models.Model):
     display_number = fields.Float(compute='_display_meeting_phonecall_count', string="Total")
     lately_paid_total = fields.Float(compute='_display_lately_paid', string="Total")
     display_lately_paid_total = fields.Float(compute='_compute_total_paid', string="Total")
+    total_number_family = fields.Integer(compute='_total_number_family', string="عدد أفراد الأسرة")
+    total_income = fields.Integer(compute='_total_income', string="الدخل‬ ‫اجمالي‬")
     admin_comment = fields.Text('Admin Comment')
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?", default="_is_admin")
     is_registration_user = fields.Boolean(compute='_is_registration_user', string="Is Registration")
-    ###################################### Logic #######################################
+    ###################################### Logic # ######################################
     @api.v7
     def approve(self, cr, uid, ids, context=None):
         case_obj = self.pool.get('case.study.request')
@@ -411,7 +423,8 @@ class CaseStudyRequest(models.Model):
 
     @api.multi
     def write(self, values):
-        print "values", values
+        write_id = super(CaseStudyRequest, self).write(values)
+        values['salary_total'] = self.total_income
         
 
         return super(CaseStudyRequest, self).write(values)
