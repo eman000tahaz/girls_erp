@@ -509,7 +509,7 @@
                     </header>
                     <sheet>
                         <div class="oe_right oe_button_box cols-sm-6">
-                        <h3>لوحة بيانات الأسرة</h3>
+                        <h3 align="right">لوحة بيانات الأسرة</h3>
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}">
                             <h4 align="center">
