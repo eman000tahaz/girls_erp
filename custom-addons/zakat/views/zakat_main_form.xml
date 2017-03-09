@@ -508,8 +508,8 @@
                         <button string="رفض الأسرة" type="object" name="refuse" groups="zakat.group_departmental_user,zakat.group_social_survey,zakat.group_central_team,zakat.group_admin"/>
                     </header>
                     <sheet>
-                        <div class="oe_right oe_button_box cols-sm-6">
-                        <h3 align="right">لوحة بيانات الأسرة</h3>
+                        <div class="oe_right oe_button_box cols-sm-12">
+                        <h3 align="center">لوحة بيانات الأسرة</h3>
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}">
                             <h4 align="center">
