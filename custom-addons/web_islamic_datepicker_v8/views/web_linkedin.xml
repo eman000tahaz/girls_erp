@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="assets_backend" name="web_islamic_datepicker_v8 assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+		        <link rel="stylesheet" href="/web_islamic_datepicker_v8/static/src/css/web_hijri_date.css"></link>
+		        <link rel="stylesheet" href="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.calendars.picker.css"></link>        
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.plugin.js"></script>
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.calendars.js"></script>
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.calendars.plus.js"></script>
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.calendars.picker.js"></script>
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.calendars.islamic.js"></script>
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.calendars.islamic-ar.js"></script>
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/lib/jQuery_calendars/jquery.calendars.islamic-fa.js"></script>
+		        <script type="text/javascript" src="/web_islamic_datepicker_v8/static/src/js/web_hijri_date.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
