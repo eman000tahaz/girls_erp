@@ -491,9 +491,9 @@
              <field name="arch" type="xml">
                  <form string="Case Study">
                     <header>
-                        <button string="Approve" type="object" name="approve"/>
+                        <button string="الانتقال للمرحلة التالية" type="object" name="approve"/>
 
-                        <button string="Refused" type="object" name="refuse"/>
+                        <button string="رفض الأسرة" type="object" name="refuse" groups="zakat.group_departmental_user,zakat.group_social_survey,zakat.group_central_team,zakat.group_admin"/>
                     </header>
                     <sheet>
                         <div class="oe_right oe_button_box">
@@ -506,6 +506,7 @@
                             <field string="Lately Paid" name="lately_paid_total" widget="statinfo"/>
                         </button>
                         </div>
+                        <br />
                         <h2 align="center">استمارة دراسة حالة</h2>
                         <div class="row">
                                 <div class="col-sm-12">
