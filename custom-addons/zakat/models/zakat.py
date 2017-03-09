@@ -219,7 +219,8 @@ class CaseStudyRequest(models.Model):
     def _total_number_family(self):
         self.total_number_family = 0
         for each_member in self.family_member_ids:
-            self.total_number_family += 1
+            if each_member:
+                self.total_number_family += 1
         return 1
 
     def  _total_income(self):
