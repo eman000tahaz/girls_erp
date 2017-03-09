@@ -532,7 +532,7 @@
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}">
                             <h4 align="center">
-                                <field string="‫الدخل‬ ‫اجمالي‬" name="total_income" widget="statinfo"/>
+                                <field string="‫اجمالى الدخل" name="total_income" widget="statinfo"/>
                             </h4>
                         </button>
                         </div>
