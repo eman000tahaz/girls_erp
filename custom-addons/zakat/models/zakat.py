@@ -32,6 +32,11 @@ class FamilyHousing(models.Model):
     type = fields.Char('Type')
     rooms = fields.Integer('Number of Rooms')
 
+class HousingType(models.Model):
+    _name = 'housing.type'
+
+    name = fields.Char('نوع السكن')
+
 class FamilyAddress(models.Model):
     _name = 'family.address'
 
@@ -260,7 +265,7 @@ class CaseStudyRequest(models.Model):
     persons_lived_out = fields.Integer('عدد أفراد الأسرة الذين لا يسكنون مع الأسرة')
     housing_state = fields.Selection([('m', 'ملك'), ('r', 'إرث'), ('ms', 'رمستأج'), ('other', 'اخرى')], string="حالة المسكن")
     other_state = fields.Char('اخرى')
-    state_type = fields.Char('نوع السكن')
+    state_type = fields.Many2one('housing.type', 'نوع السكن')
     rooms = fields.Integer('عدد الغرف')
     loan_ids = fields.One2many('family.loan', 'case_study_id', 'القروض')
     lately_paid_money_ids = fields.One2many('lately.paid', 'case_study_id', 'المبالغ المتأخرة')

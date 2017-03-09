@@ -136,6 +136,12 @@
                   sequence="10"
                   action="family_address_action"/>
 
+        <menuitem id="family_address"
+                  name="نوع السكن"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="housing_type_action"/>
+
 
 
     </data>
