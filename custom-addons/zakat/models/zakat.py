@@ -386,7 +386,30 @@ class CaseStudyRequest(models.Model):
     @api.onchange('salary')
     def _onchange_salary(self):
         self.salary_total = self.salary
+    
+    @api.onchange('pension')
+    def _onchange_pension(self):
+        self.salary_total = self.salary + self.pension
 
+    @api.onchange('rents')
+    def _onchange_rents(self):
+        self.salary_total = self.salary + self.pension + self.rents
+
+    @api.onchange('other')
+    def _onchange_other(self):
+        self.salary_total = self.salary + self.pension + self.rents + self.other
+
+    @api.model
+    def create(self, values):
+        values['salary_total'] = values['rents'] + values['other'] + values['salary'] + values['pension'] 
+        return super(CaseStudyRequest, self).create(values)
+
+    @api.multi
+    def write(self, values):
+        print "values", values
+        
+
+        return super(CaseStudyRequest, self).write(values)
     
 
 
