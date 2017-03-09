@@ -202,13 +202,13 @@ class CaseStudyRequest(models.Model):
     def _display_lately_paid(self):
         self.lately_paid_total = 0
         for each_lately_paid in self.lately_paid_money_ids:
-            self.lately_paid_total = each_lately_paid.pocket_of_money
+            self.lately_paid_total += each_lately_paid.pocket_of_money
         return 1
 
     def _compute_total_paid(self):
         self.display_lately_paid_total = 0
         for each_lately_paid in self.lately_paid_money_ids:
-            self.display_lately_paid_total = each_lately_paid.pocket_of_money
+            self.display_lately_paid_total += each_lately_paid.pocket_of_money
         return 1
 
     # Is Admin
