@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from openerp import api, models, fields, exceptions, _, osv
 from datetime import datetime
+from umalqurra.hijri_date import HijriDate
+
 
 class RelativeRlation(models.Model):
     _name = 'relative.relation'
@@ -234,6 +236,9 @@ class CaseStudyRequest(models.Model):
         self.total_income = self.other + self.salary + self.pension + self.rents
         self.salary_total = self.total_income
         return 1
+    def _get_hijra(self):
+        um = HijriDate(datetime.now().year,datetime.now().month,datetime.now().day,gr=True)
+        self.hijri_date = str(int(um.day)) + "/" + str(int(um.month))+"/"+ str(int(um.year))
 
     # Is Admin
     @api.one
@@ -254,7 +259,7 @@ class CaseStudyRequest(models.Model):
 
 
     date = fields.Datetime('الموافق', default=datetime.now())
-    hijri_date = fields.Char('التأريخ', default="dd/mm/yyyy")
+    hijri_date = fields.Char(string="التأريخ")
     family_head = fields.Char(string='اسم رب الأسرة')
     relative_relation = fields.Many2one('relative.relation', 'صلة القرابة بالأسرة')
     national_id = fields.Char('الرقم المدنى')
@@ -314,6 +319,7 @@ class CaseStudyRequest(models.Model):
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?", default="_is_admin")
     is_registration_user = fields.Boolean(compute='_is_registration_user', string="Is Registration")
     ###################################### Logic # ######################################
+
     @api.v7
     def approve(self, cr, uid, ids, context=None):
         case_obj = self.pool.get('case.study.request')
@@ -426,6 +432,13 @@ class CaseStudyRequest(models.Model):
     @api.onchange('other')
     def _onchange_other(self):
         self.salary_total = self.salary + self.pension + self.rents + self.other
+
+    @api.onchange('date')
+    def _onchange_date(self):
+        date_time = datetime.strptime(self.date, '%Y-%m-%d %H:%M:%S').date()
+        um = HijriDate(date_time.year,date_time.month,date_time.day,gr=True)
+        self.hijri_date = str(int(um.day)) + "/" + str(int(um.month))+"/"+ str(int(um.year))
+
 
     
     
