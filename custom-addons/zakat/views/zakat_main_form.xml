@@ -513,26 +513,26 @@
                         <h3 align="center">لوحة بيانات الأسرة</h3>
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}" name="loans">
-                            <h5>
+                            <h5 align="center">
                                 <field string="Loans" name="display_number" widget="statinfo"/>
                             </h5>
                         </button>
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}" name="loans">
-                            <h5 >
+                            <h5 align="center">
                                 <field string="Lately Paid" name="lately_paid_total" widget="statinfo"/>
                             </h5>
                         </button>
                         <br />
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}" name="loans">
-                            <h5>
+                            <h5 align="center">
                                 <field string="‫عدد اجمالى الأفراد" name="total_number_family" widget="statinfo"/>
                             </h5>
                         </button>
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}" name="loans">
-                            <h5 >
+                            <h5 align="center">
                                 <field string="‫اجمالى الدخل" name="total_income" widget="statinfo"/>
                             </h5>
                         </button>
