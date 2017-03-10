@@ -19,6 +19,9 @@ access_lately_paid_registration_user,access.lately.paid.registration.user,model_
 access_res_users_registration_user,access.res.users.registration.user,base.model_res_users,group_registration_user,1,1,0,1
 access_family_member_registration_user,access.family.member.registration.user,model_family_member,group_registration_user,1,1,1,1
 access_eduction_learn_registration_user,access.eduction.learn.registration.user,model_eduction_learn,group_registration_user,1,1,1,1
+access_documentation_registration_user,access.documentation.registration.user,model_documentation,group_registration_user,1,1,1,1
+access_family_address_registration_user,access.family.address.user,model_family_address,group_registration_user,1,1,1,1
+access_housing_type_registration_user,access.housing.type.user,model_housing_type,group_registration_user,1,1,1,1
 
 access_relative_relative_departmental_user,access.relative.relative.departmental_user,model_relative_relation,group_departmental_user,1,1,1,1
 access_work_place_departmental_user,access.work.place.departmental.user,model_work_place,group_departmental_user,1,1,1,1
@@ -39,6 +42,9 @@ access_case_study_request_departmental_user,access.case.study.request.department
 access_lately_paid_departmental_user,access.lately.paid.departmental.user,model_lately_paid,group_departmental_user,1,1,1,1
 access_family_member_departmental_user,access.family.member.departmental.user,model_family_member,group_departmental_user,1,1,1,1
 access_eduction_learn_departmental_user,access.eduction.learn.departmental.user,model_eduction_learn,group_departmental_user,1,1,1,1
+access_documentation_departmental_user,access.documentation.departmental.user,model_documentation,group_departmental_user,1,1,1,1
+access_family_address_departmental_user,access.family.address.departmental.user,model_family_address,group_departmental_user,1,1,1,1
+access_housing_type_departmental_user,access.housing.type.departmental.user,model_housing_type,group_departmental_user,1,1,1,1
 
 access_relative_relative_social_survey,access.relative.relative.social.survey,model_relative_relation,group_social_survey,1,1,1,1
 access_work_place_social_survey,access.work.place.social.survey,model_work_place,group_social_survey,1,1,1,1
@@ -59,6 +65,9 @@ access_case_study_request_social_survey,access.case.study.request.dsocial.survey
 access_lately_paid_social_survey,access.lately.paid.social.survey,model_lately_paid,group_social_survey,1,1,1,1
 access_family_member_social_survey,access.family.member.social.survey,model_family_member,group_social_survey,1,1,1,1
 access_eduction_learn_social_survey,access.eduction.learn.social.survey,model_eduction_learn,group_social_survey,1,1,1,1
+access_documentation_social_survey,access.documentation.social.survey,model_documentation,group_social_survey,1,1,1,1
+access_family_address_social_survey,access.family.address.social.survey,model_family_address,group_social_survey,1,1,1,1
+access_housing_type_social_survey,access.housing.type.social.survey,model_housing_type,group_social_survey,1,1,1,1
 
 access_relative_relative_group_central_team,access.relative.relative.group.central.team,model_relative_relation,group_central_team,1,1,1,1
 access_work_place_group_central_team,access.work.place.group.central.team,model_work_place,group_central_team,1,1,1,1
@@ -79,6 +88,9 @@ access_case_study_request_group_central_team,access.case.study.request.group.cen
 access_lately_paid_group_central_team,access.lately.paid.group.central.team,model_lately_paid,group_central_team,1,1,1,1
 access_family_member_group_central_team,access.family.member.group.central.team,model_family_member,group_central_team,1,1,1,1
 access_eduction_learn_group_central_team,access.eduction.learn.group.central.team,model_eduction_learn,group_central_team,1,1,1,1
+access_documentation_group_central_team,access.documentation.group.central.team,model_documentation,group_central_team,1,1,1,1
+access_family_address_group_central_team,access.family.address.group.central.team,model_family_address,group_central_team,1,1,1,1
+access_housing_type_group_central_team,access.housing.type.group.central.team,model_housing_type,group_central_team,1,1,1,1
 
 access_relative_relative_group_admin,access.relative.relative.group.admin,model_relative_relation,group_admin,1,1,1,1
 access_work_place_group_admin,access.work.place.group.admin,model_work_place,group_admin,1,1,1,1
@@ -99,5 +111,8 @@ access_case_study_request_group_admin,access.case.study.request.group.admin,mode
 access_lately_paid_group_admin,access.lately.paid.group.admin,model_lately_paid,group_admin,1,1,1,1
 access_family_member_group_admin,access.family.member.group.admin,model_family_member,group_admin,1,1,1,1
 access_eduction_learn_group_admin,access.eduction.learn.group.admin,model_eduction_learn,group_admin,1,1,1,1
+access_documentation_group_admin,access.documentation.group.admin,model_documentation,group_admin,1,1,1,1
+access_family_address_group_admin,access.family.address.group.admin,model_family_address,group_admin,1,1,1,1
+access_housing_type_group_admin,access.housing.type.group.admin,model_housing_type,group_admin,1,1,1,1
 
 
