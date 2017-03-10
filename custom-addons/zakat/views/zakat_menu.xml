@@ -4,6 +4,8 @@
          <menuitem id="zakat_root" 
                    name="Zakat Process" 
                    sequence="90" 
+                   icon="fa-user"
+                   web_icon="static/description/icon.png"
                    groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_admin"/>
 
 
