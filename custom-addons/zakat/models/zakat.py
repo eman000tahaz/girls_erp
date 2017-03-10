@@ -225,6 +225,7 @@ class CaseStudyRequest(models.Model):
 
     def  _total_income(self):
         self.total_income = self.other + self.salary + self.pension + self.rents
+        self.salary_total = self.total_income
         return 1
 
     # Is Admin
@@ -265,7 +266,7 @@ class CaseStudyRequest(models.Model):
     pension = fields.Integer('راتب تقاعد ')
     rents = fields.Integer('إيجارات')
     other = fields.Integer('أخرى')
-    salary_total = fields.Integer("المجموع")
+    salary_total = fields.Integer(compute='_total_income',string="المجموع")
     account_no = fields.Char('Bank Account Number')
     bank_name = fields.Char('Bank Name')
     wife_name = fields.Char('اسم الزوجة')
@@ -418,18 +419,7 @@ class CaseStudyRequest(models.Model):
     def _onchange_other(self):
         self.salary_total = self.salary + self.pension + self.rents + self.other
 
-    @api.model
-    def create(self, values):
-        values['salary_total'] = values['rents'] + values['other'] + values['salary'] + values['pension'] 
-        return super(CaseStudyRequest, self).create(values)
-
-    @api.multi
-    def write(self, values):
-        write_id = super(CaseStudyRequest, self).write(values)
-        values['salary_total'] = self.total_income
-        
-
-        return super(CaseStudyRequest, self).write(values)
+    
     
 
 
