@@ -136,7 +136,7 @@
                   sequence="10"
                   action="family_address_action"/>
 
-        <menuitem id="family_address"
+        <menuitem id="housing_type_data"
                   name="نوع السكن"
                   parent="zakat_configuration"
                   sequence="10"
