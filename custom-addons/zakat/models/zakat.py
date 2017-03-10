@@ -53,16 +53,16 @@ class MoneyLate(models.Model):
 
     case_study_id = fields.Many2one('case.study.request', 'رقم الحالة')
     lately_paid_type_id = fields.Many2one('lately.paid.type', string="الأسم")
-    pocket_of_money = fields.Float('المبلغ')
+    pocket_of_money = fields.Integer('المبلغ')
 
 class FamilyLoans(models.Model):
     _name = 'family.loan'
     _rec_name = 'community_name'
 
-    loan_money = fields.Float('مبلغ القرض')
+    loan_money = fields.Integer('مبلغ القرض')
     case_study_id = fields.Many2one('case.study.request', 'رقم الحالة')
     community_name = fields.Char('اسم الجهة')
-    monthly_installment = fields.Float('القسط الشهري')
+    monthly_installment = fields.Integer('القسط الشهري')
     image = fields.Binary('المستند')
 
 class NeedsType(models.Model):
@@ -104,7 +104,7 @@ class FamilyNeeds(models.Model):
     selecting_date_to = fields.Date('وقت الاختيار الى')
     dispatch_date_from = fields.Date('موعد التسلم من')
     dispatch_date_to = fields.Date('موعد التسليم الى')
-    value = fields.Float('القيمة')
+    value = fields.Integer('القيمة')
     summery = fields.Text("ملخص عن الأسرة وأهم احتياجاتها العاجلة ")
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?")
     approve = fields.Boolean(string="Approve")
@@ -140,11 +140,11 @@ class CaseClassification(models.Model):
     _rec_name = 'commissary_name'
 
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
-    total_income = fields.Float(string='إجمالي الدخل')
-    net_income = fields.Float(string='صافي الدخل')
-    each_person_share = fields.Float(string='نصيب كل فرد')
+    total_income = fields.Integer(string='إجمالي الدخل')
+    net_income = fields.Integer(string='صافي الدخل')
+    each_person_share = fields.Integer(string='نصيب كل فرد')
     case_classify =  fields.Text('تصنيف الحالة')
-    expense = fields.Float(string='إجمالي المصاريف')
+    expense = fields.Integer(string='إجمالي المصاريف')
     commissary_name = fields.Many2one('res.partner', string='اسم المندوب')
     commissary_phone = fields.Char('رقم الهاتف')
     branch = fields.Many2one('branch.place',string="الفرع")
@@ -156,7 +156,7 @@ class CaseCategory(models.Model):
 
     case_study_id = fields.Many2one('case.study.request', 'Case No')
     name = fields.Char('اسم الفئة')
-    pocket_of_money = fields.Float('المبلغ أقل من')
+    pocket_of_money = fields.Integer('المبلغ أقل من')
 
 class WomenOpinion(models.Model):
     _name = "women.commission.opinion"
@@ -165,7 +165,7 @@ class WomenOpinion(models.Model):
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
     opinion = fields.Text('رأى اللجنة',required=True)
     needs_type_id = fields.Many2one('case.category', string="النوع")
-    pocket_of_money = fields.Float('المبلغ')
+    pocket_of_money = fields.Integer('المبلغ')
     partner_ids = fields.Many2many('res.partner', string="الأعضاء")
 
 class BranchManagementOpinion(models.Model):
@@ -296,10 +296,10 @@ class CaseStudyRequest(models.Model):
             ('approve3', 'Third Approve'),
             ('approve4', 'Approved')
             ],default='new')
-    loans_number = fields.Float(compute='_opportunity_meeting_phonecall_count', string="Total")
-    display_number = fields.Float(compute='_display_meeting_phonecall_count', string="Total")
-    lately_paid_total = fields.Float(compute='_display_lately_paid', string="Total")
-    display_lately_paid_total = fields.Float(compute='_compute_total_paid', string="Total")
+    loans_number = fields.Integer(compute='_opportunity_meeting_phonecall_count', string="Total")
+    display_number = fields.Integer(compute='_display_meeting_phonecall_count', string="Total")
+    lately_paid_total = fields.Integer(compute='_display_lately_paid', string="Total")
+    display_lately_paid_total = fields.Integer(compute='_compute_total_paid', string="Total")
     total_number_family = fields.Integer(compute='_total_number_family', string="عدد أفراد الأسرة")
     total_income = fields.Integer(compute='_total_income', string="الدخل‬ ‫اجمالي‬")
     admin_comment = fields.Text('Admin Comment')
