@@ -32,7 +32,7 @@
                   parent="case_root"
                   sequence="10"
                   action="case_study_action"
-                  groups="group_registration_user"/>
+                  groups="group_registration_user,group_admin"/>
 
         <menuitem id="case_study_departmental"
           name="Case Study"
