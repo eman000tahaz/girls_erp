@@ -688,6 +688,15 @@
                                 </field>
                             </page>
 
+                            <page string="المستندات">
+                                <field name="documentation_ids" mode="tree">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="image" widget="image"/>
+                                    </tree>
+                                </field>
+                            </page>
+
                         </notebook>
                     </sheet>
                 </form>

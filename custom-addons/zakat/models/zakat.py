@@ -187,6 +187,13 @@ class FinalOpinion(models.Model):
     char_deputy1_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
     Second_signature_id = fields.Many2one('res.partner', 'توقيع')
 
+class Documentation(models.Model):
+    _name = "documentation"
+
+    name = fields.Char('اسم المستند')
+    image = fields.Binary('المستند')
+    case_study_id = fields.Many2one('case.study.request')
+
 
 class CaseStudyRequest(models.Model):
     _name = "case.study.request"
@@ -288,6 +295,7 @@ class CaseStudyRequest(models.Model):
     branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'case_study_id', ' رأي إدارة الفرع')
     final_opinion_ids = fields.One2many('final.opinion', 'case_study_id', 'التقرير النهائي للجنة')
     family_member_ids = fields.One2many('family.member', 'case_study_id', 'أفراد العائلة')
+    documentation_ids = fields.One2many('documentation', 'case_study_id', 'المستند')
     reject = fields.Char('Reject', default='n')
     state = fields.Selection([
             ('new', 'New'),
