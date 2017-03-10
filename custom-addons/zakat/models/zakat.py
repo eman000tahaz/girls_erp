@@ -310,7 +310,7 @@ class CaseStudyRequest(models.Model):
     display_lately_paid_total = fields.Integer(compute='_compute_total_paid', string="Total")
     total_number_family = fields.Integer(compute='_total_number_family', string="عدد أفراد الأسرة")
     total_income = fields.Integer(compute='_total_income', string="الدخل‬ ‫اجمالي‬")
-    admin_comment = fields.Text('Admin Comment')
+    admin_comment = fields.Text('تعليق الادمن')
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?", default="_is_admin")
     is_registration_user = fields.Boolean(compute='_is_registration_user', string="Is Registration")
     ###################################### Logic # ######################################

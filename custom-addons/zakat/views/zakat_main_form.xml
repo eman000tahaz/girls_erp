@@ -567,9 +567,7 @@
                                 <field name="national_id" required="True"/>
                                 <field name="mobile" required="True"/>
                                 <field name="fh_state"/>
-                                <field name="relative_relation"  options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                                 <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')]}"/>
-                          
                                 <field name="salary"/>
                                 <field name="pension"/>
                                 <field name="rents"/>
