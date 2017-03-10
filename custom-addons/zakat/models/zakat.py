@@ -388,6 +388,7 @@ class CaseStudyRequest(models.Model):
                 'reject': 'approve1'
             })
 
+    @api.one
     def loans(self):
         print "found"
 
