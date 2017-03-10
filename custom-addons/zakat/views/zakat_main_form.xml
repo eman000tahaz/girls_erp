@@ -11,7 +11,7 @@
                 <tree string="Case Study">
                     <field name="date" widget="date"/>
                     <field name="family_head" />
-                    <field name="relative_relation" />
+                    <field name="fh_state"/>
                 </tree>
              </field>
          </record>
