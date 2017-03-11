@@ -438,7 +438,11 @@ class CaseStudyRequest(models.Model):
         date_time = datetime.strptime(self.date, '%Y-%m-%d %H:%M:%S').date()
         um = HijriDate(date_time.year,date_time.month,date_time.day,gr=True)
         self.hijri_date = str(int(um.day)) + "/" + str(int(um.month))+"/"+ str(int(um.year))
-
+    @api.model
+    def create(self, values):
+        created_id = super(CaseStudyRequest,self).create(values)
+        self.env.user.notify_info('تم الحفظ')
+        return created_id	    
 
     
     
