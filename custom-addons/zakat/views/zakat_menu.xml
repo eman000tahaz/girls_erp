@@ -5,7 +5,6 @@
                    name="Zakat Process" 
                    sequence="90" 
                    icon="fa-user"
-                   web_icon="static/description/icon.png"
                    groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_admin"/>
 
 
@@ -101,12 +100,6 @@
                   parent="zakat_configuration"
                   sequence="10"
                   action="family_needs_type_action"/>
-
-        <menuitem id="loan_type"
-                  name="Loans Type"
-                  parent="zakat_configuration"
-                  sequence="10"
-                  action="loans_type_action"/>
 
         <menuitem id="family_state"
                   name="حالة اﻷسرة"

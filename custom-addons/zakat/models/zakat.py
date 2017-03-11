@@ -23,7 +23,7 @@ class ResPartnerInherit(models.Model):
 class FamilyState(models.Model):
     _name = 'family.state'
 
-    name = fields.Char('حالة رب الأسرة')
+    name = fields.Char('حالة الأسرة')
     
 class FamilyHousing(models.Model):
     _name = 'housing'
