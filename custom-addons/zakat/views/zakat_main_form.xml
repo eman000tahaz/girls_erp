@@ -360,7 +360,7 @@
 
 
         <record model="ir.actions.act_window" id="family_needs_type_action">
-             <field name="name">Families Needs</field>
+             <field name="name">احتياجات الاسر</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">needs.type</field>
              <field name="view_type">form</field>
@@ -370,7 +370,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="family_needs_type_action">
-            <field name="name">Families Needs</field>
+            <field name="name">احتياجات الاسر</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">needs.type</field>
             <field name="view_type">form</field>
@@ -380,7 +380,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="family_loans_action">
-            <field name="name">Families Needs</field>
+            <field name="name">قروض الاسر</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">family.loan</field>
             <field name="view_type">form</field>
@@ -390,7 +390,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="loans_type_action">
-             <field name="name">Loans Type</field>
+             <field name="name">نوع القروض</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">lately.paid.type</field>
              <field name="view_type">form</field>
@@ -402,7 +402,7 @@
         <!-- Action of Case Category -->
 
         <record model="ir.actions.act_window" id="case_category_action">
-            <field name="name">Case Category</field>
+            <field name="name">نو التصنيف</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">case.category</field>
             <field name="view_type">form</field>
@@ -414,7 +414,7 @@
         <!-- family_help_action -->
 
         <record model="ir.actions.act_window" id="family_help_action">
-            <field name="name">Family Help</field>
+            <field name="name">مساعدة الاسر</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">family.need</field>
             <field name="view_type">form</field>
@@ -426,7 +426,7 @@
         <!-- Family State Action -->
 
         <record model="ir.actions.act_window" id="family_state_action">
-            <field name="name">Family State</field>
+            <field name="name">حالة الاسر</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">family.state</field>
             <field name="view_type">form</field>
@@ -438,7 +438,7 @@
         <!-- lately_paid_type Action -->
 
         <record model="ir.actions.act_window" id="lately_paid_type_action">
-            <field name="name">Lately Paid Type</field>
+            <field name="name">انواع المبالغ المتاخرة</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">lately.paid.type</field>
             <field name="view_type">form</field>

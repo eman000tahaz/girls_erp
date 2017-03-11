@@ -70,8 +70,8 @@ class FamilyLoans(models.Model):
 class NeedsType(models.Model):
     _name = 'needs.type'
 
-    name = fields.Char('Name')
-    unit_of_help = fields.Char('Unit')
+    name = fields.Char('الاسم')
+    unit_of_help = fields.Char('الوحدة')
 
 class EductionLearn(models.Model):
     _name = 'eduction.learn'
