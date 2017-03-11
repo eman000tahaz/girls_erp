@@ -474,7 +474,7 @@
         <!-- family address Action -->
 
         <record model="ir.actions.act_window" id="family_address_action">
-            <field name="name">الحالة التعليمية</field>
+            <field name="name">عنوان الاسرة</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">family.address</field>
             <field name="view_type">form</field>
