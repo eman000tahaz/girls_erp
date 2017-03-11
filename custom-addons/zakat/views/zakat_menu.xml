@@ -5,7 +5,10 @@
                    name="Zakat Process" 
                    sequence="90" 
                    icon="fa-user"
+
                  
+
+
                    groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_admin"/>
 
 
@@ -102,12 +105,6 @@
                   sequence="10"
                   action="family_needs_type_action"/>
 
-        <menuitem id="loan_type"
-                  name="Loans Type"
-                  parent="zakat_configuration"
-                  sequence="10"
-                  action="loans_type_action"/>
-
         <menuitem id="family_state"
                   name="حالة اﻷسرة"
                   parent="zakat_configuration"
@@ -125,12 +122,6 @@
                   parent="zakat_configuration"
                   sequence="10"
                   action="eduction_learn_action"/>
-
-        <menuitem id="relative_relation"
-                  name="صلة القرابة بالأسرة"
-                  parent="zakat_configuration"
-                  sequence="10"
-                  action="relative_relation_action"/>
 
         <menuitem id="family_address"
                   name="العنوان الدائم"
