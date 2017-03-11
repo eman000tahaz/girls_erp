@@ -462,7 +462,7 @@
         <!-- relative.relation Action -->
 
         <record model="ir.actions.act_window" id="relative_relation_action">
-            <field name="name">صلة القرابة بالأسرة</field>
+            <field name="name">صلة القرابة</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">relative.relation</field>
             <field name="view_type">form</field>
@@ -527,7 +527,7 @@
                         <button class="oe_inline oe_stat_button" type="object"
                             context="{'search_default_partner_id': active_id}" name="loans">
                             <h5 align="center">
-                                <field string="‫عدد اجمالى الأفراد" name="total_number_family" widget="statinfo"/>
+                                <field string="‫عدد الأفراد" name="total_number_family" widget="statinfo"/>
                             </h5>
                         </button>
                         <button class="oe_inline oe_stat_button" type="object"
