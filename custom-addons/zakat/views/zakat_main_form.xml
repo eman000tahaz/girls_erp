@@ -542,7 +542,7 @@
                         <div class="row">
                                 <div class="col-sm-12">
                                     <br />
-                                    <h3 align="right" style="color: red">يجب ادخال الحقول ذات الخلفية الزرقاء</h3>
+                                    <h4 align="right" style="color: red">يجب ادخال الحقول ذات الخلفية الزرقاء</h4>
                                 </div>
                             </div>
                         <group col="12">
