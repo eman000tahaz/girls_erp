@@ -575,13 +575,13 @@
                                 <field name="salary_total" attrs="{'readonly': 1}"/>
                                 <field name="wife_name"/>
                                 <field name="wife_mobile"/>
-                                <field name="address" options="{'no_quick_create': True, 'no_create_edit' : True}"/>    
-                                <field name="family_state" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                <field name="address" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>    
+                                <field name="family_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                 <field name="persons_lived_in" />
                                 <field name="persons_lived_out"/>
-                                <field name="housing_state" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                <field name="housing_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                 <field name="other_state" attrs="{'invisible': [('housing_state', '!=', 'other')]}"/>
-                                <field name="state_type" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                <field name="state_type" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                 <field name="rooms"/>
                             </group>
                         </group>
@@ -657,7 +657,7 @@
                                 <field name="branch_management_opinion_ids" mode="tree">
                                     <tree>
                                         <field name="opinion"/>
-                                        <field name="partner_ids" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                        <field name="partner_ids" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                     </tree>
                                 </field>
                             </page>
@@ -677,9 +677,9 @@
                                 <field name="family_member_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="name"/>
-                                        <field name="relative_relation" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                        <field name="relative_relation" options="{'no_quick_create': True, 'no_create_edit' : True,  'no_open': True}"/>
                                         <field name="birthday_date"/>
-                                        <field name="educ_state" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                        <field name="educ_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                         <field name="description"/>
                                         <field name="image" widget="image"/>
                                     </tree>
