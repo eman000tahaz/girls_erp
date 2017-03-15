@@ -365,6 +365,14 @@ class CaseStudyRequest(models.Model):
                 'state': 'approve4'
             })
             domain = [('state','=','approve3'), ('reject', '=', 'n')]
+
+        # Group Admin Team
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_admin'):
+            case_obj.write(cr, uid, ids[0], {
+                'state': 'approve4'
+            })
+            domain = [('state','=','approve4'), ('reject', '=', 'n')]
+
         if partner_ids:
             post_vars = {'subject': "New Case Need to approve",
                  'body':("You have new case study which needs to approve"),
@@ -385,38 +393,61 @@ class CaseStudyRequest(models.Model):
             'type': 'ir.actions.act_window',
             'res_model': 'case.study.request',
             'view_mode' : 'tree',
-            'view_id' : view_id,
-            'target': 'current',
             'domain': domain,
+            'nodestroy' : True,
             
               }
         
-    @api.one
-    def refuse(self):
+    @api.v7
+    def refuse(self, cr, uid, ids,context=None):
         
         # Group registration user
-        if self.env['res.users'].has_group('zakat.group_registration_user'):
-            self.write({
+        case_obj = self.pool.get('case.study.request')
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_registration_user'):
+            case_obj.write(cr, uid, ids[0], {
                 'reject': 'y'
             })
+            domain = [('state','=','new'), ('reject', '=', 'n')]
+            
 
         # Group Departmental Group
-        if self.env['res.users'].has_group('zakat.group_departmental_user'):
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_departmental_user'):
             self.write({
                 'state': 'new'
             })
-
+            domain = [('state','=','approve1'), ('reject', '=', 'n')]
+            
         # Group Social Survey
-        if self.env['res.users'].has_group('zakat.group_social_survey'):
-            self.write({
-                'reject': 'approve1'
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_social_survey'):
+            case_obj.write(cr, uid, ids[0], {
+                'reject': 'y'
             })
+            domain = [('state','=','approve2'), ('reject', '=', 'n')]
 
         # Group Central Team
-        if self.env['res.users'].has_group('zakat.group_central_team'):
-            self.write({
-                'reject': 'approve1'
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):
+            case_obj.write(cr, uid, ids[0], {
+                'reject': 'y'
             })
+            domain = [('state','=','approve3'), ('reject', '=', 'n')]
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_admin'):
+            case_obj.write(cr, uid, ids[0], {
+                'reject': 'y'
+            })
+            domain = [('state','=','approve4'), ('reject', '=', 'n')]
+        model_obj = self.pool.get('ir.model.data')
+        data_id = model_obj._get_id(cr, uid, 'zakat', 'view_zakat_tree')
+        view_id = model_obj.browse(cr, uid, data_id).res_id
+
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'case.study.request',
+            'view_mode' : 'tree',
+            'domain': domain,
+            'nodestroy' : True,
+            
+              }
+
 
     @api.one
     def loans(self):
