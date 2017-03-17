@@ -258,7 +258,7 @@ class CaseStudyRequest(models.Model):
         return self.is_registration_user
 
 
-    date = fields.Datetime('الموافق', default=datetime.now())
+    date = fields.Datetime('التاريخ الميلادى', default=datetime.now())
     hijri_date = fields.Char(string="التأريخ")
     family_head = fields.Char(string='اسم رب الأسرة')
     relative_relation = fields.Many2one('relative.relation', 'صلة القرابة بالأسرة')

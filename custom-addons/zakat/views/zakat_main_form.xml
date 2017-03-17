@@ -556,7 +556,7 @@
                                 <field name="date" nolabel="1" widget="date" attrs="{'readonly': ['&amp;', ('is_admin', '!=', True), ('is_registration_user', '!=', True)]}"/>    
                             </div>
                             <div col="4">
-                                <lable for="hijri_date">التأريخ</lable>
+                                <lable for="hijri_date">التاريخ الهجرى</lable>
                                 <field name="hijri_date" nolabel="1"/>
                                 <field name="reject" invisible="1"/>
                             </div>
