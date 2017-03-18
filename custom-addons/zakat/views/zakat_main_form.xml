@@ -12,6 +12,7 @@
                     <field name="date" widget="date"/>
                     <field name="family_head" />
                     <field name="fh_state"/>
+                    <field name="case_state"/>
                 </tree>
              </field>
          </record>
@@ -39,10 +40,8 @@
                 <tree string="Commission Final Report">
                     <field name="opinion"/>
                     <field name="char_deputy_id"/>
-                    <field name="first_signature_id"/>
                     <field name="char_deputy1_id"/>
-                    <field name="Second_signature_id"/>
-                </tree>
+                 </tree>
              </field>
         </record>
 
@@ -56,7 +55,7 @@
                         <field name="opinion"/>
                         <field name="needs_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                         <field name="pocket_of_money"/>
-                        <field name="partner_ids" widget="many2many_tags"/>
+                        <!--<field name="partner_ids" widget="many2many_tags"/>-->
                     </group>
                 </form>
             </field>
@@ -71,7 +70,7 @@
                 <form string="Women Commission Opinion">
                     <group>
                         <field name="opinion" required="True"/>
-                        <field name="partner_ids" widget="many2many_tags"/>
+                       <!-- <field name="partner_ids" widget="many2many_tags"/>-->
                     </group>
                 </form>
             </field>
@@ -107,10 +106,8 @@
                     <group>
                         <field name="opinion" required="True"/>
                         <field name="char_deputy_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                        <field name="first_signature_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                         <field name="char_deputy1_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                        <field name="Second_signature_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                    </group>
+                     </group>
                 </form>
             </field>
         </record>
@@ -140,9 +137,7 @@
                 <tree string="Commission Final Report">
                     <field name="opinion"/>
                     <field name="char_deputy_id"/>
-                    <field name="first_signature_id"/>
                     <field name="char_deputy1_id"/>
-                    <field name="Second_signature_id"/>
                 </tree>
              </field>
         </record>
@@ -159,7 +154,7 @@
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="Date" domain="[]" context="{'group_by':'date'}" />
-                        <filter string="State" name="filter_state" domain="[]" context="{'group_by':'state'}" />
+                        <filter string="State" name="filter_state" domain="[]" context="{'group_by':'case_state'}" />
                     </group>
                     
                  </search>
@@ -547,42 +542,47 @@
                             </div>
                         <group col="12">
                             <div col="4">
+                                <field name="check_user" invisible="1"/>
                                 <field name="is_admin" invisible="1"/>
                                 <field name="is_registration_user" invisible="1"/>
                                 
                                 <br/>
                                 <label for="date" >AD Date</label>
                                 <br/>
-                                <field name="date" nolabel="1" widget="date" attrs="{'readonly': ['&amp;', ('is_admin', '!=', True), ('is_registration_user', '!=', True)]}"/>    
+                                <field name="date" nolabel="1" widget="date"  attrs="{'readonly': [('check_user', '=', 1)]}"/>    
                             </div>
                             <div col="4">
                                 <lable for="hijri_date">التاريخ الهجرى</lable>
-                                <field name="hijri_date" nolabel="1"/>
+                                <field name="hijri_date" nolabel="1" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="reject" invisible="1"/>
                             </div>
                         </group>
                         <group col="12">
                             <group >
-                                <field name="family_head" required="True"/>
-                                <field name="national_id" required="True"/>
-                                <field name="mobile" required="True"/>
-                                <field name="fh_state"/>
-                                <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')]}"/>
-                                <field name="salary"/>
-                                <field name="pension"/>
-                                <field name="rents"/>
-                                <field name="other"/>
+                                <field name="check_user" invisible="1"/>
+                                <field name="social_department" invisible="1"/>
+                                <field name="central_department" invisible="1"/>
+                                <field name="branch_management" invisible="1"/>
+                                <field name="family_head" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="national_id" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="mobile" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="fh_state" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')], 'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="salary" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="pension" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="rents" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="other" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="salary_total" attrs="{'readonly': 1}"/>
-                                <field name="wife_name"/>
-                                <field name="wife_mobile"/>
-                                <field name="address" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>    
-                                <field name="family_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
-                                <field name="persons_lived_in" />
-                                <field name="persons_lived_out"/>
-                                <field name="housing_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
-                                <field name="other_state" attrs="{'invisible': [('housing_state', '!=', 'other')]}"/>
-                                <field name="state_type" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
-                                <field name="rooms"/>
+                                <field name="wife_name" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="wife_mobile" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="address" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}" attrs="{'readonly': [('check_user', '=', 1)]}"/>    
+                                <field name="family_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="persons_lived_in" attrs="{'readonly': [('check_user', '=', 1)]}" />
+                                <field name="persons_lived_out" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="housing_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="other_state" attrs="{'invisible': [('housing_state', '!=', 'other')], 'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="state_type" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="rooms" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                             </group>
                         </group>
 
@@ -591,7 +591,7 @@
                         </group>
                         <notebook colspan="4">
                             <page string="Lately Paid">
-                                <field name="lately_paid_money_ids" mode="tree">
+                                <field name="lately_paid_money_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="lately_paid_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                                         <field name="pocket_of_money"/>
@@ -601,7 +601,7 @@
                                 <field name="display_lately_paid_total"/>
                             </page>
                             
-                            <page string="Loans">
+                            <page string="Loans" attrs="{'readonly': [('check_user', '=', 1)]}">
                                 <field name="loan_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="community_name"/>
@@ -616,7 +616,7 @@
                                     <field name="loans_number"/>
                                 </div>
                             </page>
-                            <page string="Family Needs">
+                            <page string="Family Needs" attrs="{'readonly': [('check_user', '=', 1)]}">
 
                                 <button name="approve_all_needs" string="Approve All" type="object" class="oe_inline" groups="zakat.group_admin"/>
                                 <field name="family_needs_ids" mode="tree">
@@ -634,8 +634,8 @@
                                 </field>
                             </page>
                             <page string="Case Classification" groups="zakat.group_social_survey">
-                                <field name="case_classification_ids" mode="tree">
-                                    <tree>
+                                <field name="case_classification_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1)]}">
+                                    <tree editable="bottom">
                                         <field name="total_income"/>
                                         <field name="net_income"/>
                                         <field name="each_person_share"/>
@@ -644,39 +644,36 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Women Commission Opinion" groups="zakat.group_social_survey">
-                                <field name="women_commission_opinion_ids" mode="tree">
-                                    <tree>
-                                        <field name="opinion"/>
-                                        <field name="needs_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                                        <field name="pocket_of_money"/>
+                            <page string="Women Commission Opinion" groups="zakat.group_social_survey,zakat.group_central_team">
+                                <field name="women_commission_opinion_ids" mode="tree" attrs="{'required': [('social_department', '=', 1)]}">
+                                    <tree editable="bottom">
+                                        <field name="opinion" required="1"/>
+                                         <field name="pocket_of_money"/>
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Branch Management Opinion" groups="zakat.group_departmental_user">
-                                <field name="branch_management_opinion_ids" mode="tree">
-                                    <tree>
-                                        <field name="opinion"/>
-                                        <field name="partner_ids" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
+                            <page string="Branch Management Opinion" groups="zakat.group_departmental_user,zakat.group_social_survey,zakat.group_central_team">
+                                <field name="branch_management_opinion_ids" mode="tree" attrs="{'required': [('branch_management', '=', 1)]}">
+                                    <tree editable="bottom">
+                                        <field name="opinion" required="1"/>
+                                        <!--<field name="partner_ids" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>-->
                                     </tree>
                                 </field>
                             </page>
                             <page string="Commission Final Report" groups="zakat.group_central_team">
-                                <field name="final_opinion_ids" mode="tree">
-                                    <tree>
-                                        <field name="opinion"/>
+                                <field name="final_opinion_ids" mode="tree" attrs="{'required': [('central_department', '=', 1)]}">
+                                    <tree editable="bottom">
+                                        <field name="opinion" required="1"/>
                                         <field name="char_deputy_id"/>
-                                        <field name="first_signature_id"/>
-                                        <field name="char_deputy1_id"/>
-                                        <field name="Second_signature_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                                    </tree>
+                                       <field name="char_deputy1_id"/>
+                                      </tree>
                                 </field>
 
                             </page>
                             <page string="بيانات أفراد الاسرة">
                                 <field name="family_member_ids" mode="tree">
                                     <tree editable="bottom">
-                                        <field name="name"/>
+                                        <field name="name" required="1"/>
                                         <field name="relative_relation" options="{'no_quick_create': True, 'no_create_edit' : True,  'no_open': True}"/>
                                         <field name="birthday_date"/>
                                         <field name="educ_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
