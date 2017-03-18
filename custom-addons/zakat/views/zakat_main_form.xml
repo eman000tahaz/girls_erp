@@ -618,7 +618,7 @@
                             </page>
                             <page string="Family Needs" attrs="{'readonly': [('check_user', '=', 1)]}">
 
-                                <button name="approve_all_needs" string="Approve All" type="object" class="oe_inline" groups="zakat.group_admin"/>
+                                <button name="approve_all_needs" string="التاريخ" type="object" class="oe_inline" groups="zakat.group_admin"/>
                                 <field name="family_needs_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
