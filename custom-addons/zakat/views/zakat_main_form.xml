@@ -112,6 +112,22 @@
             </field>
         </record>
 
+        <!-- Documentation form view -->
+
+        <record id="documentation_form_view" model="ir.ui.view">
+             <field name="name">Documentation</field>
+             <field name="model">documentation</field>
+             <field name="arch" type="xml">
+                <form string="المستندات">
+                    <group>
+                        <field name="name" required="True"/>
+                        <field name="image" widget="image"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
         <!-- Family need tree view -->
 
         <record id="view_family_need_tree" model="ir.ui.view">
