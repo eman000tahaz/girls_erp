@@ -8,22 +8,26 @@ class RelativeRlation(models.Model):
     _name = 'relative.relation'
 
     name = fields.Char('صلة القرابة بالأسرة')
+    check_user = fields.Integer(default="0")
 
 class WorkPlace(models.Model):
     _name = 'work.place'
 
     name = fields.Char('جهة العمل')
+    check_user = fields.Integer(default="0")
 
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
     _rec_name = 'sex'
 
     sex = fields.Selection([('male', 'ذكر'), ('female', 'أنثى')], 'Sex')
+    check_user = fields.Integer(default="0")
 
 class FamilyState(models.Model):
     _name = 'family.state'
 
     name = fields.Char('حالة الأسرة')
+    check_user = fields.Integer(default="0")
     
 class FamilyHousing(models.Model):
     _name = 'housing'
@@ -33,16 +37,19 @@ class FamilyHousing(models.Model):
     #                          ()])
     type = fields.Char('Type')
     rooms = fields.Integer('Number of Rooms')
+    check_user = fields.Integer(default="0")
 
 class HousingType(models.Model):
     _name = 'housing.type'
 
     name = fields.Char('نوع السكن')
+    check_user = fields.Integer(default="0")
 
 class FamilyAddress(models.Model):
     _name = 'family.address'
 
     name = fields.Char('المدينة')
+    check_user = fields.Integer(default="0")
 
 class LoanName(models.Model):
     _name = "lately.paid.type"
@@ -56,6 +63,7 @@ class MoneyLate(models.Model):
     case_study_id = fields.Many2one('case.study.request', 'رقم الحالة')
     lately_paid_type_id = fields.Many2one('lately.paid.type', string="الأسم")
     pocket_of_money = fields.Integer('المبلغ')
+    check_user = fields.Integer(default="0")
 
 class FamilyLoans(models.Model):
     _name = 'family.loan'
@@ -66,16 +74,19 @@ class FamilyLoans(models.Model):
     community_name = fields.Char('اسم الجهة')
     monthly_installment = fields.Integer('القسط الشهري')
     image = fields.Binary('المستند')
+    check_user = fields.Integer(default="0")
 
 class NeedsType(models.Model):
     _name = 'needs.type'
 
     name = fields.Char('الاسم')
     unit_of_help = fields.Char('الوحدة')
+    check_user = fields.Integer(default="0")
 
 class EductionLearn(models.Model):
     _name = 'eduction.learn'
     name = fields.Char('الحالة التعليمية')
+
 
 class FamilyData(models.Model):
     _name = 'family.member'
@@ -87,6 +98,7 @@ class FamilyData(models.Model):
     description = fields.Text('ملاحظة')
     case_study_id = fields.Many2one('case.study.request', 'Case Study')
     image = fields.Binary('المستند')
+
 
 class FamilyNeeds(models.Model):
     _name = "family.need" 
@@ -107,7 +119,7 @@ class FamilyNeeds(models.Model):
     dispatch_date_from = fields.Date('موعد التسلم من')
     dispatch_date_to = fields.Date('موعد التسليم الى')
     value = fields.Integer('القيمة')
-    summery = fields.Text("ملخص عن الأسرة وأهم احتياجاتها العاجلة ")
+    summery = fields.Text("ملاحظات")
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?")
     approve = fields.Boolean(string="Approve")
     is_recieve = fields.Boolean(string="Is Recieved?")
@@ -165,10 +177,11 @@ class WomenOpinion(models.Model):
     _rec_name = "needs_type_id"
 
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
-    opinion = fields.Text('رأى اللجنة',required=True)
+    opinion = fields.Text('التعليق',required=True)
     needs_type_id = fields.Many2one('case.category', string="النوع")
-    pocket_of_money = fields.Integer('المبلغ')
-    partner_ids = fields.Many2many('res.partner', string="الأعضاء")
+    pocket_of_money = fields.Integer('نفقات أخرى')
+    check_user = fields.Integer(default="0")
+    #partner_ids = fields.Many2many('res.partner', string="الأعضاء")
 
 class BranchManagementOpinion(models.Model):
     _name = "branch.management.opinion"
@@ -176,7 +189,8 @@ class BranchManagementOpinion(models.Model):
     
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
     opinion = fields.Text('رأى مدير الفرع')
-    partner_ids = fields.Many2many('res.partner', string="التوقيع")
+    check_user = fields.Integer(default="0")
+    #partner_ids = fields.Many2many('res.partner', string="التوقيع")
 
 class FinalOpinion(models.Model):
     _name = "final.opinion"
@@ -185,9 +199,10 @@ class FinalOpinion(models.Model):
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
     opinion = fields.Text('رأى اللجنة النهائية')
     char_deputy_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
-    first_signature_id = fields.Many2one('res.partner', 'توقيع')
+    #first_signature_id = fields.Many2one('res.partner', 'توقيع')
     char_deputy1_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
-    Second_signature_id = fields.Many2one('res.partner', 'توقيع')
+
+    #Second_signature_id = fields.Many2one('res.partner', 'توقيع')
 
 class Documentation(models.Model):
     _name = "documentation"
@@ -318,6 +333,11 @@ class CaseStudyRequest(models.Model):
     admin_comment = fields.Text('تعليق الادمن')
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?", default="_is_admin")
     is_registration_user = fields.Boolean(compute='_is_registration_user', string="Is Registration")
+    case_state = fields.Char('حالة الطلب', default="طلب جديد")
+    check_user = fields.Integer(default="0")
+    branch_management = fields.Integer(default="0")
+    social_department = fields.Integer(default="0")
+    central_department = fields.Integer(default="0")
     ###################################### Logic # ######################################
 
     @api.v7
@@ -330,7 +350,10 @@ class CaseStudyRequest(models.Model):
         # Group registration user
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_registration_user'):
             case_obj.write(cr, uid, ids,{
-                'state': 'approve1'
+                'state': 'approve1',
+                'case_state': 'انتظار الموافقة من مدير الفرع',
+                'check_user' : 1 ,
+                'branch_management': 1 ,
             })
             for each_user in users_bro:
                 print each_user, users_bro
@@ -344,38 +367,46 @@ class CaseStudyRequest(models.Model):
             get_record_data = self.pool.get('case.study.request').browse(cr, uid, ids[0])
             if get_record_data.women_commission_opinion_ids:
                 case_obj.write(cr, uid, ids[0], {
-                    'state': 'approve3'
+                    'state': 'approve3',
+                    'case_state': 'انتظار الموافقة من اللجنة النهائية',
+                    'central_department': 1
                 })
             else:
                 case_obj.write(cr, uid, ids[0], {
-                    'state': 'approve2'
+                    'state': 'approve2',
+                    'case_state': 'انتظار الموافقة من اللجنة النسائية',
+                    'social_department': 1 
                 })
             domain = [('state','=','approve1'), ('reject', '=', 'n')]
 
         # Group Social Survey
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_social_survey'):
             case_obj.write(cr, uid, ids[0], {
-                'state': 'approve1'
+                'state': 'approve1',
+                'case_state': 'انتظار الموافقة من رئيس القسم',
+                'branch_management': 1
             })
             domain = [('state','=','approve2'), ('reject', '=', 'n')]
 
         # Group Central Team
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):
             case_obj.write(cr, uid, ids[0], {
-                'state': 'approve4'
+                'state': 'approve4',
+                'case_state': 'تمت الموافقة النهائية عليه'
             })
             domain = [('state','=','approve3'), ('reject', '=', 'n')]
 
         # Group Admin Team
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_admin'):
             case_obj.write(cr, uid, ids[0], {
-                'state': 'approve4'
+                'state': 'approve4',
+                'case_state': 'تمت الموافقة النهائية عليه'
             })
             domain = [('state','=','approve4'), ('reject', '=', 'n')]
 
         if partner_ids:
-            post_vars = {'subject': "New Case Need to approve",
-                 'body':("You have new case study which needs to approve"),
+            post_vars = {'subject': "طلبات جديدة",
+                 'body':("هناك طلبات تحتاج الى موافقة"),
                  'partner_ids': partner_ids,}  
             thread_pool = self.pool.get('mail.thread')
             thread_pool.message_post(cr, uid,
@@ -413,26 +444,41 @@ class CaseStudyRequest(models.Model):
         # Group Departmental Group
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_departmental_user'):
             self.write({
-                'state': 'new'
+                'state': 'new',
+                'case_state': 'طلب مرفوض من الادارة المركزية',
+                'check_user' : 0,
+                'branch_management': 0
             })
             domain = [('state','=','approve1'), ('reject', '=', 'n')]
             
         # Group Social Survey
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_social_survey'):
             case_obj.write(cr, uid, ids[0], {
-                'reject': 'y'
+                'reject': 'y',
+                'case_state': 'طلب مرفوض من الباحث الاجتماعي',
+                'branch_management': 0,
+                'social_department': 0
             })
             domain = [('state','=','approve2'), ('reject', '=', 'n')]
 
         # Group Central Team
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):
             case_obj.write(cr, uid, ids[0], {
-                'reject': 'y'
+                'reject': 'y',
+                'case_state': ' طلب مرفوض من الجنة النهائية',
+                'central_department': 0,
+                'branch_management': 0,
+                'social_department': 0
             })
             domain = [('state','=','approve3'), ('reject', '=', 'n')]
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_admin'):
             case_obj.write(cr, uid, ids[0], {
-                'reject': 'y'
+                'reject': 'y',
+                'case_state': 'طلب تم رفضه من الادمن',
+                'branch_management': 0,
+                'social_department': 0,
+                'central_department': 0
+
             })
             domain = [('state','=','approve4'), ('reject', '=', 'n')]
         model_obj = self.pool.get('ir.model.data')
