@@ -14,7 +14,7 @@
                   name="Cases Information"
                   parent="zakat_root"
                   sequence="10" 
-                  groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_admin"/>
+                  groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team"/>
 
 
 
@@ -84,6 +84,12 @@
                   parent ="case_root"
                   sequence="40"
                   action="family_help_action"
+                  groups="group_admin"/>
+        <menuitem id ="users_group"
+                  name ="المستخدمون"
+                  parent ="case_root"
+                  sequence="40"
+                  action="base.action_res_users"
                   groups="group_admin"/>
        
         

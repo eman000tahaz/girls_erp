@@ -114,5 +114,7 @@ access_eduction_learn_group_admin,access.eduction.learn.group.admin,model_educti
 access_documentation_group_admin,access.documentation.group.admin,model_documentation,group_admin,1,1,1,1
 access_family_address_group_admin,access.family.address.group.admin,model_family_address,group_admin,1,1,1,1
 access_housing_type_group_admin,access.housing.type.group.admin,model_housing_type,group_admin,1,1,1,1
+access_res_users_group_admin,access.res.users.group.admin,base.model_res_users,group_admin,1,1,1,1
+access_res_groups_group_admin,access.res.groups.group.admin,base.model_res_groups,group_admin,1,1,1,1
 
 
