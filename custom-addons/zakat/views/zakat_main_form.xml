@@ -506,6 +506,17 @@
             <field name="context">{}</field>
         </record>
 
+        <!-- Users Action -->
+        <record model="ir.actions.act_window" id="users_action">
+            <field name="name">المستخدمون</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
 
         <!-- Case Study Form View -->
 
@@ -708,6 +719,57 @@
                                 </field>
                             </page>
 
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="base.view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form string="Users">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <div class="oe_right oe_button_box">
+                            <button string="Change Password" type="action" name="%(base.change_password_wizard_action)d"
+                                class="oe_link" help="Change the user password."/>
+                        </div>
+                        <field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                            <field name="email" invisible="1"/>
+                            <label for="login" class="oe_edit_only" string="Email Address"/>
+                            <h2><field name="login" on_change="on_change_login(login)"/></h2>
+                            <label for="company_id" class="oe_edit_only" groups="base.group_multi_company" invisible="1"/>
+                            <field name="company_id" context="{'user_preference': 0}" groups="base.group_multi_company" invisible="1"/>
+                            <group>
+                                <field name="partner_id" readonly="1" required="0" groups="base.group_no_one"
+                                        attrs="{'invisible': [('id', '=', False)]}" invisible="1"/>
+                                <field name="active"/>
+                            </group>
+                        </div>
+                        <notebook colspan="4">
+                            <page string="Access Rights">
+                                <group col="4">
+                                    <field name="groups_id"/>
+                                </group>
+                            </page>
+                            <page string="Preferences">
+                                <group>
+                                    <group string="Localization" name="preferences">
+                                        <field name="lang"/>
+                                        <field name="tz"/>
+                                    </group>
+                                    <group string="Menus Customization" groups="base.group_no_one" invisible="1">
+                                        <field name="action_id"/>
+                                    </group>
+                                </group>
+                                <group string="Messaging and Social" name="messaging" invisible="1">
+                                    <field name="signature"/>
+                                </group>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
