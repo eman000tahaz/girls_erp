@@ -10,6 +10,10 @@ class RelativeRlation(models.Model):
     name = fields.Char('صلة القرابة بالأسرة')
     check_user = fields.Integer(default="0")
 
+class FamilyHeadStatus(models.Model):
+    _name = 'family.head'
+    name = fields.Char('حالة رب الاسرة')
+
 class WorkPlace(models.Model):
     _name = 'work.place'
 
@@ -351,7 +355,7 @@ class CaseStudyRequest(models.Model):
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_registration_user'):
             case_obj.write(cr, uid, ids,{
                 'state': 'approve1',
-                'case_state': 'انتظار الموافقة من مدير الفرع',
+                'case_state': 'لاعتماد الحالة',
                 'check_user' : 1 ,
                 'branch_management': 1 ,
             })
@@ -368,13 +372,13 @@ class CaseStudyRequest(models.Model):
             if get_record_data.women_commission_opinion_ids:
                 case_obj.write(cr, uid, ids[0], {
                     'state': 'approve3',
-                    'case_state': 'انتظار الموافقة من اللجنة النهائية',
+                    'case_state': 'للموافقة النهائية',
                     'central_department': 1
                 })
             else:
                 case_obj.write(cr, uid, ids[0], {
                     'state': 'approve2',
-                    'case_state': 'انتظار الموافقة من اللجنة النسائية',
+                    'case_state': 'للبحث الاجتماعي',
                     'social_department': 1 
                 })
             domain = [('state','=','approve1'), ('reject', '=', 'n')]
@@ -383,7 +387,7 @@ class CaseStudyRequest(models.Model):
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_social_survey'):
             case_obj.write(cr, uid, ids[0], {
                 'state': 'approve1',
-                'case_state': 'انتظار الموافقة من رئيس القسم',
+                'case_state': 'لاعتماد البحث الاجتماعي',
                 'branch_management': 1
             })
             domain = [('state','=','approve2'), ('reject', '=', 'n')]
@@ -445,7 +449,7 @@ class CaseStudyRequest(models.Model):
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_departmental_user'):
             self.write({
                 'state': 'new',
-                'case_state': 'طلب مرفوض من الادارة المركزية',
+                'case_state': 'لمراجعة الحالة',
                 'check_user' : 0,
                 'branch_management': 0
             })
