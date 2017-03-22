@@ -507,15 +507,17 @@
         </record>
 
         <!-- Users Action -->
-        <record model="ir.actions.act_window" id="users_action">
-            <field name="name">المستخدمون</field>
+        <record model="ir.actions.act_window" id="family_head_action">
+            <field name="name">حالة رب الاسرة</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.users</field>
+            <field name="res_model">family.head</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
+
 
 
         <!-- Case Study Form View -->
