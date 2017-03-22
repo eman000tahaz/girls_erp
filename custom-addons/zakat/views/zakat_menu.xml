@@ -143,6 +143,12 @@
                   sequence="10"
                   action="relative_relation_action"/>
 
+        <menuitem id="family_head_data"
+                  name="حالة رب الاسرة"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="family_head_action"/>
+
 
 
     </data>
