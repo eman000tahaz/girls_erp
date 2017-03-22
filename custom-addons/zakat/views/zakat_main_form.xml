@@ -595,7 +595,7 @@
                                 <field name="family_head" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="national_id" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="mobile" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
-                                <field name="fh_state" attrs="{'readonly': [('check_user', '=', 1)]}"/>
+                                <field name="fh_state" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="fh_state_desc" attrs="{'invisible':[('fh_state', '!=', 'other')], 'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="salary" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="pension" attrs="{'readonly': [('check_user', '=', 1)]}"/>

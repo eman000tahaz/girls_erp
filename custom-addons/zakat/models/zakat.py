@@ -285,13 +285,7 @@ class CaseStudyRequest(models.Model):
     work_place = fields.Char('جهة العمل')
     job = fields.Char('الوظيفة')
     mobile = fields.Char('الهاتف')
-    fh_state = fields.Selection([('employee', 'موظف'),
-                                 ('retired', 'متقاعد'),
-                                 ('helpless', 'عاجز'),
-                                 ('jailed', 'مسجون'),
-                                 ('dead', 'متوفى'),
-                                 ('unemployed' , 'عاطل'),
-                                 ('other' , 'Other')], 'حالة رب الأسرة')
+    fh_state = fields.Many2one('family.head',string='حالة رب الأسرة')
     fh_state_desc = fields.Text(string='حالة رب الأسرة')
     salary = fields.Integer('الراتب')
     pension = fields.Integer('راتب تقاعد ')
