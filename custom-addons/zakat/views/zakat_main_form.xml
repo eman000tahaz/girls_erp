@@ -622,7 +622,7 @@
                             <page string="Lately Paid">
                                 <field name="lately_paid_money_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1)]}">
                                     <tree editable="bottom">
-                                        <field name="lately_paid_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                        <field name="lately_paid_type_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                         <field name="pocket_of_money"/>
                                     </tree>
                                 </field>
@@ -650,7 +650,7 @@
                                 <button name="approve_all_needs" string="التاريخ" type="object" class="oe_inline" groups="zakat.group_admin"/>
                                 <field name="family_needs_ids" mode="tree">
                                     <tree editable="bottom">
-                                        <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                        <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                         <field name="frequency_help" groups="zakat.group_admin"/>
                                         <field name="selecting_date_from" groups="zakat.group_admin"/>
                                         <field name="selecting_date_to" groups="zakat.group_admin"/>
@@ -693,8 +693,8 @@
                                 <field name="final_opinion_ids" mode="tree" attrs="{'required': [('central_department', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="opinion" required="1"/>
-                                        <field name="char_deputy_id"/>
-                                       <field name="char_deputy1_id"/>
+                                        <field name="char_deputy_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
+                                       <field name="char_deputy1_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                       </tree>
                                 </field>
 
