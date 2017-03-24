@@ -34,7 +34,7 @@
                   parent="case_root"
                   sequence="10"
                   action="case_study_action"
-                  groups="group_registration_user,group_admin"/>
+                  groups="group_registration_user"/>
 
         <menuitem id="case_study_departmental"
           name="Case Study"
@@ -137,6 +137,12 @@
                   parent="zakat_configuration"
                   sequence="10"
                   action="housing_type_action"/>
+        
+        <menuitem id="housing_state_data"
+                  name="حالة المسكن"
+                  parent="zakat_configuration"
+                  sequence="10"
+                  action="housing_state_action"/>
 
         <menuitem id="relative_relation_data"
                   name="صلة القرابة"

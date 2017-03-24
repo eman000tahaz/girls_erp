@@ -8,7 +8,7 @@ class RelativeRlation(models.Model):
     _name = 'relative.relation'
 
     name = fields.Char('صلة القرابة بالأسرة')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class FamilyHeadStatus(models.Model):
     _name = 'family.head'
@@ -18,20 +18,20 @@ class WorkPlace(models.Model):
     _name = 'work.place'
 
     name = fields.Char('جهة العمل')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
     _rec_name = 'sex'
 
     sex = fields.Selection([('male', 'ذكر'), ('female', 'أنثى')], 'Sex')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class FamilyState(models.Model):
     _name = 'family.state'
 
     name = fields.Char('حالة الأسرة')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
     
 class FamilyHousing(models.Model):
     _name = 'housing'
@@ -41,19 +41,25 @@ class FamilyHousing(models.Model):
     #                          ()])
     type = fields.Char('Type')
     rooms = fields.Integer('Number of Rooms')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class HousingType(models.Model):
     _name = 'housing.type'
 
     name = fields.Char('نوع السكن')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
+
+class HousingState(models.Model):
+    _name = 'housing.state'
+
+    name = fields.Char('حالة المسكن')
+    #check_user = fields.Integer(default="0")
 
 class FamilyAddress(models.Model):
     _name = 'family.address'
 
     name = fields.Char('المدينة')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class LoanName(models.Model):
     _name = "lately.paid.type"
@@ -67,7 +73,7 @@ class MoneyLate(models.Model):
     case_study_id = fields.Many2one('case.study.request', 'رقم الحالة')
     lately_paid_type_id = fields.Many2one('lately.paid.type', string="الأسم")
     pocket_of_money = fields.Integer('المبلغ')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class FamilyLoans(models.Model):
     _name = 'family.loan'
@@ -78,14 +84,14 @@ class FamilyLoans(models.Model):
     community_name = fields.Char('اسم الجهة')
     monthly_installment = fields.Integer('القسط الشهري')
     image = fields.Binary('المستند')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class NeedsType(models.Model):
     _name = 'needs.type'
 
     name = fields.Char('الاسم')
     unit_of_help = fields.Char('الوحدة')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
 
 class EductionLearn(models.Model):
     _name = 'eduction.learn'
@@ -184,7 +190,7 @@ class WomenOpinion(models.Model):
     opinion = fields.Text('التعليق',required=True)
     needs_type_id = fields.Many2one('case.category', string="النوع")
     pocket_of_money = fields.Integer('نفقات أخرى')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
     #partner_ids = fields.Many2many('res.partner', string="الأعضاء")
 
 class BranchManagementOpinion(models.Model):
@@ -193,7 +199,7 @@ class BranchManagementOpinion(models.Model):
     
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
     opinion = fields.Text('رأى مدير الفرع')
-    check_user = fields.Integer(default="0")
+    #check_user = fields.Integer(default="0")
     #partner_ids = fields.Many2many('res.partner', string="التوقيع")
 
 class FinalOpinion(models.Model):
@@ -300,7 +306,7 @@ class CaseStudyRequest(models.Model):
     family_state = fields.Many2one('family.state', string='حالة الأسرة')
     persons_lived_in = fields.Integer('عدد أفراد الأسرة الساكنين بالمنزل')
     persons_lived_out = fields.Integer('عدد أفراد الأسرة الذين لا يسكنون مع الأسرة')
-    housing_state = fields.Selection([('m', 'ملك'), ('r', 'إرث'), ('ms', 'رمستأج'), ('other', 'اخرى')], string="حالة المسكن")
+    housing_state = fields.Many2one('housing.state', string="حالة المسكن")
     other_state = fields.Char('اخرى')
     state_type = fields.Many2one('housing.type', 'نوع السكن')
     rooms = fields.Integer('عدد الغرف')
@@ -532,7 +538,8 @@ class CaseStudyRequest(models.Model):
     def create(self, values):
         created_id = super(CaseStudyRequest,self).create(values)
         self.env.user.notify_info('تم الحفظ')
-        return created_id	    
+        return created_id	 
+
 
     
     
