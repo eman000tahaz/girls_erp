@@ -509,7 +509,7 @@
         <!-- Housing state Action -->
 
         <record model="ir.actions.act_window" id="housing_state_action">
-            <field name="name">نوع السكن</field>
+            <field name="name">حالة المسكن</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">housing.state</field>
             <field name="view_type">form</field>
