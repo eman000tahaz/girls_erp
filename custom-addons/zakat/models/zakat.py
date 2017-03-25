@@ -576,7 +576,7 @@ class CaseStudyRequest(models.Model):
     @api.model
     def create(self, values):
         created_id = super(CaseStudyRequest,self).create(values)
-        #self.env.user.notify_info('تم الحفظ')
+        self.env.user.notify_info('تم الحفظ')
         return created_id	 
 
 
