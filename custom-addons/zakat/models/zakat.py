@@ -315,7 +315,7 @@ class CaseStudyRequest(models.Model):
     family_needs_ids = fields.One2many('family.need', 'case_study_id', 'متطلبات الأسرة')
     case_classification_ids = fields.One2many('case.classification', 'case_classify', ' تصنيف الحالة')
     ##family_req_ids = fields.One2many('family.requirement', 'request_id', 'Family requirements', translate=True)
-    women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'case_study_id', ' رأي اللجنة النسائية')
+    women_commission_opinion_ids = fields.One2many('women.commission.opinion', 'case_study_id', 'راى الباحث الاجتماعى')
     branch_management_opinion_ids = fields.One2many('branch.management.opinion', 'case_study_id', ' رأي إدارة الفرع')
     final_opinion_ids = fields.One2many('final.opinion', 'case_study_id', 'التقرير النهائي للجنة')
     family_member_ids = fields.One2many('family.member', 'case_study_id', 'أفراد العائلة')
