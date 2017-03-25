@@ -6,7 +6,7 @@
                    sequence="1" 
                    icon="fa-user"
 		   web_icon="zakat,static/description/icon.png"
-                   groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_admin"/>
+                   groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_admin,group_finial_decision_team"/>
 
 
         <!--Menu Cases-->
@@ -15,7 +15,7 @@
                   name="Cases Information"
                   parent="zakat_root"
                   sequence="10" 
-                  groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team"/>
+                  groups="group_registration_user,group_departmental_user,group_social_survey,group_central_team,group_finial_decision_team"/>
 
 
 
@@ -57,7 +57,12 @@
           action="case_study_central_action"
           groups="group_central_team"/>
 
-        
+        <menuitem id="case_study_central_decision_menu"
+          name="Case Study"
+          parent="case_root"
+          sequence="10"
+          action="case_study_decision_maker_action"
+          groups="group_finial_decision_team"/>
 
         <menuitem id="approved_family"
           name="Approved Families"
@@ -73,12 +78,19 @@
           action="rejected_family_action"
           groups="group_departmental_user,group_admin"/>
 
+        <menuitem id="lately_family"
+          name="الأسر المؤجلة"
+          parent="case_root"
+          sequence="30"
+          action="lately_family_action"
+          groups="group_finial_decision_team,group_admin"/>
+
         <menuitem id="all_family"
           name="All Families"
           parent="case_root"
           sequence="30"
           action="all_family_action"
-          groups="group_departmental_user,group_central_team,group_admin"/>
+          groups="group_departmental_user,group_central_team,group_admin,group_finial_decision_team"/>
 
         <menuitem id ="family_help"
                   name ="Family Help"

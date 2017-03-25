@@ -127,4 +127,31 @@ access_res_groups_group_admin,access.res.groups.group.admin,base.model_res_group
 access_family_head_group_admin,access.family.head.group.admin,model_family_head,group_admin,1,1,1,1
 access_housing_state_group_admin,access.housing.state.group.admin,model_housing_state,group_admin,1,1,1,1
 
+access_relative_relative_group_finial_decision_team,access.relative.relative.group.finial.decision.team,model_relative_relation,group_finial_decision_team,1,1,1,1
+access_work_place_group_finial_decision_team,access.work.place.group.finial.decision.team,model_work_place,group_finial_decision_team,1,1,1,1
+access_res_partner_group_finial_decision_team,access.res.partner.group.finial.decision.team,base.model_res_partner,group_finial_decision_team,1,1,1,1
+access_family_state_group_finial_decision_team,access.family.state.group.finial.decision.team,model_family_state,group_finial_decision_team,1,1,1,1
+access_housing_group_group_finial_decision_team,access.housing.group.finial.decision.team,model_housing,group_finial_decision_team,1,1,1,1
+access_lately_paid_type_group_finial_decision_team,access.lately.paid.type.group.finial.decision.team,model_lately_paid_type,group_finial_decision_team,1,1,1,1
+access_family_loan_group_finial_decision_team,access.family.loan.group.finial.decision.team,model_family_loan,group_finial_decision_team,1,1,1,1
+access_needs_type_group_finial_decision_team,access.needs.type.group.finial.decision.team,model_needs_type,group_finial_decision_team,1,1,1,1
+access_family_need_group_finial_decision_team,access.family.need.group.finial.decision.team,model_family_need,group_finial_decision_team,1,1,0,1
+access_branch_place_group_finial_decision_team,access.branch.place.group.finial.decision.team,model_branch_place,group_admin,1,1,1,1
+access_case_classification_group_finial_decision_team,access.case.classification.group.finial.decision.team,model_case_classification,group_finial_decision_team,1,1,1,1
+access_case_category_group_finial_decision_team,access.case.category.group.finial.decision.team,model_case_category,group_finial_decision_team,1,1,1,1
+access_women_commission_opinion_group_finial_decision_team,access.women.commission.opinion.group.finial.decision.team,model_women_commission_opinion,group_finial_decision_team,1,1,1,1
+access_branch_management_opinion_group_finial_decision_team,access.branch.management.opinion.group.finial.decision.team,model_branch_management_opinion,group_finial_decision_team,1,1,1,1
+access_final_opinion_group_finial_decision_team,access.final.opinion.group.finial.decision.team,model_final_opinion,group_finial_decision_team,1,1,1,1
+access_case_study_request_group_finial_decision_team,access.case.study.request.group.finial.decision.team,model_case_study_request,group_finial_decision_team,1,1,0,1
+access_lately_paid_group_finial_decision_team,access.lately.paid.group.finial.decision.team,model_lately_paid,group_finial_decision_team,1,1,1,1
+access_family_member_group_finial_decision_team,access.family.member.group.finial.decision.team,model_family_member,group_finial_decision_team,1,1,1,1
+access_eduction_learn_group_finial_decision_team,access.eduction.learn.group.finial.decision.team,model_eduction_learn,group_finial_decision_team,1,1,1,1
+access_documentation_group_finial_decision_team,access.documentation.group.finial.decision.team,model_documentation,group_finial_decision_team,1,1,1,1
+access_family_address_group_finial_decision_team,access.family.address.group.finial.decision.team,model_family_address,group_finial_decision_team,1,1,1,1
+access_housing_type_group_finial_decision_team,access.housing.type.group.finial.decision.team,model_housing_type,group_finial_decision_team,1,1,1,1
+access_res_users_group_finial_decision_team,access.res.users.group.finial.decision.team,base.model_res_users,group_finial_decision_team,1,1,1,1
+access_res_groups_group_finial_decision_team,access.res.groups.group.finial.decision.team,base.model_res_groups,group_finial_decision_team,1,1,1,1
+access_family_head_group_finial_decision_team,access.family.head.group.finial.decision.team,model_family_head,group_finial_decision_team,1,1,1,1
+access_housing_state_group_finial_decision_team,access.housing.state.group.finial.decision.team,model_housing_state,group_finial_decision_team,1,1,1,1
+
 

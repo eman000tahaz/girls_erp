@@ -331,6 +331,16 @@
              <field name="context">{}</field>
         </record>
 
+        <record model="ir.actions.act_window" id="case_study_decision_maker_action">
+             <field name="name">Case Study</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('state', '=', 'approve4'), ('reject', '!=', 'y'), ('delay_requests', '=', 0)]</field>
+             <field name="context">{}</field>
+        </record>
+
 
         <!-- Approved Family -->
 
@@ -340,7 +350,7 @@
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
              <field name="view_mode">tree,form</field>
-             <field name="domain">[('reject', '=', 'n'), ('state', '=', 'approve4')]</field>
+             <field name="domain">[('reject', '=', 'n'), ('state', '=', 'approve5')]</field>
              <field name="context">{}</field>
         </record>
 
@@ -355,6 +365,19 @@
              <field name="domain">[('reject', '=', 'y')]</field>
              <field name="context">{}</field>
         </record>
+
+        <!-- Delay Family-->
+
+        <record model="ir.actions.act_window" id="lately_family_action">
+             <field name="name">الأسر المأجلة</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">case.study.request</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="domain">[('delay_requests', '=', 1)]</field>
+             <field name="context">{}</field>
+        </record>
+
 
         <!-- All Family-->
 
@@ -529,9 +552,6 @@
             <field name="context">{}</field>
         </record>
 
-
-
-
         <!-- Case Study Form View -->
 
         <record id="case_study_view_form" model="ir.ui.view">
@@ -540,9 +560,17 @@
              <field name="arch" type="xml">
                  <form string="Case Study">
                     <header>
-                        <button string="الانتقال للمرحلة التالية" type="object" name="approve"/>
+                        <button string="الانتقال للمرحلة التالية" type="object" name="approve" groups="zakat.group_departmental_user,zakat.group_registration_user,zakat.group_social_survey,zakat.group_central_team"/>
 
-                        <button string="رفض الأسرة" type="object" name="refuse" groups="zakat.group_departmental_user,zakat.group_social_survey,zakat.group_central_team,zakat.group_admin"/>
+                        <button string="الموافقة النهائية" type="object" name="approve" groups="zakat.group_finial_decision_team"/>
+
+                        <button string="رفض الأسرة" type="object" name="refuse" groups="zakat.group_finial_decision_team"/>
+
+                        <button string="ارجاع للمسجل" type="object" name="refuse" groups="zakat.group_departmental_user"/>
+
+                        <button string="الى الدائرة" type="object" name="refuse" groups="zakat.group_central_team"/>
+                        
+                        <button string="تأجيل الطلب" type="object" name="delay_request" groups="zakat.group_finial_decision_team"/>
                     </header>
                     <sheet>
                         <div class="oe_right oe_button_box cols-sm-12">
@@ -685,7 +713,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Women Commission Opinion" groups="zakat.group_social_survey,zakat.group_central_team">
+                            <page string="رأى الباحث الاجتماعى" groups="zakat.group_social_survey,zakat.group_central_team">
                                 <field name="women_commission_opinion_ids" mode="tree" attrs="{'required': [('social_department', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="opinion" required="1"/>

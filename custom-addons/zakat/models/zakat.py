@@ -190,7 +190,7 @@ class WomenOpinion(models.Model):
     opinion = fields.Text('التعليق',required=True)
     needs_type_id = fields.Many2one('case.category', string="النوع")
     pocket_of_money = fields.Integer('نفقات أخرى')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
     #partner_ids = fields.Many2many('res.partner', string="الأعضاء")
 
 class BranchManagementOpinion(models.Model):
@@ -199,7 +199,7 @@ class BranchManagementOpinion(models.Model):
     
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
     opinion = fields.Text('رأى مدير الفرع')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
     #partner_ids = fields.Many2many('res.partner', string="التوقيع")
 
 class FinalOpinion(models.Model):
@@ -209,7 +209,7 @@ class FinalOpinion(models.Model):
     case_study_id = fields.Many2one('case.study.request', 'الحالة')
     opinion = fields.Text('رأى اللجنة النهائية')
     char_deputy_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
-    #first_signature_id = fields.Many2one('res.partner', 'توقيع')
+    first_signature_id = fields.Many2one('res.partner', 'توقيع')
     char_deputy1_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
 
     #Second_signature_id = fields.Many2one('res.partner', 'توقيع')
@@ -326,7 +326,8 @@ class CaseStudyRequest(models.Model):
             ('approve1', 'First Approve'),
             ('approve2', 'Second Approve'),
             ('approve3', 'Third Approve'),
-            ('approve4', 'Approved')
+            ('approve4', 'Forth Approve'),
+            ('approve5', 'Approved')
             ],default='new')
     loans_number = fields.Integer(compute='_opportunity_meeting_phonecall_count', string="Total")
     display_number = fields.Integer(compute='_display_meeting_phonecall_count', string="Total")
@@ -342,6 +343,7 @@ class CaseStudyRequest(models.Model):
     branch_management = fields.Integer(default="0")
     social_department = fields.Integer(default="0")
     central_department = fields.Integer(default="0")
+    delay_requests = fields.Integer(default="0")
     ###################################### Logic # ######################################
 
     @api.v7
@@ -353,6 +355,7 @@ class CaseStudyRequest(models.Model):
         
         # Group registration user
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_registration_user'):
+
             case_obj.write(cr, uid, ids,{
                 'state': 'approve1',
                 'case_state': 'لاعتماد الحالة',
@@ -372,7 +375,7 @@ class CaseStudyRequest(models.Model):
             if get_record_data.women_commission_opinion_ids:
                 case_obj.write(cr, uid, ids[0], {
                     'state': 'approve3',
-                    'case_state': 'للموافقة النهائية',
+                    'case_state': 'للمراجعة النهائية',
                     'central_department': 1
                 })
             else:
@@ -396,9 +399,16 @@ class CaseStudyRequest(models.Model):
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):
             case_obj.write(cr, uid, ids[0], {
                 'state': 'approve4',
-                'case_state': 'تمت الموافقة النهائية عليه'
+                'case_state': 'للموافقة النهائية'
             })
             domain = [('state','=','approve3'), ('reject', '=', 'n')]
+
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_finial_decision_team'):
+            case_obj.write(cr, uid, ids[0], {
+                'state': 'approve5',
+                'case_state': 'تمت الموافقة'
+            })
+            domain = [('state','=','approve4'), ('reject', '=', 'n')]
 
         # Group Admin Team
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_admin'):
@@ -430,8 +440,7 @@ class CaseStudyRequest(models.Model):
             'view_mode' : 'tree',
             'domain': domain,
             'nodestroy' : True,
-            
-              }
+        }
         
     @api.v7
     def refuse(self, cr, uid, ids,context=None):
@@ -447,7 +456,7 @@ class CaseStudyRequest(models.Model):
 
         # Group Departmental Group
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_departmental_user'):
-            self.write({
+            case_obj.write(cr, uid, ids[0],{
                 'state': 'new',
                 'case_state': 'لمراجعة الحالة',
                 'check_user' : 0,
@@ -468,20 +477,30 @@ class CaseStudyRequest(models.Model):
         # Group Central Team
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):
             case_obj.write(cr, uid, ids[0], {
-                'reject': 'y',
-                'case_state': ' طلب مرفوض من الجنة النهائية',
+                'state': 'approve1',
+                'case_state': 'لاستكمال النواقص',
                 'central_department': 0,
                 'branch_management': 0,
                 'social_department': 0
             })
             domain = [('state','=','approve3'), ('reject', '=', 'n')]
+        if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_finial_decision_team'):
+            case_obj.write(cr, uid, ids[0], {
+                'reject': 'y',
+                'case_state': 'تم رفض الاسرة',
+                'central_department': 1,
+                'branch_management': 1,
+                'social_department': 1
+            })
+            domain = [('state','=','approve4'), ('reject', '=', 'n')]
+
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_admin'):
             case_obj.write(cr, uid, ids[0], {
                 'reject': 'y',
                 'case_state': 'طلب تم رفضه من الادمن',
-                'branch_management': 0,
-                'social_department': 0,
-                'central_department': 0
+                'branch_management': 1,
+                'social_department': 1,
+                'central_department': 1
 
             })
             domain = [('state','=','approve4'), ('reject', '=', 'n')]
@@ -496,7 +515,27 @@ class CaseStudyRequest(models.Model):
             'domain': domain,
             'nodestroy' : True,
             
-              }
+        }
+
+    @api.v7
+    def delay_request(self, cr, uid, ids, context=None):
+        req_obj = self.pool.get('case.study.request')
+        req_obj.write(cr, uid, ids[0], {
+                'delay_requests': 1
+
+            })
+        model_obj = self.pool.get('ir.model.data')
+        data_id = model_obj._get_id(cr, uid, 'zakat', 'view_zakat_tree')
+        view_id = model_obj.browse(cr, uid, data_id).res_id
+
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'case.study.request',
+            'view_mode' : 'tree',
+            'domain': [('state','=','approve4'), ('reject', '=', 'n')],
+            'nodestroy' : True,
+            
+        }
 
 
     @api.one
@@ -537,7 +576,7 @@ class CaseStudyRequest(models.Model):
     @api.model
     def create(self, values):
         created_id = super(CaseStudyRequest,self).create(values)
-        self.env.user.notify_info('تم الحفظ')
+        #self.env.user.notify_info('تم الحفظ')
         return created_id	 
 
 
