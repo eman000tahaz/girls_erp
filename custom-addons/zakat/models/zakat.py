@@ -344,8 +344,9 @@ class CaseStudyRequest(models.Model):
     social_department = fields.Integer(default="0")
     central_department = fields.Integer(default="0")
     delay_requests = fields.Integer(default="0")
-    ###################################### Logic # ######################################
+    ###################################### Logic ########################################
 
+    
     @api.v7
     def approve(self, cr, uid, ids, context=None):
         case_obj = self.pool.get('case.study.request')
@@ -378,12 +379,20 @@ class CaseStudyRequest(models.Model):
                     'case_state': 'للمراجعة النهائية',
                     'central_department': 1
                 })
+                for each_user in users_bro:
+                    print each_user, users_bro
+                    if self.pool.get('res.users').has_group(cr, each_user.id, 'zakat.group_central_team'):
+                        partner_ids.append(each_user.partner_id.id)
             else:
                 case_obj.write(cr, uid, ids[0], {
                     'state': 'approve2',
                     'case_state': 'للبحث الاجتماعي',
                     'social_department': 1 
                 })
+                for each_user in users_bro:
+                    print each_user, users_bro
+                    if self.pool.get('res.users').has_group(cr, each_user.id, 'zakat.group_social_survey'):
+                        partner_ids.append(each_user.partner_id.id)
             domain = [('state','=','approve1'), ('reject', '=', 'n')]
 
         # Group Social Survey
@@ -394,6 +403,10 @@ class CaseStudyRequest(models.Model):
                 'branch_management': 1
             })
             domain = [('state','=','approve2'), ('reject', '=', 'n')]
+            for each_user in users_bro:
+                print each_user, users_bro
+                if self.pool.get('res.users').has_group(cr, each_user.id, 'zakat.group_departmental_user'):
+                    partner_ids.append(each_user.partner_id.id)
 
         # Group Central Team
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):

@@ -40,7 +40,7 @@ access_case_category_departmental_user,access.case.category.departmental.user,mo
 access_women_commission_opinion_departmental_user_group,access.women.commission.opinion.departmental.user.group,model_women_commission_opinion,group_departmental_user,1,1,1,1
 access_branch_management_opinion_departmental_user,access.branch.management.opinion.departmental.user,model_branch_management_opinion,group_departmental_user,1,1,1,1
 access_final_opinion_departmental_user,access.final.opinion.departmental.user,model_final_opinion,group_departmental_user,1,1,1,1
-access_case_study_request_departmental_user,access.case.study.request.departmental.user,model_case_study_request,group_departmental_user,1,1,0,1
+access_case_study_request_departmental_user,access.case.study.request.departmental.user,model_case_study_request,group_departmental_user,1,1,0,0
 access_lately_paid_departmental_user,access.lately.paid.departmental.user,model_lately_paid,group_departmental_user,1,1,1,1
 access_family_member_departmental_user,access.family.member.departmental.user,model_family_member,group_departmental_user,1,0,0,0
 access_eduction_learn_departmental_user,access.eduction.learn.departmental.user,model_eduction_learn,group_departmental_user,1,1,1,1

@@ -8,7 +8,7 @@
              <field name="name">Case Study</field>
              <field name="model">case.study.request</field>
              <field name="arch" type="xml">
-                <tree string="Case Study">
+                <tree string="Case Study" default_order="date desc">
                     <field name="date" widget="date"/>
                     <field name="family_head" />
                     <field name="fh_state"/>
