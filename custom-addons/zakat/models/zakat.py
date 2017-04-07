@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+
 from openerp import api, models, fields, exceptions, _, osv
 from datetime import datetime
 from umalqurra.hijri_date import HijriDate
+
 
 
 class RelativeRlation(models.Model):
@@ -191,6 +193,15 @@ class WomenOpinion(models.Model):
     needs_type_id = fields.Many2one('case.category', string="النوع")
     pocket_of_money = fields.Integer('نفقات أخرى')
     check_user = fields.Integer(default="0")
+
+    @api.model
+    def create(self, vals):
+        if len(self.env['women.commission.opinion'].search([('case_study_id', '=', vals['case_study_id'])])) == 1:
+            #self.env.user.notify_info('يجب ادخال التعليق مرة واحدة')
+            raise exceptions.Warning(_("يتم ادخال التعليق مرة واحدة"))
+        return super(WomenOpinion, self).create(vals)
+
+
     #partner_ids = fields.Many2many('res.partner', string="الأعضاء")
 
 class BranchManagementOpinion(models.Model):
@@ -201,6 +212,12 @@ class BranchManagementOpinion(models.Model):
     opinion = fields.Text('رأى مدير الفرع')
     check_user = fields.Integer(default="0")
     #partner_ids = fields.Many2many('res.partner', string="التوقيع")
+    @api.model
+    def create(self, vals):
+        if len(self.env['branch.management.opinion'].search([('case_study_id', '=', vals['case_study_id'])])) == 1:
+            #self.env.user.notify_info('يجب ادخال التعليق مرة واحدة')
+            raise exceptions.Warning(_("يتم ادخال التعليق مرة واحدة"))
+        return super(BranchManagementOpinion, self).create(vals)
 
 class FinalOpinion(models.Model):
     _name = "final.opinion"
@@ -211,6 +228,13 @@ class FinalOpinion(models.Model):
     char_deputy_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
     first_signature_id = fields.Many2one('res.partner', 'توقيع')
     char_deputy1_id = fields.Many2one('res.partner', 'رئيس اللجنة أو نائبه')
+    @api.model
+    def create(self, vals):
+        if len(self.env['final.opinion'].search([('case_study_id', '=', vals['case_study_id'])])) == 1:
+            #self.env.user.notify_info('يجب ادخال التعليق مرة واحدة')
+            raise exceptions.Warning(_("يتم ادخال التعليق مرة واحدة"))
+        return super(FinalOpinion, self).create(vals)
+
 
     #Second_signature_id = fields.Many2one('res.partner', 'توقيع')
 
@@ -343,7 +367,9 @@ class CaseStudyRequest(models.Model):
     branch_management = fields.Integer(default="0")
     social_department = fields.Integer(default="0")
     central_department = fields.Integer(default="0")
+    reduce_department = fields.Integer(default="0")
     delay_requests = fields.Integer(default="0")
+    other_comment = fields.Text('رأى تيم النواقص')
     ###################################### Logic ########################################
 
     
@@ -377,7 +403,8 @@ class CaseStudyRequest(models.Model):
                 case_obj.write(cr, uid, ids[0], {
                     'state': 'approve3',
                     'case_state': 'للمراجعة النهائية',
-                    'central_department': 1
+                    'central_department': 0,
+                    'reduce_department': 1,
                 })
                 for each_user in users_bro:
                     print each_user, users_bro
@@ -412,7 +439,8 @@ class CaseStudyRequest(models.Model):
         if self.pool.get('res.users').has_group(cr, uid, 'zakat.group_central_team'):
             case_obj.write(cr, uid, ids[0], {
                 'state': 'approve4',
-                'case_state': 'للموافقة النهائية'
+                'case_state': 'للموافقة النهائية',
+                'central_department': 1
             })
             domain = [('state','=','approve3'), ('reject', '=', 'n')]
 
@@ -590,7 +618,12 @@ class CaseStudyRequest(models.Model):
     def create(self, values):
         created_id = super(CaseStudyRequest,self).create(values)
         self.env.user.notify_info('تم الحفظ')
-        return created_id	 
+        return created_id	
+
+    @api.multi
+    def write(self, vals):
+        self.env.user.notify_info('تم الحفظ')
+        return super(CaseStudyRequest, self).write(vals) 
 
 
     

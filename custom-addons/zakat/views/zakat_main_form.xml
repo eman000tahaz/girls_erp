@@ -23,7 +23,7 @@
              <field name="name">Women Commission Opinion</field>
              <field name="model">women.commission.opinion</field>
              <field name="arch" type="xml">
-                <tree string="Women Commission Opinion">
+                <tree string="Women Commission Opinion" default_order="date desc">
                     <field name="opinion"/>
                     <field name="needs_type_id"/>
                     <field name="pocket_of_money"/>
@@ -37,7 +37,7 @@
              <field name="name">Commission Final Report</field>
              <field name="model">final.opinion</field>
              <field name="arch" type="xml">
-                <tree string="Commission Final Report">
+                <tree string="Commission Final Report" default_order="date desc">
                     <field name="opinion"/>
                     <field name="char_deputy_id"/>
                     <field name="char_deputy1_id"/>
@@ -134,9 +134,10 @@
             <field name="name">Family Need</field>
             <field name="model">family.need</field>
             <field name="arch" type="xml">
-                <tree string="Family Need" colors="red:colorize==True">
+                <tree string="Family Need" colors="red:colorize==True" default_order="date desc">
                     <field name="colorize" invisible="1"/>
                     <field name="need_type_id"/>
+                    <field name="value"/>
                     <field name="dispatch_date_from"/>
                     <field name="dispatch_date_to"/>
                     <field name="approve"/>
@@ -150,7 +151,7 @@
              <field name="name">Commission Final Report</field>
              <field name="model">final.opinion</field>
              <field name="arch" type="xml">
-                <tree string="Commission Final Report">
+                <tree string="Commission Final Report" default_order="date desc">
                     <field name="opinion"/>
                     <field name="char_deputy_id"/>
                     <field name="char_deputy1_id"/>
@@ -560,11 +561,13 @@
              <field name="arch" type="xml">
                  <form string="Case Study">
                     <header>
-                        <button string="الانتقال للمرحلة التالية" type="object" name="approve" groups="zakat.group_departmental_user,zakat.group_registration_user,zakat.group_social_survey,zakat.group_central_team"/>
+                        <button string="الانتقال للمرحلة التالية" type="object" name="approve" groups="zakat.group_registration_user,zakat.group_social_survey,zakat.group_central_team"/>
+                        <button string="ارسال الى الباحث الاجتماعى" type="object" name="approve" groups="zakat.group_departmental_user"/>
+                        <button string="ارسال الى ادارة النواقص" type="object" name="approve" groups="zakat.group_departmental_user"/>
 
                         <button string="الموافقة النهائية" type="object" name="approve" groups="zakat.group_finial_decision_team"/>
 
-                        <button string="رفض الأسرة" type="object" name="refuse" groups="zakat.group_finial_decision_team"/>
+                        <button string="رفض الطلب" type="object" name="refuse" groups="zakat.group_finial_decision_team"/>
 
                         <button string="ارجاع للمسجل" type="object" name="refuse" groups="zakat.group_departmental_user"/>
 
@@ -632,6 +635,7 @@
                                 <field name="social_department" invisible="1"/>
                                 <field name="central_department" invisible="1"/>
                                 <field name="branch_management" invisible="1"/>
+                                <field name="reduce_department" invisible="1"/>
                                 <field name="family_head" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="national_id" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                                 <field name="mobile" required="True" attrs="{'readonly': [('check_user', '=', 1)]}"/>
@@ -654,9 +658,8 @@
                                 <field name="rooms" attrs="{'readonly': [('check_user', '=', 1)]}"/>
                             </group>
                         </group>
-
-                        <group string="Admin Comment" groups="zakat.group_admin">
-                            <field name="admin_comment" attrs="{'invisible': [('is_admin', '=', False)]}"/>
+                        <group string="رأى ادارة النواقص" groups="zakat.group_central_team,zakat.group_finial_decision_team">
+                            <field name="other_comment" nolabel="1" attrs="{'required': [('reduce_department', '=', 1)], 'readonly': [('central_department', '=', 1)]}"/>
                         </group>
                         <notebook colspan="4">
                             <page string="Lately Paid">
@@ -687,7 +690,7 @@
                             </page>
                             <page string="Family Needs" attrs="{'readonly': [('check_user', '=', 1)]}">
 
-                                <button name="approve_all_needs" string="التاريخ" type="object" class="oe_inline" groups="zakat.group_admin"/>
+                                <button name="approve_all_needs" string="التاريخ" type="object" class="oe_inline" groups="zakat.group_admin,zakat.group_finial_decision_team"/>
                                 <field name="family_needs_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
@@ -696,7 +699,7 @@
                                         <field name="selecting_date_to" groups="zakat.group_admin"/>
                                         <field name="dispatch_date_from" groups="zakat.group_admin"/>
                                         <field name="dispatch_date_to" groups="zakat.group_admin"/>
-                                        <field name="value" groups="zakat.group_admin"/>
+                                        <field name="value" groups="zakat.group_finial_decision_team"/>
                                         <field name="summery"/>
                                         <field name="approve" groups="zakat.group_admin"/>
                                     </tree>
@@ -713,7 +716,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="رأى الباحث الاجتماعى" groups="zakat.group_social_survey,zakat.group_central_team">
+                            <page string="رأى الباحث الاجتماعى" groups="zakat.group_social_survey,zakat.group_central_team,zakat.group_finial_decision_team" attrs="{'readonly': [('central_department', '=', 1)]}">
                                 <field name="women_commission_opinion_ids" mode="tree" attrs="{'required': [('social_department', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="opinion" required="1"/>
@@ -721,7 +724,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Branch Management Opinion" groups="zakat.group_departmental_user,zakat.group_social_survey,zakat.group_central_team">
+                            <page string="Branch Management Opinion" groups="zakat.group_departmental_user,zakat.group_social_survey,zakat.group_central_team,zakat.group_finial_decision_team" attrs="{'readonly': [('central_department', '=', 1)]}">
                                 <field name="branch_management_opinion_ids" mode="tree" attrs="{'required': [('branch_management', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="opinion" required="1"/>
@@ -729,17 +732,15 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Commission Final Report" groups="zakat.group_central_team">
+                            <page string="Commission Final Report" groups="zakat.group_finial_decision_team">
                                 <field name="final_opinion_ids" mode="tree" attrs="{'required': [('central_department', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="opinion" required="1"/>
-                                        <field name="char_deputy_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
-                                       <field name="char_deputy1_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                       </tree>
                                 </field>
 
                             </page>
-                            <page string="بيانات أفراد الاسرة">
+                            <page string="بيانات أفراد الاسرة" attrs="{'readonly': [('check_user', '=', 1)]}">
                                 <field name="family_member_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="name" required="1"/>
@@ -752,7 +753,7 @@
                                 </field>
                             </page>
 
-                            <page string="المستندات">
+                            <page string="المستندات" attrs="{'readonly': [('check_user', '=', 1)]}">
                                 <field name="documentation_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="name"/>
@@ -760,6 +761,24 @@
                                     </tree>
                                 </field>
                             </page>
+
+                           <!-- <page string="المساعدات"  groups="zakat.group_finial_decision_team">
+
+                                <button name="approve_all_needs" string="التاريخ" type="object" class="oe_inline" groups="zakat.group_finial_decision_team"/>
+                                <field name="family_needs_ids" mode="tree">
+                                    <tree editable="bottom">
+                                        <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
+                                        <field name="frequency_help" groups="zakat.group_admin"/>
+                                        <field name="selecting_date_from" groups="zakat.group_admin"/>
+                                        <field name="selecting_date_to" groups="zakat.group_admin"/>
+                                        <field name="dispatch_date_from" groups="zakat.group_admin"/>
+                                        <field name="dispatch_date_to" groups="zakat.group_admin"/>
+                                        <field name="value" groups="zakat.group_finial_decision_team"/>
+                                        <field name="summery"/>
+                                        <field name="approve" groups="zakat.group_admin"/>
+                                    </tree>
+                                </field>
+                            </page>-->
 
                         </notebook>
                     </sheet>
