@@ -293,7 +293,7 @@
         <!-- Menuitems Actions -->
 
         <record model="ir.actions.act_window" id="case_study_action">
-             <field name="name">Case Study</field>
+             <field name="name">دراسة الحالة</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
@@ -303,7 +303,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="case_study_departmental_action">
-             <field name="name">Case Study</field>
+             <field name="name">دراسة الحالة</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
@@ -313,7 +313,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="case_study_surveyor_action">
-             <field name="name">Case Study</field>
+             <field name="name">دراسة الحالة</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
@@ -323,7 +323,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="case_study_central_action">
-             <field name="name">Case Study</field>
+             <field name="name">دراسة الحالة</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
@@ -333,7 +333,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="case_study_decision_maker_action">
-             <field name="name">Case Study</field>
+             <field name="name">دراسة الحالة</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
@@ -346,7 +346,7 @@
         <!-- Approved Family -->
 
         <record model="ir.actions.act_window" id="approved_family_action">
-             <field name="name">Approved Families</field>
+             <field name="name">الاسر التى تم الموافقة عليها</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
@@ -358,7 +358,7 @@
         <!-- Rejected Family-->
 
         <record model="ir.actions.act_window" id="rejected_family_action">
-             <field name="name">Rejected Families</field>
+             <field name="name">الاسر التى تم رفضها</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>
@@ -383,7 +383,7 @@
         <!-- All Family-->
 
         <record model="ir.actions.act_window" id="all_family_action">
-             <field name="name">All Families</field>
+             <field name="name">كل الاسر</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">case.study.request</field>
              <field name="view_type">form</field>

@@ -125,7 +125,7 @@ class FamilyNeeds(models.Model):
     
     case_study_id = fields.Many2one('case.study.request', 'دراسة الحالة')
     need_type_id = fields.Many2one('needs.type', string="المساعدات المطلوبة")
-    frequency_help = fields.Selection([('m', 'شهريا'), ('y', 'سنويا')])
+    frequency_help = fields.Selection([('m', 'شهريا'), ('y', 'سنويا')],string="تكرار المساعدة")
     selecting_date_from = fields.Date('وقت الاختيار من')
     selecting_date_to = fields.Date('وقت الاختيار الى')
     dispatch_date_from = fields.Date('موعد التسلم من')
@@ -133,7 +133,7 @@ class FamilyNeeds(models.Model):
     value = fields.Integer('القيمة')
     summery = fields.Text("ملاحظات")
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?")
-    approve = fields.Boolean(string="Approve")
+    approve = fields.Boolean(string="موافقة")
     is_recieve = fields.Boolean(string="Is Recieved?")
     colorize = fields.Boolean(string="Color")
 
