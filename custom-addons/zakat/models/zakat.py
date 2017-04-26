@@ -130,7 +130,7 @@ class FamilyNeeds(models.Model):
     selecting_date_to = fields.Date('وقت الاختيار الى')
     dispatch_date_from = fields.Date('موعد التسلم من')
     dispatch_date_to = fields.Date('موعد التسليم الى')
-    value = fields.Integer('القيمة')
+    value = fields.Integer('الكمية')
     summery = fields.Text("ملاحظات")
     is_admin = fields.Boolean(compute='_is_admin', string="Is Admin?")
     approve = fields.Boolean(string="موافقة")
