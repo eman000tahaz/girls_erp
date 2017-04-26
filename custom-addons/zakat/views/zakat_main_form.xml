@@ -694,14 +694,14 @@
                                 <field name="family_needs_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
-                                        <field name="frequency_help" groups="zakat.group_admin"/>
-                                        <field name="selecting_date_from" groups="zakat.group_admin"/>
-                                        <field name="selecting_date_to" groups="zakat.group_admin"/>
-                                        <field name="dispatch_date_from" groups="zakat.group_admin"/>
+                                        <field name="frequency_help" groups="zakat.group_admin,zakat.group_finial_decision_team"/>
+                                        <field name="selecting_date_from" groups="zakat.group_admin,zakat.group_finial_decision_team"/>
+                                        <field name="selecting_date_to" groups="zakat.group_admin,zakat.group_finial_decision_team"/>
+                                        <field name="dispatch_date_from" groups="zakat.group_admin,zakat.group_finial_decision_team"/>
                                         <field name="dispatch_date_to" groups="zakat.group_admin"/>
                                         <field name="value" groups="zakat.group_finial_decision_team"/>
                                         <field name="summery"/>
-                                        <field name="approve" groups="zakat.group_admin"/>
+                                        <field name="approve" groups="zakat.group_admin,zakat.group_finial_decision_team"/>
                                     </tree>
                                 </field>
                             </page>
