@@ -674,7 +674,7 @@
                             </page>
                             
                             <page string="Loans" attrs="{'readonly': [('check_user', '=', 1)]}">
-                                <field name="loan_ids" mode="tree">
+                                <field name="loan_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="community_name"/>
                                         <field name="loan_money"/>
@@ -688,10 +688,10 @@
                                     <field name="loans_number"/>
                                 </div>
                             </page>
-                            <page string="Family Needs" attrs="{'readonly': [('check_user', '=', 1)]}">
+                            <page string="Family Needs" attrs="{'readonly': [('check_user', '=', 1),('social_department','=',0)]}">
 
                                 <button name="approve_all_needs" string="التاريخ" type="object" class="oe_inline" groups="zakat.group_admin,zakat.group_finial_decision_team"/>
-                                <field name="family_needs_ids" mode="tree">
+                                <field name="family_needs_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1),('social_department','=',0)]}">
                                     <tree editable="bottom">
                                         <field name="need_type_id" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_open': True}"/>
                                         <field name="frequency_help" groups="zakat.group_admin,zakat.group_finial_decision_team" readonly="1"/>
