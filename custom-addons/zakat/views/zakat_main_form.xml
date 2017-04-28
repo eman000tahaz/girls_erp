@@ -716,7 +716,8 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="رأى الباحث الاجتماعى" groups="zakat.group_social_survey,zakat.group_central_team,zakat.group_finial_decision_team,zakat.group_departmental_user" attrs="{'readonly': ['|', ('central_department', '=', 1),('dep','=',1)]}">
+                            <page string="رأى الباحث الاجتماعى" groups="zakat.group_social_survey,zakat.group_central_team,zakat.group_finial_decision_team,zakat.group_departmental_user" >
+                                <field name="dep" invisible="1"/>
                                 <field name="women_commission_opinion_ids" mode="tree" attrs="{'required': [('social_department', '=', 1)],'invisible': [('social_department', '=',0)],'readonly': ['|', ('central_department', '=', 1),('dep','=',1)]}">
                                     <tree editable="bottom">
                                         <field name="opinion" required="1"/>
