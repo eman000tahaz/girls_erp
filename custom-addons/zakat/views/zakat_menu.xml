@@ -58,7 +58,7 @@
           groups="group_central_team"/>
 
         <menuitem id="case_study_central_decision_menu"
-          name="Case Study"
+          name="دراسة الحالة"
           parent="case_root"
           sequence="10"
           action="case_study_decision_maker_action"
