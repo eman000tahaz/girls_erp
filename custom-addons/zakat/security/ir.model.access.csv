@@ -60,7 +60,7 @@ access_family_loan_social_survey,access.family.loan.social.survey,model_family_l
 access_needs_type_social_survey,access.needs.type.social.survey,model_needs_type,group_social_survey,1,0,0,0
 access_family_need_social_survey,access.family.need.social.survey,model_family_need,group_social_survey,1,0,0,0
 access_branch_place_social_survey,access.branch.place.social.survey,model_branch_place,group_social_survey,1,1,1,1
-access_case_classification_social_survey,access.case.classification.social.survey,model_case_classification,group_social_survey,1,0,0,0
+access_case_classification_social_survey,access.case.classification.social.survey,model_case_classification,group_social_survey,1,1,1,1
 access_case_category_social.survey,access.case.category.social.survey,model_case_category,group_social_survey,1,0,0,0
 access_women_commission_opinion_departmental_user,access.women.commission.opinion.departmental.user,model_women_commission_opinion,group_social_survey,1,1,1,1
 access_branch_management_opinion_social_survey,access.branch.management.opinion.social.survey,model_branch_management_opinion,group_social_survey,1,0,0,0

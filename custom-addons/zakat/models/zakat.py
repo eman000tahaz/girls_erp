@@ -384,6 +384,7 @@ class CaseStudyRequest(models.Model):
     reduce_department = fields.Integer(default="0")
     delay_requests = fields.Integer(default="0")
     other_comment = fields.Text('رأى تيم النواقص')
+    dep = fields.Integer(default="0")
     ###################################### Logic ########################################
 
     
@@ -428,7 +429,7 @@ class CaseStudyRequest(models.Model):
                 case_obj.write(cr, uid, ids[0], {
                     'state': 'approve2',
                     'case_state': 'للبحث الاجتماعي',
-                    'social_department': 1 
+                    'social_department': 1
                 })
                 for each_user in users_bro:
                     print each_user, users_bro
@@ -441,7 +442,8 @@ class CaseStudyRequest(models.Model):
             case_obj.write(cr, uid, ids[0], {
                 'state': 'approve1',
                 'case_state': 'لاعتماد البحث الاجتماعي',
-                'branch_management': 1
+                'branch_management': 1,
+                'dep': 1
             })
             domain = [('state','=','approve2'), ('reject', '=', 'n')]
             for each_user in users_bro:
