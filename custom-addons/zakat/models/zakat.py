@@ -158,7 +158,7 @@ class FamilyNeeds(models.Model):
             self.colorize = False
         else:
             raise exceptions.Warning(_("You don't determine the date to recieve or it is not the date"))
-    @api.multi
+    @api.model
     def create(self, vals):
         if vals['need_type_id']:
             need_type = self.env['needs.type'].search([('id', '=', vals['need_type_id'])])
