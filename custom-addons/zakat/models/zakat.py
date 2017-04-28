@@ -10,7 +10,7 @@ class RelativeRlation(models.Model):
     _name = 'relative.relation'
 
     name = fields.Char('صلة القرابة بالأسرة')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class FamilyHeadStatus(models.Model):
     _name = 'family.head'
@@ -20,7 +20,7 @@ class WorkPlace(models.Model):
     _name = 'work.place'
 
     name = fields.Char('جهة العمل')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
@@ -33,7 +33,7 @@ class FamilyState(models.Model):
     _name = 'family.state'
 
     name = fields.Char('حالة الأسرة')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
     
 class FamilyHousing(models.Model):
     _name = 'housing'
@@ -43,25 +43,25 @@ class FamilyHousing(models.Model):
     #                          ()])
     type = fields.Char('Type')
     rooms = fields.Integer('Number of Rooms')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class HousingType(models.Model):
     _name = 'housing.type'
 
     name = fields.Char('نوع السكن')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class HousingState(models.Model):
     _name = 'housing.state'
 
     name = fields.Char('حالة المسكن')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class FamilyAddress(models.Model):
     _name = 'family.address'
 
     name = fields.Char('المدينة')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class LoanName(models.Model):
     _name = "lately.paid.type"
@@ -75,7 +75,7 @@ class MoneyLate(models.Model):
     case_study_id = fields.Many2one('case.study.request', 'رقم الحالة')
     lately_paid_type_id = fields.Many2one('lately.paid.type', string="الأسم")
     pocket_of_money = fields.Integer('المبلغ')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class FamilyLoans(models.Model):
     _name = 'family.loan'
@@ -86,14 +86,19 @@ class FamilyLoans(models.Model):
     community_name = fields.Char('اسم الجهة')
     monthly_installment = fields.Integer('القسط الشهري')
     image = fields.Binary('المستند')
-    #check_user = fields.Integer(default="0")
+    check_user = fields.Integer(default="0")
 
 class NeedsType(models.Model):
     _name = 'needs.type'
 
     name = fields.Char('الاسم')
-    unit_of_help = fields.Char('الوحدة')
-    #check_user = fields.Integer(default="0")
+    frequency_help = fields.Selection([('m', 'شهريا'), ('y', 'سنويا')],string="تكرار المساعدة")
+    selecting_date_from = fields.Date('وقت الاختيار من')
+    selecting_date_to = fields.Date('وقت الاختيار الى')
+    dispatch_date_from = fields.Date('موعد التسلم من')
+    dispatch_date_to = fields.Date('موعد التسليم الى')
+    
+    # check_user = fields.Integer(default="0")
 
 class EductionLearn(models.Model):
     _name = 'eduction.learn'
@@ -136,6 +141,15 @@ class FamilyNeeds(models.Model):
     approve = fields.Boolean(string="موافقة")
     is_recieve = fields.Boolean(string="Is Recieved?")
     colorize = fields.Boolean(string="Color")
+    @api.onchange('need_type_id')
+    def _onchange_need_type_id(self):
+        if self.need_type_id:
+            need_type = self.env['needs.type'].search([('id', '=', self.need_type_id.id)])
+            self.frequency_help = need_type.frequency_help
+            self.selecting_date_to = need_type.selecting_date_to
+            self.selecting_date_from = need_type.selecting_date_from
+            self.dispatch_date_from = need_type.dispatch_date_from
+            self.dispatch_date_to = need_type.dispatch_date_to
 
     @api.one
     def confirm(self):
