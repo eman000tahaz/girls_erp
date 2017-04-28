@@ -706,7 +706,7 @@
                                 </field>
                             </page>
                             <page string="Case Classification" groups="zakat.group_social_survey">
-                                <field name="case_classification_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1)]}">
+                                <field name="case_classification_ids" mode="tree">
                                     <tree editable="bottom">
                                         <field name="total_income"/>
                                         <field name="net_income"/>
