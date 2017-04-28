@@ -741,7 +741,7 @@
 
                             </page>
                             <page string="بيانات أفراد الاسرة" attrs="{'readonly': [('check_user', '=', 1)]}">
-                                <field name="family_member_ids" mode="tree">
+                                <field name="family_member_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="name" required="1"/>
                                         <field name="relative_relation" options="{'no_quick_create': True, 'no_create_edit' : True,  'no_open': True}"/>
@@ -754,7 +754,7 @@
                             </page>
 
                             <page string="المستندات" attrs="{'readonly': [('check_user', '=', 1)]}">
-                                <field name="documentation_ids" mode="tree">
+                                <field name="documentation_ids" mode="tree" attrs="{'readonly': [('check_user', '=', 1)]}">
                                     <tree editable="bottom">
                                         <field name="name"/>
                                         <field name="image" widget="image"/>
