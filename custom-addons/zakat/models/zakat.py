@@ -167,7 +167,7 @@ class FamilyNeeds(models.Model):
             vals['selecting_date_from'] = need_type.selecting_date_from
             vals['dispatch_date_from'] = need_type.dispatch_date_from
             vals['dispatch_date_to'] = need_type.dispatch_date_to
-        return super(FamilyNeeds, self)create(vals)
+        return super(FamilyNeeds, self).create(vals)
 
     # Automation action
     @api.v7
