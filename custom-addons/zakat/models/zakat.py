@@ -158,11 +158,22 @@ class FamilyNeeds(models.Model):
             self.colorize = False
         else:
             raise exceptions.Warning(_("You don't determine the date to recieve or it is not the date"))
+    @api.multi
+    def create(self, vals):
+        if vals['need_type_id']:
+            need_type = self.env['needs.type'].search([('id', '=', vals['need_type_id'])])
+            vals['frequency_help'] = need_type.frequency_help
+            vals['selecting_date_to'] = need_type.selecting_date_to
+            vals['selecting_date_from'] = need_type.selecting_date_from
+            vals['dispatch_date_from'] = need_type.dispatch_date_from
+            vals['dispatch_date_to'] = need_type.dispatch_date_to
+        return super(FamilyNeeds, self)create(vals)
+
     # Automation action
     @api.v7
     def update_family_need(self, cr, uid, context=None):
         family_need_obj = self.pool.get('family.need')
-        get_f_n_obj = self.pool.get('family.need').search(cr, uid, [])
+        get_f_n_obj = self.pool.get('family.need').search(cr, uid, [('approve', '=', True)])
         get_f_n_browse = self.pool.get('family.need').browse(cr, uid, get_f_n_obj)
         for get_each_data in get_f_n_browse:
             if get_each_data.dispatch_date_from and get_each_data.is_recieve == False and get_each_data.approve == True:
