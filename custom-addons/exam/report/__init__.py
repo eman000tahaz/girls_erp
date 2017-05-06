@@ -22,3 +22,4 @@
 
 from . import result_info
 from . import add_exam_result
+

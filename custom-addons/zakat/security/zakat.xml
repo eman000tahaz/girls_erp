@@ -18,7 +18,12 @@
     </record>
 
     <record id="group_central_team" model="res.groups">
-        <field name="name">Central Team</field>
+        <field name="name">ادراة النواقص</field>
+        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+    </record>
+
+    <record id="group_finial_decision_team" model="res.groups">
+        <field name="name">القرار النهائي</field>
         <field name="category_id" ref="base.module_category_accounting_and_finance"/>
     </record>
 

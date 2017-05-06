@@ -20,6 +20,7 @@
 #
 ##############################################################################
 {
+<<<<<<< HEAD:custom-addons/barcode_report/__openerp__.py
     "name": "School Barcode",
     "version": "3.0",
     "author": "Serpent Consulting Services Pvt. Ltd.",
